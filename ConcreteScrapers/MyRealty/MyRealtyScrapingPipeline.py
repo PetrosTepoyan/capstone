@@ -1,4 +1,6 @@
-from MyRealtyApartmentScraper import MyRealtyApartmentScraper
+import requests
+from bs4 import BeautifulSoup
+from ConcreteScrapers.MyRealty.MyRealtyApartmentScraper import MyRealtyApartmentScraper
 from ApartmentScrapingPipeline import ApartmentScrapingPipeline
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):

@@ -1,5 +1,9 @@
+import os
+import asyncio
+import aiohttp
 import requests
 from bs4 import BeautifulSoup
+from ApartmentScraper import ApartmentScraper
 
 class MyRealtyApartmentScraper(ApartmentScraper):
     
