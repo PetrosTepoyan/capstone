@@ -1,0 +1,85 @@
+import requests
+import time
+from urllib.parse import quote
+from Amenity import Amenity
+
+class GeoFeaturesExtractor:
+    BASE_URL = "https://maps.googleapis.com/maps/api/"
+    API_KEY = "AIzaSyAfDtObYwES7ePyjfXVl-7Govd_U6_5_dk"
+
+    def __init__(self, types_to_include, radius):
+        self.types_to_include = set(types_to_include)
+        self.radius = radius
+
+    def location(self, input):
+        
+        parameters = {
+            'fields': 'geometry',
+            'input': input,
+            'inputtype': 'textquery',
+            'key': self.API_KEY
+        }
+        url = self.BASE_URL + "place/findplacefromtext/json"
+
+        response = requests.get(
+            url, 
+            params = parameters
+        )
+
+        if response.status_code == 200:
+            response_json = response.json()
+        else:
+            return None
+        
+        try:
+            candidates = response_json["candidates"]
+            location = candidates[0]["geometry"]["location"]
+            lat = location["lat"]
+            lng = location["lng"]
+            return lat, lng
+        except:
+            return None
+
+    def find_nearby_places(self, location):
+        base_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+        amenities = []
+
+        parameters = {
+            'location': location,
+            'radius': self.radius,
+            'key': self.API_KEY
+        }
+
+        while True:  # This loop will continue to run as long as there's a next_page_token
+            response = requests.get(
+                base_url, 
+                params = parameters
+            )
+
+            # Ensure the request was successful
+            if response.status_code == 200:
+                data = response.json()
+                
+                for result in data['results']:
+                    types = self.types_to_include & set(result["types"])
+                    latitude = result['geometry']['location']['lat']
+                    longitude = result['geometry']['location']['lng']
+
+                    for type in types:
+                        amenity = Amenity(type, latitude, longitude)
+                        amenities.append(amenity)
+
+                # If there's a next_page_token, update the parameters to include it for the next request
+                if 'next_page_token' in data:
+                    parameters['pagetoken'] = data['next_page_token']
+                    
+                    # It's essential to wait a bit before the next request as the next_page_token might not be immediately valid
+                    time.sleep(1)
+                else:
+                    break  # If there's no next_page_token, break out of the loop
+            else:
+                return None  # If the request wasn't successful, return None
+
+        return amenities
+
+

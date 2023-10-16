@@ -16,3 +16,11 @@ class ApartmentScraper(ABC):
         Subclasses must implement this method.
         """
         pass
+    
+    @staticmethod
+    @abstractmethod
+    def source_identifier():
+        pass
+
+    # @abstractmethod
+    # def download_images():

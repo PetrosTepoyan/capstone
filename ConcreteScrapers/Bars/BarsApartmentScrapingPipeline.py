@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-from ConcreteScrapers.MyRealty.MyRealtyApartmentScraper import MyRealtyApartmentScraper
+from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
 from ApartmentScrapingPipeline import ApartmentScrapingPipeline
 
-class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
+class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
     def __init__(self, base_url, storage):
         self.base_url = base_url
@@ -11,7 +11,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         self.storage = storage
 
         self.__set_soup(base_url)
-        super().__init__(MyRealtyApartmentScraper)
+        super().__init__(BarsApartmentScraper)
 
     def __set_soup(self, url):
         # Send a GET request to the website

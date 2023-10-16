@@ -3,7 +3,7 @@ from Storage import Storage
 
 class CSVStorage(Storage):
     
-    fieldnames = ["id", "price", "facilities", "location", "area", "room", "floor", "storeys"]
+    fieldnames = ["source", "id", "price", "facilities", "location", "area", "room", "floor", "storeys"]
     
     def __init__(self, file_path):
         self.file_path = file_path
@@ -17,6 +17,10 @@ class CSVStorage(Storage):
                 # File is empty, write the header
                 writer = csv.DictWriter(file, fieldnames = self.fieldnames)
                 writer.writeheader()
+                
+    def save_image(self, image, image_name):
+        with open(image_name, 'wb') as f:
+            f.write(image)
 
     def append(self, data_dict):
         # Append data in the CSV file

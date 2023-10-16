@@ -19,6 +19,10 @@ class MyRealtyApartmentScraper(ApartmentScraper):
         # Parse the HTML content of the page with BeautifulSoup
         self.soup = BeautifulSoup(response.text, 'html.parser')
         
+    @staticmethod
+    def source_identifier():
+        return "myrealty"
+    
     # must through some errors
     def scrape(self):
         success = self.__scrape_id()
@@ -34,6 +38,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
             
     def values(self):
         return {
+            "source" : MyRealtyApartmentScraper.source_identifier(),
             "id": self.id,
             "price" : self.price,
             "facilities" : self.facilities,
