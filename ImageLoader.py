@@ -16,7 +16,7 @@ class ImageLoader:
 
     async def download_images(self, links, source, apartment_id):
         async with aiohttp.ClientSession() as session:
-            tasks = [self.download_image(session, url, ind) for ind, url in enumerate(links)]
+            tasks = [self.download_image(session, url, ind, source, apartment_id) for ind, url in enumerate(links)]
             await asyncio.gather(*tasks)
 
     def download(self, links, source, apartment_id):

@@ -5,10 +5,11 @@ from ApartmentScrapingPipeline import ApartmentScrapingPipeline
 
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage):
+    def __init__(self, base_url, storage, image_loader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
+        self.image_loader = image_loader
 
         self.__set_soup(base_url)
         super().__init__(BarsApartmentScraper)
@@ -37,7 +38,7 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
         apartment_data = apartment_scraper.values()
 
         # Store or process the scraped data as needed
-        self.storage.append(apartment_data)  # Replace with your storage mechanism
+        self.storage.append(apartment_data)
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:

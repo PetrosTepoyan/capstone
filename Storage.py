@@ -21,7 +21,7 @@ class Storage(ABC):
         pass
     
     @abstractmethod
-    def save_image(self, image, image_name):
+    async def save_image(self, image, image_name):
         pass
 
     @abstractmethod

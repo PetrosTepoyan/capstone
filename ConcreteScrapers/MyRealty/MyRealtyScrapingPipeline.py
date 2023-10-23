@@ -5,11 +5,12 @@ from ApartmentScrapingPipeline import ApartmentScrapingPipeline
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage):
+    def __init__(self, base_url, storage, image_loader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
-
+        self.image_loader = image_loader
+        
         self.__set_soup(base_url)
         super().__init__(MyRealtyApartmentScraper)
 

@@ -1,5 +1,6 @@
-import requests
 import time
+import math
+import requests
 from urllib.parse import quote
 from Amenity import Amenity
 
@@ -81,5 +82,22 @@ class GeoFeaturesExtractor:
                 return None  # If the request wasn't successful, return None
 
         return amenities
+    
+    def distance(lat1, lng1, lat2, lng2):
+        """
+        Calculate the great circle distance between two points
+        on the Earth (specified in decimal degrees).
+        """
+        # Convert decimal degrees to radians
+        lat1, lng1, lat2, lng2 = map(math.radians, [lat1, lng1, lat2, lng2])
+
+        # Haversine formula
+        dlat = lat2 - lat1
+        dlng = lng2 - lng1
+        a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlng/2)**2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+        r = 6371
+
+        return c * r
 
 
