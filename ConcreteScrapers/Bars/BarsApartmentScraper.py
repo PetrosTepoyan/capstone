@@ -1,7 +1,4 @@
-import os
 import re
-import asyncio
-import aiohttp
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
@@ -59,7 +56,14 @@ class BarsApartmentScraper(ApartmentScraper):
             "condition" : self.condition
         }
         
-        
+    def images_links(self) -> list[str]:
+        image_links = [img['src'] for img in self.soup.findAll('img')]
+        final_links = []
+        for link in image_links:
+            if "uploads/listing-pics/" in link and "_" not in link:
+                final_links.append(link)
+        return final_links
+    
     def __get_quick_data(self, label: str, type_) -> any:
         quick_data_tag = self.soup.find('strong', text=f'{label}').parent
         quick_data_text = ''.join(quick_data_tag.stripped_strings).replace(f'{label}', '').strip()
@@ -103,11 +107,3 @@ class BarsApartmentScraper(ApartmentScraper):
     def __get_facilities(self) -> list:
         amenities = [item.span.text for item in self.soup.findAll('li', class_='amenities-item')]
         return amenities
-    
-    def __get_image_links(self) -> list:
-        image_links = [img['src'] for img in self.soup.findAll('img')]
-        final_links = []
-        for link in image_links:
-            if "uploads/listing-pics/" in link and "_" not in link:
-                final_links.append(link)
-        return final_links

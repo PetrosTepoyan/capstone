@@ -2,10 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
 from Protocols import ApartmentScrapingPipeline
+from Services import ImageLoader
 
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader):
+    def __init__(self, base_url, storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
@@ -31,7 +32,7 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
     def scrape_apartment(self, apartment_url):
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper = self.apartment_scraper(apartment_url)
+        apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url)
 
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
@@ -39,6 +40,14 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
         # Store or process the scraped data as needed
         self.storage.append(apartment_data)
+        
+        # download images
+        images_links = apartment_scraper.images_links()
+        self.image_loader.download_images(
+            links = images_links,
+            source = BarsApartmentScraper.source_identifier(),
+            apartment_id = apartment_scraper.id
+        )
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:

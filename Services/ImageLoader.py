@@ -12,15 +12,16 @@ class ImageLoader:
 
             extension = url.split(".")[-1]
             image_path = f"{source}/{apartment_id}/{index}.{extension}"
-            await self.storage.save_image(await response.read(), image_path)
+            bytes = await response.read()
+            self.storage.save_image(bytes, image_path)
 
-    async def download_images(self, links, source, apartment_id):
+    async def __download_images(self, links, source, apartment_id):
         async with aiohttp.ClientSession() as session:
-            tasks = [self.download_image(session, url, ind, source, apartment_id) for ind, url in enumerate(links)]
+            tasks = [self.download_image(session, url, source, apartment_id, ind) for ind, url in enumerate(links)]
             await asyncio.gather(*tasks)
 
-    def download(self, links, source, apartment_id):
+    def download_images(self, links, source, apartment_id):
         if asyncio.get_running_loop():
-            asyncio.create_task(self.download_images(links, source, apartment_id))
+            asyncio.create_task(self.__download_images(links, source, apartment_id))
         else:
-            asyncio.run(self.download_images(links, source, apartment_id))
+            asyncio.run(self.__download_images(links, source, apartment_id))

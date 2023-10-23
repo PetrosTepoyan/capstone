@@ -2,10 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 from ConcreteScrapers.MyRealty.MyRealtyApartmentScraper import MyRealtyApartmentScraper
 from Protocols import ApartmentScrapingPipeline
+from Services import ImageLoader
+from Protocols import Storage
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader):
+    def __init__(self, base_url: str, storage: Storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
@@ -14,7 +16,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         self.__set_soup(base_url)
         super().__init__(MyRealtyApartmentScraper)
 
-    def __set_soup(self, url):
+    def __set_soup(self, url: str):
         # Send a GET request to the website
         response = requests.get(url)
 
@@ -31,14 +33,22 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
     def scrape_apartment(self, apartment_url):
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper = self.apartment_scraper(apartment_url, self.image_loader)
-
+        apartment_scraper: MyRealtyApartmentScraper = self.apartment_scraper(apartment_url)
+        
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
         apartment_data = apartment_scraper.values()
 
         # Store or process the scraped data as needed
         self.storage.append(apartment_data)  # Replace with your storage mechanism
+        
+        # download images
+        images_links = apartment_scraper.images_links()
+        self.image_loader.download_images(
+            links = images_links,
+            source = MyRealtyApartmentScraper.source_identifier(),
+            apartment_id = apartment_scraper.id
+        )
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:

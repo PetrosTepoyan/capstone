@@ -22,5 +22,6 @@ class ApartmentScraper(ABC):
     def source_identifier():
         pass
 
-    # @abstractmethod
-    # def download_images():
+    @abstractmethod
+    def images_links(self) -> list[str]:
+        pass

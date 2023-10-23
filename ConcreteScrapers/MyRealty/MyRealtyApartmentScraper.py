@@ -4,11 +4,10 @@ import aiohttp
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
-from Services import ImageLoader
 
 class MyRealtyApartmentScraper(ApartmentScraper):
     
-    def __init__(self, webpage: str, image_loader: ImageLoader):
+    def __init__(self, webpage: str):
         
         # Send a GET request to the website
         response = requests.get(webpage)
@@ -19,7 +18,6 @@ class MyRealtyApartmentScraper(ApartmentScraper):
 
         # Parse the HTML content of the page with BeautifulSoup
         self.soup = BeautifulSoup(response.text, 'html.parser')
-        self.image_loader = image_loader
         
     @staticmethod
     def source_identifier():
@@ -34,7 +32,6 @@ class MyRealtyApartmentScraper(ApartmentScraper):
             self.__scrape_facilities()
             self.__scrape_location()
             self.__scrape_misc()
-            self.__scrape_images()
         else:
             raise Exception
             
@@ -50,6 +47,15 @@ class MyRealtyApartmentScraper(ApartmentScraper):
             "floor" : self.floor,
             "storeys" : self.storeys
         }
+        
+    def images_links(self) -> list[str]:
+        # Extract image URLs
+        # Find img elements with the specific classes
+        img_elements = self.soup.find_all('img', class_=['owl-lazy', 'lazy-loaded'])
+
+        # Extract the src attribute of the img elements
+        img_urls: list[str] = list(set([img['data-src'] for img in img_elements if 'data-src' in img.attrs]))
+        return img_urls
     
     def __scrape_id(self) -> bool:
         # Find the div with the specific class and extract the ID
@@ -107,17 +113,3 @@ class MyRealtyApartmentScraper(ApartmentScraper):
         self.room = room
         self.floor = floor
         self.storeys = storeys
-        
-    def __scrape_images(self):
-        # Extract image URLs
-        # Find img elements with the specific classes
-        img_elements = self.soup.find_all('img', class_=['owl-lazy', 'lazy-loaded'])
-
-        # Extract the src attribute of the img elements
-        img_urls: list[str] = list(set([img['data-src'] for img in img_elements if 'data-src' in img.attrs]))
-        self.image_loader.download_images(
-            img_urls,
-            source = MyRealtyApartmentScraper.source_identifier(),
-            apartment_id = self.id
-        )
-            
