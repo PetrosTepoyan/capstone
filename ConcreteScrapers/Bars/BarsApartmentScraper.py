@@ -4,7 +4,7 @@ import asyncio
 import aiohttp
 import requests
 from bs4 import BeautifulSoup
-from ApartmentScraper import ApartmentScraper
+from Protocols import ApartmentScraper
 
 class BarsApartmentScraper(ApartmentScraper):
     

@@ -3,11 +3,12 @@ import asyncio
 import aiohttp
 import requests
 from bs4 import BeautifulSoup
-from ApartmentScraper import ApartmentScraper
+from Protocols import ApartmentScraper
+from Services import ImageLoader
 
 class MyRealtyApartmentScraper(ApartmentScraper):
     
-    def __init__(self, webpage):
+    def __init__(self, webpage: str, image_loader: ImageLoader):
         
         # Send a GET request to the website
         response = requests.get(webpage)
@@ -18,6 +19,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
 
         # Parse the HTML content of the page with BeautifulSoup
         self.soup = BeautifulSoup(response.text, 'html.parser')
+        self.image_loader = image_loader
         
     @staticmethod
     def source_identifier():
@@ -112,37 +114,10 @@ class MyRealtyApartmentScraper(ApartmentScraper):
         img_elements = self.soup.find_all('img', class_=['owl-lazy', 'lazy-loaded'])
 
         # Extract the src attribute of the img elements
-        img_urls = set([img['data-src'] for img in img_elements if 'data-src' in img.attrs])
-
-        async def download_image(session, url, image_index):
-            async with session.get(url) as response:
-                # Check if the request was successful
-                if response.status != 200:
-                    return
-
-                apartment_images_path = f'images/{self.id}'
-                # Create a directory to save the images if it doesn't exist
-                if not os.path.exists(apartment_images_path):
-                    os.makedirs(apartment_images_path)
-
-                # Save the image to the local file system
-                extension = url.split(".")[-1]
-                file_name = os.path.join(apartment_images_path, f"{image_index}.{extension}")
-                with open(file_name, 'wb') as f:
-                    f.write(await response.read())
-#                 print(f"Downloaded {url}")
-
-        async def main():
-            async with aiohttp.ClientSession() as session:
-                tasks = [download_image(session, url, ind) for ind, url in enumerate(img_urls)]
-                await asyncio.gather(*tasks)
-#             print(f"All images for ID {self.id} have been downloaded.")
-
-        # Check if there is a running event loop
-        if asyncio.get_running_loop():
-            # If there is a running event loop, use create_task to schedule the coroutine
-            asyncio.create_task(main())
-        else:
-            # If there is no running event loop, use asyncio.run() to execute the coroutine
-            asyncio.run(main())
+        img_urls: list[str] = list(set([img['data-src'] for img in img_elements if 'data-src' in img.attrs]))
+        self.image_loader.download_images(
+            img_urls,
+            source = MyRealtyApartmentScraper.source_identifier(),
+            apartment_id = self.id
+        )
             

@@ -2,7 +2,7 @@ import time
 import math
 import requests
 from urllib.parse import quote
-from Amenity import Amenity
+from VirtualModels.Amenity import Amenity
 
 class GeoFeaturesExtractor:
     BASE_URL = "https://maps.googleapis.com/maps/api/"

@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
-from ApartmentScrapingPipeline import ApartmentScrapingPipeline
+from Protocols import ApartmentScrapingPipeline
 
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 

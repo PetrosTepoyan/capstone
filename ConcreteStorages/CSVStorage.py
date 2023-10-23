@@ -1,5 +1,5 @@
 import csv
-from Storage import Storage
+from Protocols.Storage import Storage
 
 class CSVStorage(Storage):
     
