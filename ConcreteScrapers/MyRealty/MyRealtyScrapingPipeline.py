@@ -31,7 +31,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
     def scrape_apartment(self, apartment_url):
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper = self.apartment_scraper(apartment_url)
+        apartment_scraper = self.apartment_scraper(apartment_url, self.image_loader)
 
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
