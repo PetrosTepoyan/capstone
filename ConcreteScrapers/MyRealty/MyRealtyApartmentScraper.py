@@ -59,8 +59,8 @@ class MyRealtyApartmentScraper(ApartmentScraper):
     
     def __scrape_id(self) -> bool:
         # Find the div with the specific class and extract the ID
-        id_div = self.soup.find('div', class_='item-view-id')
-        id_text = id_div.get_text(strip=True)  # Get the text content of the div
+        id_div = self.soup.find('div', class_ = 'item-view-id')
+        id_text = id_div.get_text(strip = True)  # Get the text content of the div
         id_number = id_text.split()[-1]  # Split the text and get the last part, which is the ID number
         
         if id_number is None:
@@ -76,7 +76,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
     def __scrape_price(self):
         price_element = self.soup.find('div', class_='pl-0')
         if price_element:
-            price_element_text = price_element.get_text(strip=True)
+            price_element_text = price_element.get_text(strip = True)
             price_text_stripped = price_element_text.split("/")[0]
             price_text_stripped = price_text_stripped.replace(",", "")
             price = int(price_text_stripped)
@@ -84,7 +84,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
             
     def __scrape_location(self):
         # Find the div with the specific id
-        div_tag = self.soup.find('div', id='yandex_map_item_view')
+        div_tag = self.soup.find('div', id = 'yandex_map_item_view')
 
         # Extract the latitude and longitude from the data-lat and data-lng attributes
         latitude = div_tag['data-lat']
