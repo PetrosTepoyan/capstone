@@ -1,0 +1,1 @@
+# idea: use ChatGPT to map facilities into n different categories.

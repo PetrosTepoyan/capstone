@@ -43,6 +43,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         self.storage.append(apartment_data)  # Replace with your storage mechanism
         
         # download images
+        return
         images_links = apartment_scraper.images_links()
         self.image_loader.download_images(
             links = images_links,
