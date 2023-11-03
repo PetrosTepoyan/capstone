@@ -1,6 +1,7 @@
 import os
 import csv
 from Protocols.Storage import Storage
+import threading
 
 class CSVStorage(Storage):
     
@@ -10,6 +11,7 @@ class CSVStorage(Storage):
         self.file_path = file_path
         self.images_path = images_path
         self.initialize()
+        self.threadLock = threading.Lock()
 
     def initialize(self):
         # Initialize the CSV file and write the header if the file doesn't exist
@@ -33,7 +35,9 @@ class CSVStorage(Storage):
         # Append data in the CSV file
         with open(self.file_path, mode='a+', newline='') as file:
             writer = csv.DictWriter(file, fieldnames=self.fieldnames)
+            self.threadLock.acquire()
             writer.writerow(data_dict)
+            self.threadLock.release()
 
     def path(self):
         return self.file_path
