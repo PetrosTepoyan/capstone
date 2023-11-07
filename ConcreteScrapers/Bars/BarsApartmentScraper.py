@@ -2,17 +2,19 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
+from logging import Logger
 
 class BarsApartmentScraper(ApartmentScraper):
     
-    def __init__(self, webpage):
+    def __init__(self, webpage: str, logger: Logger):
         
         response = requests.get(webpage)
 
         if response.status_code != 200 or not response.text.strip():
             print("Failed", response.status_code)
-
+        self.webpage = webpage
         self.soup = BeautifulSoup(response.text, 'html.parser')
+        self.logger = logger
         
     @staticmethod
     def source_identifier():
@@ -65,8 +67,13 @@ class BarsApartmentScraper(ApartmentScraper):
         return final_links
     
     def __get_quick_data(self, label: str, type_) -> any:
-        quick_data_tag = self.soup.find('strong', text=f'{label}').parent
-        quick_data_text = ''.join(quick_data_tag.stripped_strings).replace(f'{label}', '').strip()
+        try:
+            quick_data_tag = self.soup.find('strong', text=f'{label}').parent
+            quick_data_text = ''.join(quick_data_tag.stripped_strings).replace(f'{label}', '').strip()
+        except:
+            if self.logger:
+                self.logger.error(f"Couldn't get quick data {self.webpage}")
+            return None
         return type_(quick_data_text)
     
     def __get_id(self) -> str:

@@ -2,41 +2,63 @@ import os
 import csv
 from Protocols.Storage import Storage
 import threading
+from logging import Logger
 
 class CSVStorage(Storage):
-    
-    fieldnames = ["source", "id", "price", "facilities", "location", "area", "room", "floor", "storeys"]
-    
-    def __init__(self, file_path, images_path):
+    fieldnames = ["source", "id", "price", "facilities", "location", "area", "room", "floor", "storeys", "building_type", 'condition', 'ceiling_height', 'bathrooms', 'bedrooms', 'rooms']
+
+    # Flush each 5 datapoints
+    flush_batch_count: int = 5
+
+    def __init__(self, file_path, images_path, logger: Logger):
         self.file_path = file_path
         self.images_path = images_path
-        self.initialize()
+        self.file_handle = None
         self.threadLock = threading.Lock()
+        self.current_count = 0
+        self.logger = logger
 
     def initialize(self):
-        # Initialize the CSV file and write the header if the file doesn't exist
-        with open(self.file_path, mode='a+', newline='') as file:
-            file.seek(0)
-            if not file.read(1):
-                # File is empty, write the header
-                writer = csv.DictWriter(file, fieldnames = self.fieldnames)
-                writer.writeheader()
-                
+        # Check if the file exists, and if not, create it
+        if not os.path.exists(self.file_path):
+            print(f"Creating the file: {self.file_path}")
+            try:
+                with open(self.file_path, mode='w', newline='') as file:
+                    writer = csv.DictWriter(file, fieldnames=self.fieldnames)
+                    writer.writeheader()
+            except Exception as e:
+                print(f"Error creating the file: {e}")
+                return
+
+        # Open the file for writing and store the file handle
+        self.file_handle = open(self.file_path, mode='a+', newline='')
+
+    def close_file(self):
+        # Close the file when done
+        if self.file_handle is not None:
+            self.file_handle.close()
+
     def save_image(self, image, image_name):
-        
         dir_path = os.path.dirname(self.images_path + image_name)
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
-        
+
         with open(self.images_path + image_name, 'wb') as f:
             f.write(image)
+            
+        self.logger.info(f"Saved image {image_name}")
 
     def append(self, data_dict):
         # Append data in the CSV file
-        with open(self.file_path, mode='a+', newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=self.fieldnames)
+        if self.file_handle is not None:
+            writer = csv.DictWriter(self.file_handle, fieldnames=self.fieldnames)
             self.threadLock.acquire()
             writer.writerow(data_dict)
+            self.current_count += 1
+            if self.current_count == self.flush_batch_count:
+                self.current_count = 0
+                self.file_handle.flush()  # Flush to write data immediately
+                self.logger.info(f"Flushed {self.flush_batch_count}")
             self.threadLock.release()
 
     def path(self):

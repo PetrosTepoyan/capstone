@@ -8,6 +8,11 @@ class Storage(ABC):
         Subclasses must implement this method.
         """
         pass
+    
+    @abstractmethod
+    def close_file(self):
+        "This method should close the file"
+        pass
 
     @abstractmethod
     def append(self, data_dict):

@@ -1,0 +1,21 @@
+source,id,price,facilities,location,area,room,floor,storeys,building_type,condition,ceiling_height,bathrooms,bedrooms,rooms
+bars,6,124000,"['Elevator', 'Closed balcony']",Yerevan/Davtashen/Davtashen 1st block,105.0,,2,14,Panel,Without renovation,2.75,1,2,3
+bars,2,170000,[],Yerevan/Big Center/Christophor st.,,,,,Stone,Major overhaul,,,,
+bars,6,163000,"['Elevator', 'Heating system', 'Open balcony']",Yerevan/Davtashen/Mikoyan Street,72.0,,2,11,New building,Major overhaul,3.0,1,2,3
+bars,4,775000,"['Building service', 'Building security', 'Parking', 'Elevator', 'Heating system', 'Air conditioning', 'Open balcony', 'Terrace', 'Panorama', 'Jacuzzi', 'Fireplace', 'Exclusive design']",Yerevan/Arabkir/Hambardzumyan Street,342.0,,8,9,New building,Major overhaul,3.0,4,6,8
+bars,4,235000,"['First line', 'Heating system', 'Air conditioning', 'Superstructure', 'Terrace', 'Built-in furniture', 'Wardrobe', 'Transport availability']",Yerevan/Arabkir/Kievyan Street,220.0,,4,4,Stalinka c/o,Major overhaul,3.2,3,5,7
+bars,4,200000,"['First line', 'Garage', 'Heating system', 'Air conditioning', 'Washing machine', 'Kitchen stove', 'Fridge', 'TV', 'Furniture', 'Built-in furniture', 'Kitchen furniture', 'Transport availability']",Yerevan/Arabkir/Komitas Avenue,110.0,,3,5,Stalinka c/o,Major overhaul,3.1,2,3,4
+bars,4,125000,[],Yerevan/Arabkir/Avet Avetisyan Street,80.0,,14,16,Panel,Old major overhaul,2.8,1,1,2
+bars,4,90000,[],Yerevan/Arabkir/General Babayan Street,46.5,,2,7,Special project,Major overhaul,,1,1,1
+bars,4,180000,"['Heating system', 'Air conditioning', 'Open balcony']",Yerevan/Arabkir/Aram Khachatryan Street,113.0,,3,5,Stone,Major overhaul,2.8,2,3,4
+bars,4,115000,"['Parking', 'Closed balcony', 'Panorama']",Yerevan/Arabkir/Aghbyur Serob Street,89.0,,7,14,Panel,Redecoration,2.75,1,2,3
+bars,4,156000,"['Elevator', 'Air conditioning', 'Closed balcony']",Yerevan/Arabkir/Yerznkyan Street,84.0,,8,14,Panel,Redecoration,2.75,1,2,3
+bars,1,410000,"['Building service', 'Building security', 'Elevator', 'Heating system', 'Air conditioning', 'Open balcony', 'Transport availability']",Yerevan/Small Center/Amiryan Street,75.0,,3,12,New building,Major overhaul,3.0,2,2,3
+bars,1,360000,"['Parking', 'Elevator', 'Open balcony']",Yerevan/Small Center/Paronyan Street,121.0,,11,13,New building,Without renovation,3.0,2,3,4
+bars,4,192000,"['Elevator', 'Heating system', 'Open balcony', 'Furniture']",Yerevan/Arabkir/Gyulbenkyan Street,67.0,,7,14,New building,Major overhaul,3.0,1,2,3
+bars,1,330000,"['Heating system', 'Air conditioning', 'Open balcony']",Yerevan/Small Center/Abovyan Street,108.0,,2,5,Stone,Old major overhaul,2.0,2,3,4
+bars,1,750000,"['Heating system', 'Air conditioning', 'Front balcony', 'Open balcony', 'Mansard', 'Jacuzzi', 'Fireplace']",Yerevan/Small Center/Moskovyan Street,265.0,,4,5,Stalinka c/o,Major overhaul,,3,3,5
+bars,6,113000,['Open balcony'],Yerevan/Nork-Marash/Hovsepyan Street,55.18,,4,5,New building,Without renovation,3.0,1,1,2
+bars,4,105000,"['Elevator', 'Heating system', 'Fireplace', 'Furniture']",Yerevan/Arabkir/Nikol Duman Street,59.0,,1,14,Panel,Major overhaul,2.8,1,1,2
+bars,4,285000,"['First line', 'Elevator', 'Heating system', 'Air conditioning', 'Open balcony', 'Washing machine', 'Kitchen stove', 'Fridge', 'TV', 'Furniture', 'Built-in furniture', 'Kitchen furniture']",Yerevan/Arabkir/Vagharshyan Street,81.0,,6,10,New building,Major overhaul,3.0,2,2,3
+bars,4,410000,"['Elevator', 'Open balcony']",Yerevan/Arabkir/Arabkir 19th Street,165.0,,8,8,New building,Without renovation,3.0,4,4,5

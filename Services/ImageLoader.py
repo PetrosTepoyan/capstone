@@ -1,19 +1,26 @@
 import aiohttp
 import asyncio
+from logging import Logger
 
 class ImageLoader:
-    def __init__(self, storage):
+    def __init__(self, storage, logger: Logger):
         self.storage = storage
+        self.logger = logger
             
     async def download_image(self, session, url, source, apartment_id, index):
-        async with session.get(url) as response:
-            if response.status != 200:
-                return
+        try:
+            async with session.get(url) as response:
+                if response.status != 200:
+                    return
 
-            extension = url.split(".")[-1]
-            image_path = f"{source}/{apartment_id}/{index}.{extension}"
-            bytes = await response.read()
-            self.storage.save_image(bytes, image_path)
+                extension = url.split(".")[-1]
+                image_path = f"{source}/{apartment_id}/{index}.{extension}"
+                bytes = await response.read()
+                self.storage.save_image(bytes, image_path)
+        except:
+            if self.logger:
+                self.logger.error(f"Can't download image {apartment_id} {index}")
+            
 
     async def __download_images(self, links, source, apartment_id):
         async with aiohttp.ClientSession() as session:
