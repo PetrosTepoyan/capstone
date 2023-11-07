@@ -1,13 +1,11 @@
-import os
-import asyncio
-import aiohttp
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
+from logging import Logger
 
 class MyRealtyApartmentScraper(ApartmentScraper):
     
-    def __init__(self, webpage: str):
+    def __init__(self, webpage: str, logger: Logger):
         
         # Send a GET request to the website
         response = requests.get(webpage)
@@ -18,6 +16,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
 
         # Parse the HTML content of the page with BeautifulSoup
         self.soup = BeautifulSoup(response.text, 'html.parser')
+        self.logger = logger
         
     @staticmethod
     def source_identifier():
@@ -47,6 +46,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
             "floor" : self.floor,
             "storeys" : self.storeys
         }
+        # need to scrape bathroom count, building type, ceiling height, condition
         
     def images_links(self) -> list[str]:
         # Extract image URLs

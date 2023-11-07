@@ -3,17 +3,19 @@ from bs4 import BeautifulSoup
 from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
-
+from logging import Logger
+# https://bars.am/en/properties/standard/apartment
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader):
+    def __init__(self, base_url, storage, image_loader: ImageLoader, logger: Logger):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
+        self.logger = logger
 
         self.__set_soup(base_url)
-        super().__init__(BarsApartmentScraper)
+        super().__init__(BarsApartmentScraper, logger)
 
     def __set_soup(self, url):
         # Send a GET request to the website
@@ -32,7 +34,7 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
     def scrape_apartment(self, apartment_url):
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url)
+        apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url, self.logger)
 
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
@@ -54,7 +56,7 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
             page_url = self.base_url
 
         # Find all 'a' elements with the specific class
-        a_elements = self.soup.find_all('a', class_='btn btn-pink-transparent btn-cs text-uppercase item-more-btn ml-auto')
+        a_elements = self.soup.find_all('a', class_='wrapper-image')
 
         # Iterate over the found 'a' elements and navigate to their links
         links = []

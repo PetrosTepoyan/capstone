@@ -4,17 +4,18 @@ from ConcreteScrapers.MyRealty.MyRealtyApartmentScraper import MyRealtyApartment
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 from Protocols import Storage
+from logging import Logger
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url: str, storage: Storage, image_loader: ImageLoader):
+    def __init__(self, base_url: str, storage: Storage, image_loader: ImageLoader, logger: Logger):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
         
         self.__set_soup(base_url)
-        super().__init__(MyRealtyApartmentScraper)
+        super().__init__(MyRealtyApartmentScraper, logger)
 
     def __set_soup(self, url: str):
         # Send a GET request to the website
@@ -33,7 +34,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
     def scrape_apartment(self, apartment_url):
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper: MyRealtyApartmentScraper = self.apartment_scraper(apartment_url)
+        apartment_scraper: MyRealtyApartmentScraper = self.apartment_scraper(apartment_url, self.logger)
         
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
@@ -43,7 +44,6 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         self.storage.append(apartment_data)  # Replace with your storage mechanism
         
         # download images
-        return
         images_links = apartment_scraper.images_links()
         self.image_loader.download_images(
             links = images_links,
