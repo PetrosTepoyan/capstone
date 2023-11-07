@@ -50,6 +50,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
             source = MyRealtyApartmentScraper.source_identifier(),
             apartment_id = apartment_scraper.id
         )
+        self.logger.info(f"Finished scraping {apartment_data['id']}")
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:

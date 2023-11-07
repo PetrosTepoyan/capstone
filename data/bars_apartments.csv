@@ -19,7 +19,3 @@ bars,6,113000,['Open balcony'],Yerevan/Nork-Marash/Hovsepyan Street,55.18,,4,5,N
 bars,4,105000,"['Elevator', 'Heating system', 'Fireplace', 'Furniture']",Yerevan/Arabkir/Nikol Duman Street,59.0,,1,14,Panel,Major overhaul,2.8,1,1,2
 bars,4,285000,"['First line', 'Elevator', 'Heating system', 'Air conditioning', 'Open balcony', 'Washing machine', 'Kitchen stove', 'Fridge', 'TV', 'Furniture', 'Built-in furniture', 'Kitchen furniture']",Yerevan/Arabkir/Vagharshyan Street,81.0,,6,10,New building,Major overhaul,3.0,2,2,3
 bars,4,410000,"['Elevator', 'Open balcony']",Yerevan/Arabkir/Arabkir 19th Street,165.0,,8,8,New building,Without renovation,3.0,4,4,5
-bars,4,193000,['Elevator'],Yerevan/Arabkir/Arabkir 19th Street,97.0,,5,8,New building,Without renovation,3.0,2,2,3
-bars,4,201000,"['Elevator', 'Open balcony']",Yerevan/Arabkir/Arabkir 19th Street,81.0,,5,8,New building,Without renovation,3.0,2,2,3
-bars,4,290000,"['Parking', 'Elevator', 'Open balcony']",Yerevan/Arabkir/Aghbyur Serob Street,110.0,,5,7,New building,Without renovation,3.0,2,2,4
-bars,4,110000,"['First line', 'Parking', 'Elevator', 'Heating system', 'Air conditioning', 'Open balcony']",Yerevan/Arabkir/Aram Khachatryan Street,75.0,,3,9,Stone,Redecoration,2.7,1,1,2
