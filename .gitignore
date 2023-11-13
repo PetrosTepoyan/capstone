@@ -2,6 +2,10 @@ images
 venv
 Watermark-Removal-Pytorch
 watermark-removal
+bedroom_premodel.ckpt
+
+
+
 .DS_Store
 
 

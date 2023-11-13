@@ -28,7 +28,7 @@ class ApartmentsDatasetPyTorch(Dataset):
                         self.image_paths.append(img_path)
                     
         self.error_log = {}
-
+        
     def __len__(self):
         return len(self.image_paths)
 
@@ -53,21 +53,3 @@ class ApartmentsDatasetPyTorch(Dataset):
         filtered_rows = self.df[(self.df["source"] == source) & (self.df["id"] == ap_native_id)]
         price = int(filtered_rows["price"])
         return price
-
-
-# Define a transform to normalize the data
-transform = transforms.Compose([
-    transforms.Resize((128, 128)),  # Resize images to 128x128
-    transforms.ToTensor(),  # Convert images to PyTorch tensors
-    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])  # Normalize images
-])
-
-# # Create the dataset
-# dataset = ApartmentDatasetPyTorch(
-#     data_dir = "../apartments.csv",
-#     images_dir = '../images', 
-#     transform = transform
-# )
-
-# # Create the dataloader
-# dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
