@@ -28,19 +28,35 @@ class BnakaranApartmentScraper:
         self.__scrape_additional_features()
         
     def values(self):
-        return {
+        apartment_data = {
             "source" : BnakaranApartmentScraper.source_identifier(),
             "area": self.area,
             "storeys": self.storeys,
             "rooms": self.rooms,
-            "images": self.images,
             "latitude": self.latitude,
             "longitude": self.longitude,
             "details": self.details,
             "room_details": self.room_details,
             "additional_features": self.additional_features
         }
+        flattened_apartment_data = self.__flatten_json(apartment_data)
+        return flattened_apartment_data
+
         
+    def images_links(self) -> list[str]:
+        return self.images
+    
+    def __flatten_json(self, apartment_data):
+        # Extract the nested JSON fields
+        details = apartment_data.pop('details', {})
+        room_details = apartment_data.pop('room_details', {})
+
+        # Merge the nested dictionaries into the main one
+        # Note: If there are overlapping keys, the keys from the later dictionaries will overwrite those from the earlier ones
+        flattened_data = {**apartment_data, **details, **room_details}
+        
+        return flattened_data
+
     def __scrape_features(self):
         for li in self.soup.select('ul.property-main-features > li'):
             key = li.get_text(strip=True).split(':')[0].strip().lower()
