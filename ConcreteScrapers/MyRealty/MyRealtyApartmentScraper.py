@@ -1,3 +1,5 @@
+import re
+import logging
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
@@ -18,21 +20,71 @@ class MyRealtyApartmentScraper(ApartmentScraper):
         self.soup = BeautifulSoup(response.text, 'html.parser')
         self.logger = logger
         
+        self.id = None
+        self.price = None
+        self.facilities = None
+        self.address = None
+        self.area = None
+        self.room = None
+        self.floor = None
+        self.storeys = None
+        self.building_type = None
+        self.ceiling_height = None
+        self.condition = None
+        self.bathroom = None
+        self.added_in_date = None
+        self.view_count = None
+        
+        
     @staticmethod
     def source_identifier():
         return "myrealty"
     
     # must through some errors
     def scrape(self):
-        success = self.__scrape_id()
+        try: 
+            success = self.__scrape_id()
+        except:
+            logging.error("code: 012 | ID")
         
         if success:
-            self.__scrape_price()
-            self.__scrape_facilities()
-            self.__scrape_location()
-            self.__scrape_misc()
+            try:
+                self.__scrape_price()
+            except:
+                logging.error("code: 012 | Price")
+            
+            try:
+                self.__scrape_facilities()
+            except:
+                logging.error("code: 012 | Facilities")
+                
+            try:
+                self.__scrape_location()
+            except:
+                logging.error("code: 012 | locaiton")
+                
+            try:
+                self.__scrape_misc()
+            except:
+                logging.error("code: 012 | misc")
+                
+            try:
+                self.__scrape_misc_2()
+            except:
+                logging.error("code: 012 | misc2")
+                
+            try:
+                self.__scrape_added_in_date()
+            except:
+                logging.error("code: 012 | added in date")
+                
+            try: 
+                self.__scrape_look_count()
+            except:
+                logging.error("code: 012 | view count")
+                
         else:
-            raise Exception
+            logging.error("code: 012 | ID")
             
     def values(self):
         return {
@@ -42,9 +94,17 @@ class MyRealtyApartmentScraper(ApartmentScraper):
             "facilities" : self.facilities,
             "location" : self.address,
             "area" : self.area,
-            "room" : self.room,
+            "rooms" : self.room,
             "floor" : self.floor,
-            "storeys" : self.storeys
+            "storeys" : self.storeys,
+            
+            "building_type" : self.building_type,
+            "bathroom_count" : self.bathroom,
+            "ceiling_height" : self.ceiling_height,
+            "condition" : self.condition,
+            
+            "added_in_date" : self.added_in_date,
+            "view_count" : self.view_count
         }
         # need to scrape bathroom count, building type, ceiling height, condition
         
@@ -109,7 +169,36 @@ class MyRealtyApartmentScraper(ApartmentScraper):
         floor_storeys = parent_div.find_all('div')[2].find('span').text
         floor, storeys = floor_storeys.split('/')
 
-        self.area = area
-        self.room = room
-        self.floor = floor
-        self.storeys = storeys
+        self.area = self.__extract_first_number(area)
+        self.room = self.__extract_first_number(room)
+        self.floor = self.__extract_first_number(floor)
+        self.storeys = self.__extract_first_number(storeys)
+        
+    def __scrape_misc_2(self):
+        values = {}
+
+        # Find the relevant <li> elements and extract the values
+        for li in self.soup.find_all('li', class_='row d-flex align-items-center no-gutters'):
+            label = li.find('label').get_text()
+            value = li.find('div', class_='col-5').find('span').get_text(strip=True)
+            values[label] = value
+        # Extracted values
+        self.bathroom = values.get("Bathroom")
+        self.building_type = values.get("Building type")
+        self.ceiling_height = values.get("Ceiling height")
+        self.condition = values.get("condition")
+
+    def __scrape_added_in_date(self):
+        # Find the 'Added in' date
+        added_in_div = self.soup.find('div', class_='col-auto mb-1')
+        added_in_date = added_in_div.get_text(strip=True).split()[-1]
+        self.added_in_date = re.sub(r'[^\d\.]', '', added_in_date)
+        
+    def __scrape_look_count(self):
+        view_count_span = self.soup.find('span', class_='item-view-count')
+        view_count = view_count_span.get_text(strip=True)
+        self.view_count = int(view_count)
+        
+    def __extract_first_number(self, s):
+        match = re.search(r'\d+', s)
+        return int(match.group(0)) if match else None

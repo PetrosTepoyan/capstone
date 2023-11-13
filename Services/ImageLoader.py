@@ -28,7 +28,11 @@ class ImageLoader:
             await asyncio.gather(*tasks)
 
     def download_images(self, links, source, apartment_id):
-        if asyncio.get_running_loop():
-            asyncio.create_task(self.__download_images(links, source, apartment_id))
-        else:
+        try:
+            if asyncio.get_running_loop():
+                asyncio.create_task(self.__download_images(links, source, apartment_id))
+            else:
+                asyncio.run(self.__download_images(links, source, apartment_id))
+        except:
+            # Meaning running in a sync context, need to force running in an event loop
             asyncio.run(self.__download_images(links, source, apartment_id))
