@@ -21,11 +21,11 @@ class BnakaranApartmentScraper:
     
     def scrape(self):
         self.__scrape_features()
-        self.__scrape_images()
         self.__scrape_location()
         self.__scrape_details()
         self.__scrape_room_details()
         self.__scrape_additional_features()
+        self.__scrape_utilities()
         
     def values(self):
         apartment_data = {
