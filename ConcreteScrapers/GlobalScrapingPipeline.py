@@ -1,10 +1,12 @@
 import concurrent.futures
 from Protocols import ApartmentScrapingPipeline
+from logging import Logger
 
 class GlobalScrapingPipeline:
     
-    def __init__(self, pipelines: list[ApartmentScrapingPipeline]):
+    def __init__(self, pipelines: list[ApartmentScrapingPipeline], logger: Logger):
         self.pipelines: list[ApartmentScrapingPipeline] = pipelines
+        self.logger = logger
     
     def run_pipeline(self, pipeline):
         # Get apartments for the current page

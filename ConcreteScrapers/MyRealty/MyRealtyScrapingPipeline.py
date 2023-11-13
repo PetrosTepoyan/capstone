@@ -31,6 +31,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
     def navigate_to_next_page(self):
         self.page += 1
         self.__set_soup(f"{self.base_url}?page={self.page}")
+        self.logger.info("Navigating to next page")
 
     def scrape_apartment(self, apartment_url):
         # Create an instance of ApartmentScraper with the provided URL
