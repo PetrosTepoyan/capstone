@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
 from logging import Logger
+import logging
 
 class BarsApartmentScraper(ApartmentScraper):
     
@@ -16,6 +17,20 @@ class BarsApartmentScraper(ApartmentScraper):
         self.soup = BeautifulSoup(response.text, 'html.parser')
         self.logger = logger
         
+        self.price = None
+        self.facilities = None
+        self.address = None
+        self.area = None
+        self.rooms = None
+        self.floor = None
+        self.storeys = None
+        self.bedrooms = None
+        self.bathrooms = None
+        self.ceiling_height = None
+        self.building_type = None
+        self.condition = None
+
+        
     @staticmethod
     def source_identifier():
         return "bars"
@@ -23,7 +38,17 @@ class BarsApartmentScraper(ApartmentScraper):
     # must through some errors
     def scrape(self):
         
+        # Set a check on Capcha and if detected, use `prompt` from Python to 
+        # wait for the user to pass it.
+        
+        captcha_div = self.soup.find('div', class_='captcha_absolute')
+        if captcha_div:
+            _ = input("Detected captcha. Please, pass it and press input anything here.")
+            response = requests.get(self.webpage)
+            self.soup = BeautifulSoup(response.text, 'html.parser')
+        
         self.id = self.__get_id()
+        
         self.price = self.__get_price()
         self.facilities = self.__get_facilities()
         self.address = self.__get_address()
@@ -52,7 +77,7 @@ class BarsApartmentScraper(ApartmentScraper):
             "storeys" : self.storeys,
             
             "bedrooms" : self.bedrooms,
-            "bathrooms" : self.bathrooms,
+            "bathroom_count" : self.bathrooms,
             "ceiling_height" : self.ceiling_height,
             "building_type" : self.building_type,
             "condition" : self.condition
@@ -72,7 +97,7 @@ class BarsApartmentScraper(ApartmentScraper):
             quick_data_text = ''.join(quick_data_tag.stripped_strings).replace(f'{label}', '').strip()
         except:
             if self.logger:
-                self.logger.error(f"Couldn't get quick data {self.webpage}")
+                logging.error(f"code: 012 | {label}")
             return None
         return type_(quick_data_text)
     
@@ -82,12 +107,14 @@ class BarsApartmentScraper(ApartmentScraper):
 
         # If the tag is found, extract the value using the regex
         if div_tag:
-            match = re.search("Code: (\d+)", div_tag.text)
+            pattern = r"Code: (.+)"
+            match = re.search(pattern, div_tag.text)
+
             if match:
-                value = match.group(1)
-                return value
-        else:
-            return None
+                code = match.group(1)
+                return code.strip()
+            
+        return self.webpage.split("/")[-1]
         
     def __get_address(self) -> str:
         # Find the div tag with the specific id "listing-address-label"

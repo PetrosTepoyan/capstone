@@ -1,4 +1,6 @@
+import re
 import requests
+import logging
 from bs4 import BeautifulSoup
 
 class BnakaranApartmentScraper:
@@ -13,7 +15,9 @@ class BnakaranApartmentScraper:
             return
         
         # Parse the HTML content of the page with BeautifulSoup
+        self.webpage = webpage
         self.soup = BeautifulSoup(response.content, 'html.parser')
+        self.id = webpage.split("-")[-1]
     
     @staticmethod
     def source_identifier():
@@ -26,25 +30,33 @@ class BnakaranApartmentScraper:
         self.__scrape_room_details()
         self.__scrape_additional_features()
         self.__scrape_utilities()
+        self.__scrape_added_in_date()
+        self.__scrape_visit_count()
+        self.__scrape_price()
         
     def values(self):
         apartment_data = {
             "source" : BnakaranApartmentScraper.source_identifier(),
+            "id" : self.id,
+            "price" : self.price,
             "area": self.area,
             "storeys": self.storeys,
+            "floor": self.floor,
             "rooms": self.rooms,
             "latitude": self.latitude,
             "longitude": self.longitude,
             "details": self.details,
             "room_details": self.room_details,
-            "additional_features": self.additional_features
+            "additional_features": self.additional_features,
+            "added_in_date": self.added_in_date,
+            "visit_count": self.visited_count,
+            "utilities": self.utilities
         }
-        flattened_apartment_data = self.__flatten_json(apartment_data)
-        return flattened_apartment_data
+        return apartment_data
 
         
     def images_links(self) -> list[str]:
-        return self.images
+        return self.__scrape_images()
     
     def __flatten_json(self, apartment_data):
         # Extract the nested JSON fields
@@ -62,11 +74,13 @@ class BnakaranApartmentScraper:
             key = li.get_text(strip=True).split(':')[0].strip().lower()
             value = li.find('span').get_text(strip=True)
             if key == 'area':
-                self.area = ''.join(filter(str.isdigit, value))
+                self.area = int(''.join(filter(str.isdigit, value)))
             elif key == 'storey':
-                self.storeys = ''.join(filter(str.isdigit, value.split('/')[0]))
+                vals = [int(s.strip()) for s in value.split("/")]
+                self.storeys = vals[1]
+                self.floor = vals[0]
             elif key == 'rooms':
-                self.rooms = ''.join(filter(str.isdigit, value))
+                self.rooms = int(''.join(filter(str.isdigit, value)))
     
     def __scrape_images(self):
         self.images = [a['href'] for a in self.soup.find_all('a', class_='item', href=True)]
@@ -89,24 +103,12 @@ class BnakaranApartmentScraper:
                 self.details[key] = value
                 
     def __scrape_utilities(self):
-        utilities_list = self.soup.find('ul', class_='property-features margin-top-0')
-        self.utilities = {}
-        
-        if utilities_list:
-            utilities_items = utilities_list.find_all('li', recursive=False)
-            for utility in utilities_items:
-                utility_text = utility.get_text(strip=True)
-                if ':' in utility_text:
-                    utility_key = utility_text.split(':')[0].strip()
-                    utility_value = utility.find('span').get_text(strip=True) if utility.find('span') else "Not specified"
-                    
-                    if utility_key:
-                        self.utilities[utility_key] = utility_value
-                else:
-                    print(f"Unexpected format for utility item: {utility_text}")
-        else:
-            print("Utilities information is not available.")
+        # Find all <li> elements within the specified <ul> class
+        li_elements = self.soup.select('ul.property-features margin-top-0 li')
 
+        # Extract the text before ":" in each <li> element and store it in a list
+        property_features = [li.get_text(strip=True).split(':')[0] for li in li_elements]
+        self.utilities = property_features
     
     def __scrape_room_details(self):
         features_lists = self.soup.find_all('ul', class_='property-features')
@@ -128,3 +130,27 @@ class BnakaranApartmentScraper:
             self.additional_features = [feature.get_text(strip=True) for feature in feature_items]
         else:
             print("Additional features information is not available.")
+            
+    def __scrape_added_in_date(self):
+        stats = self.soup.find('ul', class_='property-stats')
+        updated_date = stats.find_all('li')[0].find('span').text.strip()
+        self.added_in_date = updated_date
+
+    def __scrape_visit_count(self):
+        stats = self.soup.find('ul', class_='property-stats')
+        visited_count = stats.find_all('li')[2].find('span').text.strip()
+        self.visited_count = visited_count
+
+    def __scrape_price(self):
+        # Prices
+        prices = self.soup.find('ul', class_='property-prices')
+        sale_price = prices.find('li').find('span').text.strip()
+        is_in_drams = "Դ" in sale_price 
+        try:
+            self.price = int(re.sub(r'\D', '', sale_price))
+            
+            if is_in_drams:
+                self.price = self.price / 400
+        except:
+            logging.error(f"code: 012 | price {sale_price}")
+            self.price = None

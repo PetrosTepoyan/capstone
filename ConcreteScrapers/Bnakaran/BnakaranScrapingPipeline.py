@@ -1,3 +1,4 @@
+import re
 import requests
 from bs4 import BeautifulSoup
 from ConcreteScrapers.Bnakaran.BnakaranApartmentScraper import BnakaranApartmentScraper
@@ -43,12 +44,14 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
             apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
         )
 
-    def get_apartment_links(self, page_url=None):
-        if page_url is None:
-            page_url = self.base_url
+    def get_apartment_links(self):
+        # Find all <a> tags with hrefs that end in -d followed by some numbers
+        apartment_links = self.soup.find_all('a', href = re.compile(r"-d\d+$"))
 
-        # Assuming that the links to apartments are contained within 'a' tags with a certain class
-        a_elements = self.soup.find_all('a', class_='apartment-link-class')
-
-        links = [a.get('href') for a in a_elements]
+        # Extract hrefs from the links
+        apartment_hrefs = set([link.get('href') for link in apartment_links])
+        links = [self.get_base_link() + ap_link for ap_link in apartment_hrefs]
         return links
+
+    def get_base_link(self) -> str:
+        return "https://www.bnakaran.com"
