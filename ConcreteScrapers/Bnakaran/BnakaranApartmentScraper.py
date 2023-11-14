@@ -11,13 +11,16 @@ class BnakaranApartmentScraper:
         
         # Check if the page is empty or not found, and break the loop if so
         if response.status_code != 200 or not response.text.strip():
-            print("Failed to fetch the webpage. Status code:", response.status_code)
+            logging.error("Failed to fetch the webpage. Status code:", response.status_code, webpage)
             return
         
         # Parse the HTML content of the page with BeautifulSoup
         self.webpage = webpage
         self.soup = BeautifulSoup(response.content, 'html.parser')
         self.id = webpage.split("-")[-1]
+    
+    def get_id(webpage: str) -> str:
+        return webpage.split("-")[-1]
     
     @staticmethod
     def source_identifier():
@@ -33,10 +36,12 @@ class BnakaranApartmentScraper:
         self.__scrape_added_in_date()
         self.__scrape_visit_count()
         self.__scrape_price()
-        
+    
     def values(self):
+        
         apartment_data = {
             "source" : BnakaranApartmentScraper.source_identifier(),
+            "webpage" : self.webpage,
             "id" : self.id,
             "price" : self.price,
             "area": self.area,
@@ -45,7 +50,17 @@ class BnakaranApartmentScraper:
             "rooms": self.rooms,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "details": self.details,
+            # "details": self.details,
+            "construction_type":self.details.get("Construction type", None),
+            "building_type":self.details.get('Building type', None),
+            "renovation":self.details.get('Renovation', None),
+            "flooring": self.details.get('Flooring', None),
+            "entrance_door":self.details.get('Entrance door', None),
+            "windows" : self.details.get("Windows", None),
+            "heating" : self.details.get('Heating', None),
+            "cooling" : self.details.get("Cooling", None),
+            "parking" : self.details.get('Parking', None),
+            
             "room_details": self.room_details,
             "additional_features": self.additional_features,
             "added_in_date": self.added_in_date,
@@ -56,7 +71,7 @@ class BnakaranApartmentScraper:
 
         
     def images_links(self) -> list[str]:
-        return self.__scrape_images()
+        return [a['href'] for a in self.soup.find_all('a', class_='item', href=True)]
     
     def __flatten_json(self, apartment_data):
         # Extract the nested JSON fields
@@ -82,16 +97,13 @@ class BnakaranApartmentScraper:
             elif key == 'rooms':
                 self.rooms = int(''.join(filter(str.isdigit, value)))
     
-    def __scrape_images(self):
-        self.images = [a['href'] for a in self.soup.find_all('a', class_='item', href=True)]
-    
     def __scrape_location(self):
         yandex_map_div = self.soup.find('div', class_='yandex-map')
         if yandex_map_div:
             self.latitude = yandex_map_div.get('data-y')
             self.longitude = yandex_map_div.get('data-x')
         else:
-            print("Yandex map element not found on the page.")
+            logging.error("Yandex map element not found on the page.")
     
     def __scrape_details(self):
         self.details = {}
@@ -121,7 +133,7 @@ class BnakaranApartmentScraper:
                     key, value = parts[0].strip(), parts[1].strip()
                     self.room_details[key] = value
         else:
-            print("The expected room details section was not found")
+            logging.error("The expected room details section was not found")
     
     def __scrape_additional_features(self):
         features_list = self.soup.find('ul', class_='property-features checkboxes margin-top-0')
@@ -129,7 +141,7 @@ class BnakaranApartmentScraper:
             feature_items = features_list.find_all('li', recursive=False)
             self.additional_features = [feature.get_text(strip=True) for feature in feature_items]
         else:
-            print("Additional features information is not available.")
+            logging.error("Additional features information is not available.")
             
     def __scrape_added_in_date(self):
         stats = self.soup.find('ul', class_='property-stats')
@@ -146,11 +158,7 @@ class BnakaranApartmentScraper:
         prices = self.soup.find('ul', class_='property-prices')
         sale_price = prices.find('li').find('span').text.strip()
         is_in_drams = "Դ" in sale_price 
-        try:
-            self.price = int(re.sub(r'\D', '', sale_price))
+        self.price = int(re.sub(r'\D', '', sale_price))
             
-            if is_in_drams:
-                self.price = self.price / 400
-        except:
-            logging.error(f"code: 012 | price {sale_price}")
-            self.price = None
+        if is_in_drams:
+            self.price = self.price / 400

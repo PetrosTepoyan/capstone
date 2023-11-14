@@ -4,18 +4,19 @@ from ConcreteScrapers.MyRealty.MyRealtyApartmentScraper import MyRealtyApartment
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 from Protocols import Storage
-from logging import Logger
+import logging
+import pandas as pd
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url: str, storage: Storage, image_loader: ImageLoader, logger: Logger):
+    def __init__(self, base_url: str, storage: Storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
         
         self.__set_soup(base_url)
-        super().__init__(MyRealtyApartmentScraper, logger)
+        super().__init__(MyRealtyApartmentScraper)
 
     def __set_soup(self, url: str):
         # Send a GET request to the website
@@ -31,11 +32,14 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
     def navigate_to_next_page(self):
         self.page += 1
         self.__set_soup(f"{self.base_url}?page={self.page}")
-        self.logger.info("Navigating to next page")
+        logging.info("MyRealty | Navigating to next page")
 
     def scrape_apartment(self, apartment_url):
+        
+        id = self.apartment_scraper.get_id(apartment_url)
+        
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper: MyRealtyApartmentScraper = self.apartment_scraper(apartment_url, self.logger)
+        apartment_scraper: MyRealtyApartmentScraper = self.apartment_scraper(apartment_url)
         
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
@@ -46,12 +50,12 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         
         # download images
         images_links = apartment_scraper.images_links()
-        self.image_loader.download_images(
-            links = images_links,
-            source = MyRealtyApartmentScraper.source_identifier(),
-            apartment_id = apartment_scraper.id
-        )
-        self.logger.info(f"Finished scraping {apartment_data['id']}")
+        if self.image_loader:
+            self.image_loader.download_images(
+                links = images_links,
+                source = MyRealtyApartmentScraper.source_identifier(),
+                apartment_id = apartment_scraper.id
+            )
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:

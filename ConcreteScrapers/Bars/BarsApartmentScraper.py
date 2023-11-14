@@ -2,12 +2,11 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
-from logging import Logger
 import logging
 
 class BarsApartmentScraper(ApartmentScraper):
     
-    def __init__(self, webpage: str, logger: Logger):
+    def __init__(self, webpage: str):
         
         response = requests.get(webpage)
 
@@ -15,8 +14,8 @@ class BarsApartmentScraper(ApartmentScraper):
             print("Failed", response.status_code)
         self.webpage = webpage
         self.soup = BeautifulSoup(response.text, 'html.parser')
-        self.logger = logger
         
+        self.id = self.webpage.split("/")[-1]
         self.price = None
         self.facilities = None
         self.address = None
@@ -30,6 +29,8 @@ class BarsApartmentScraper(ApartmentScraper):
         self.building_type = None
         self.condition = None
 
+    def get_id(webpage: str) -> str:
+        return webpage.split("/")[-1]
         
     @staticmethod
     def source_identifier():
@@ -46,8 +47,6 @@ class BarsApartmentScraper(ApartmentScraper):
             _ = input("Detected captcha. Please, pass it and press input anything here.")
             response = requests.get(self.webpage)
             self.soup = BeautifulSoup(response.text, 'html.parser')
-        
-        self.id = self.__get_id()
         
         self.price = self.__get_price()
         self.facilities = self.__get_facilities()
@@ -67,6 +66,7 @@ class BarsApartmentScraper(ApartmentScraper):
     def values(self):
         return {
             "source" : BarsApartmentScraper.source_identifier(),
+            "webpage" : self.webpage,
             "id": self.id,
             "price" : self.price,
             "facilities" : self.facilities,
@@ -96,25 +96,9 @@ class BarsApartmentScraper(ApartmentScraper):
             quick_data_tag = self.soup.find('strong', text=f'{label}').parent
             quick_data_text = ''.join(quick_data_tag.stripped_strings).replace(f'{label}', '').strip()
         except:
-            if self.logger:
-                logging.error(f"code: 012 | {label}")
+            logging.error(f"code: 012 | {label}")
             return None
         return type_(quick_data_text)
-    
-    def __get_id(self) -> str:
-        # Use a regex pattern to find the div containing the desired text
-        div_tag = self.soup.find('div', string=re.compile("Code: (\d+)"))
-
-        # If the tag is found, extract the value using the regex
-        if div_tag:
-            pattern = r"Code: (.+)"
-            match = re.search(pattern, div_tag.text)
-
-            if match:
-                code = match.group(1)
-                return code.strip()
-            
-        return self.webpage.split("/")[-1]
         
     def __get_address(self) -> str:
         # Find the div tag with the specific id "listing-address-label"

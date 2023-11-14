@@ -4,24 +4,23 @@ from bs4 import BeautifulSoup
 from ConcreteScrapers.Bnakaran.BnakaranApartmentScraper import BnakaranApartmentScraper
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
-from logging import Logger
+import logging
 
 class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader, logger: Logger):
+    def __init__(self, base_url, storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.logger = logger
 
         self.__set_soup(base_url)
-        super().__init__(BnakaranApartmentScraper, logger)
+        super().__init__(BnakaranApartmentScraper)
 
     def __set_soup(self, url):
         response = requests.get(url)
         if response.status_code != 200 or not response.text.strip():
-            self.logger.error(f"Failed to fetch the webpage. Status code: {response.status_code}")
+            logging.error(f"Failed to fetch the webpage. Status code: {response.status_code}, {url}")
             return
 
         self.soup = BeautifulSoup(response.text, 'html.parser')
@@ -31,6 +30,9 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
         self.__set_soup(f"{self.base_url}?page={self.page}")
 
     def scrape_apartment(self, apartment_url):
+        
+        id = self.apartment_scraper.get_id(apartment_url)
+        
         apartment_scraper = self.apartment_scraper(apartment_url)
         apartment_scraper.scrape()
         apartment_data = apartment_scraper.values()
@@ -38,11 +40,13 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
         self.storage.append(apartment_data)
 
         images_links = apartment_scraper.images_links()
-        self.image_loader.download_images(
-            links=images_links,
-            source=BnakaranApartmentScraper.source_identifier(),
-            apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
-        )
+        if self.image_loader:
+            self.image_loader.download_images(
+                links=images_links,
+                source=BnakaranApartmentScraper.source_identifier(),
+                apartment_id = id
+            )
+        return
 
     def get_apartment_links(self):
         # Find all <a> tags with hrefs that end in -d followed by some numbers

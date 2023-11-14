@@ -4,6 +4,7 @@ import requests
 from urllib.parse import quote
 from VirtualModels.Amenity import Amenity
 
+# WILL NOT BE USED
 class GeoFeaturesExtractor:
     BASE_URL = "https://maps.googleapis.com/maps/api/"
     API_KEY = "AIzaSyAfDtObYwES7ePyjfXVl-7Govd_U6_5_dk"

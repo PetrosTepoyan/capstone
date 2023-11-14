@@ -19,9 +19,13 @@ class ApartmentScraper(ABC):
     
     @staticmethod
     @abstractmethod
-    def source_identifier():
+    def source_identifier() -> str:
         pass
 
     @abstractmethod
     def images_links(self) -> list[str]:
+        pass
+    
+    @abstractmethod
+    def get_id(webpage: str) -> str:
         pass

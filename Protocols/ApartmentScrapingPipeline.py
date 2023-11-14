@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
 from Protocols import ApartmentScraper
-from logging import Logger
 
 class ApartmentScrapingPipeline(ABC):
     
-    def __init__(self, apartment_scraper: ApartmentScraper, logger: Logger):
+    def __init__(self, apartment_scraper: ApartmentScraper):
         """
         Constructor that takes an type of ApartmentScraper as an argument.
 
@@ -12,7 +11,7 @@ class ApartmentScrapingPipeline(ABC):
             apartment_scraper (ApartmentScraper): An type of ApartmentScraper to be used for scraping.
         """
         self.apartment_scraper = apartment_scraper
-        self.logger = logger
+        self.page_count = 0
 
     @abstractmethod
     def get_apartment_links(self, page_url: str):
@@ -48,4 +47,10 @@ class ApartmentScrapingPipeline(ABC):
         Abstract method for navigating to the next page of apartment listings.
         Subclasses must implement this method.
         """
-        pass
+        self.page_count += 1
+
+
+    
+    def scrape_links(self, links):
+        for link in links:
+            self.scrape_apartment(link)

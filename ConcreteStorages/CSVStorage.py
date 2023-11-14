@@ -2,11 +2,12 @@ import os
 import csv
 from Protocols.Storage import Storage
 import threading
-from logging import Logger
+import logging
 
 class CSVStorage(Storage):
     fieldnames = [
         "source", 
+        "webpage",
         "id",
         "price", 
         "facilities", "location", "area", 
@@ -16,18 +17,17 @@ class CSVStorage(Storage):
         'bedrooms', 'added_in_date', "view_count",
         'additional_features', 'latitude', 
         'visit_count', 'utilities', 'room_details', 
-        'details', 'longitude']
+        'details', 'longitude', 'flooring', 'entrance_door', 'construction_type', 
+        'renovation', 'windows', 'heating', 'parking', 'cooling']
 
     # Flush each 5 datapoints
     flush_batch_count: int = 5
 
-    def __init__(self, file_path, images_path, logger: Logger):
+    def __init__(self, file_path):
         self.file_path = file_path
-        self.images_path = images_path
         self.file_handle = None
         self.threadLock = threading.Lock()
         self.current_count = 0
-        self.logger = logger
 
     def initialize(self):
         # Check if the directory exists, and if not, create it
@@ -58,16 +58,6 @@ class CSVStorage(Storage):
         if self.file_handle is not None:
             self.file_handle.close()
 
-    def save_image(self, image, image_name):
-        dir_path = os.path.dirname(self.images_path + image_name)
-        if not os.path.exists(dir_path):
-            os.makedirs(dir_path)
-
-        with open(self.images_path + image_name, 'wb') as f:
-            f.write(image)
-            
-        self.logger.info(f"Saved image {image_name}")
-
     def append(self, data_dict):
         # Append data in the CSV file
         if self.file_handle is not None:
@@ -78,7 +68,6 @@ class CSVStorage(Storage):
             if self.current_count == self.flush_batch_count:
                 self.current_count = 0
                 self.file_handle.flush()  # Flush to write data immediately
-                self.logger.info(f"Flushed {self.flush_batch_count}")
             # self.threadLock.release()
 
     def path(self):

@@ -1,89 +1,39 @@
 import requests
 from bs4 import BeautifulSoup
+from ConcreteStorages.CSVStorage import CSVStorage
 from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
-from logging import Logger
 import logging
 from time import sleep
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import pandas as pd
 
 # https://bars.am/en/properties/standard/apartment
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader, logger: Logger):
+    def __init__(self, base_url, storage: CSVStorage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.logger = logger
 
         self.__set_soup(base_url)
-        super().__init__(BarsApartmentScraper, logger)
-        
-        # Instantiate a WebDriver (e.g., Chrome)
-        driver = webdriver.Chrome()
-
-        # Navigate to the page
-        driver.get(base_url)
-        self.driver = driver
-        
-        links = self.get_apartment_links()
-        self.first_ap_link_on_this_page = links[0]
-
-    def __set_soup(self, url):
-        # Send a GET request to the website
-        response = requests.get(url)
-
-        # Check if the page is empty or not found, and break the loop if so
-        if response.status_code != 200 or not response.text.strip():
-            print("Failed", response.status_code)
-
-        # Parse the HTML content of the page with BeautifulSoup
-        self.soup = BeautifulSoup(response.text, 'html.parser')
-        
-    def finish(self):
-        self.driver.quit()
-
-    def __get_current_page_index(self):
-        v = int(self.soup.find(class_="active hidden-xs").get_text())
-        print(v)
-        return v
+        super().__init__(BarsApartmentScraper)
 
     def navigate_to_next_page(self):
-        # Wait for the element to be clickable and then click it
-        try:
-            
-            # Find the element with the class 'fa fa-angle-right'
-            element = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((By.CLASS_NAME, "fa-angle-right"))
-            )
-            element.click()
-            sleep(2)
-            # Wait and check if the page has been changed
-            # WebDriverWait(self.driver, 10).until(
-            #     lambda driver: self.__get_current_page_index() != current_page
-            # )
-
-            self.soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-            
-        except Exception as e:
-            print(e)
-            logging.error(e)
-           
-        links = self.get_apartment_links() 
-        if links[0] == self.first_ap_link_on_this_page:
-            logging.error("did not navigate to next page")
-        else:
-            self.first_ap_link_on_this_page = links[0]
+        self.navigate_to_next_page_()
+        
+    def navigate_to_next_page_(self):
+        self.page += 1
+        self.__set_soup(self.base_url)
 
     def scrape_apartment(self, apartment_url):
+        
+        id = self.apartment_scraper.get_id(apartment_url)
+        
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url, self.logger)
+        apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url)
 
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
@@ -94,11 +44,12 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
         
         # download images
         images_links = apartment_scraper.images_links()
-        self.image_loader.download_images(
-            links = images_links,
-            source = BarsApartmentScraper.source_identifier(),
-            apartment_id = apartment_scraper.id
-        )
+        if self.image_loader:
+            self.image_loader.download_images(
+                links = images_links,
+                source = BarsApartmentScraper.source_identifier(),
+                apartment_id = apartment_scraper.id
+            )
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:
@@ -114,3 +65,45 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
             links.append(link)
 
         return links
+    
+    def __set_soup(self, url, retry_count: int = 0):
+        # Send a GET request to the website
+        body = {
+            'offset': str(self.page),
+            'category': 'apartment',
+            'cx8v78cx7': 'xc90v8cx8vcxv',
+            'section': 'standard',
+            'for': 'sale',
+            'price_type': 'sale_total_price',
+            'price_from': '',
+            'price_to': '',
+            'currency_select': 'USD',
+            'city[]': '1',
+            'code': '',
+            'house_flat_area_sqm_from': '',
+            'house_flat_area_sqm_to': '',
+            'land_area_sqm_from': '',
+            'land_area_sqm_to': '',
+            'rooms_from': '',
+            'rooms_to': ''
+        }
+
+
+        response = requests.post(url, data = body)
+
+        # Check if the page is empty or not found, and break the loop if so
+        if response.status_code != 200:
+            logging.error("Failed", response.status_code, body, url)
+            if retry_count < 3:
+                sleep(retry_count + 1)
+                self.__set_soup(url, retry_count + 1)
+                return
+            else:
+                raise Exception("Bars | failed to navigate after retries")
+            
+
+        # Parse the HTML content of the page with BeautifulSoup
+        self.soup = BeautifulSoup(response.text, 'html.parser')
+        
+    def finish(self):
+        self.driver.quit()
