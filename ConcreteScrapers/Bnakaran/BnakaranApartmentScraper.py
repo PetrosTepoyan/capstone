@@ -56,7 +56,7 @@ class BnakaranApartmentScraper:
 
         
     def images_links(self) -> list[str]:
-        return self.__scrape_images()
+        return [a['href'] for a in self.soup.find_all('a', class_='item', href=True)]
     
     def __flatten_json(self, apartment_data):
         # Extract the nested JSON fields
@@ -81,9 +81,6 @@ class BnakaranApartmentScraper:
                 self.floor = vals[0]
             elif key == 'rooms':
                 self.rooms = int(''.join(filter(str.isdigit, value)))
-    
-    def __scrape_images(self):
-        self.images = [a['href'] for a in self.soup.find_all('a', class_='item', href=True)]
     
     def __scrape_location(self):
         yandex_map_div = self.soup.find('div', class_='yandex-map')

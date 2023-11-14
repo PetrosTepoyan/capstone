@@ -4,7 +4,6 @@ sys.path.append("..")
 
 logging.basicConfig(filename = 'scraping.log', level = logging.INFO)
 logger = logging.getLogger("main")
-logger.info("This is a test message")
 
 # MyRealty
 from ConcreteScrapers.MyRealty.MyRealtyScrapingPipeline import MyRealtyScrapingPipeline

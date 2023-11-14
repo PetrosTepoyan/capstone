@@ -78,7 +78,6 @@ class CSVStorage(Storage):
             if self.current_count == self.flush_batch_count:
                 self.current_count = 0
                 self.file_handle.flush()  # Flush to write data immediately
-                self.logger.info(f"Flushed {self.flush_batch_count}")
             # self.threadLock.release()
 
     def path(self):
