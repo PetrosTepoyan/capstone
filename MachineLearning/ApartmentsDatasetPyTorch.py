@@ -51,5 +51,11 @@ class ApartmentsDatasetPyTorch(Dataset):
         source = components[2]
         ap_native_id = components[3]
         filtered_rows = self.df[(self.df["source"] == source) & (self.df["id"] == ap_native_id)]
-        price = int(filtered_rows["price"])
+        
+        try:
+            price = int(filtered_rows["price"])
+        except:
+            print(filtered_rows["price"])
+            print(source, ap_native_id)
+            return None
         return price
