@@ -46,12 +46,12 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         
         # download images
         images_links = apartment_scraper.images_links()
-        self.image_loader.download_images(
-            links = images_links,
-            source = MyRealtyApartmentScraper.source_identifier(),
-            apartment_id = apartment_scraper.id
-        )
-        self.logger.info(f"Finished scraping {apartment_data['id']}")
+        if self.image_loader:
+            self.image_loader.download_images(
+                links = images_links,
+                source = MyRealtyApartmentScraper.source_identifier(),
+                apartment_id = apartment_scraper.id
+            )
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:

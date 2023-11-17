@@ -94,11 +94,12 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
         
         # download images
         images_links = apartment_scraper.images_links()
-        self.image_loader.download_images(
-            links = images_links,
-            source = BarsApartmentScraper.source_identifier(),
-            apartment_id = apartment_scraper.id
-        )
+        if self.image_loader:
+            self.image_loader.download_images(
+                links = images_links,
+                source = BarsApartmentScraper.source_identifier(),
+                apartment_id = apartment_scraper.id
+            )
 
     def get_apartment_links(self, page_url=None):
         if page_url is None:
