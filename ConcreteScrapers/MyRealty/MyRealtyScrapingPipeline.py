@@ -5,6 +5,7 @@ from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 from Protocols import Storage
 import logging
+import threading
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
@@ -13,6 +14,8 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
+        self.cached_links = set()
+        self.lock = threading.Lock()
         
         self.__set_soup(base_url)
         super().__init__(MyRealtyApartmentScraper)
@@ -34,6 +37,13 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         logging.info("Navigating to next page")
 
     def scrape_apartment(self, apartment_url):
+        with self.lock:
+            if apartment_url not in self.cached_links:
+                self.cached_links.add(apartment_url)
+            else:
+                logging.info(f"MyRealty Skipping {apartment_url}")
+                return
+            
         # Create an instance of ApartmentScraper with the provided URL
         apartment_scraper: MyRealtyApartmentScraper = self.apartment_scraper(apartment_url)
         

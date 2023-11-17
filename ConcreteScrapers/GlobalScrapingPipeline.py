@@ -16,7 +16,9 @@ class GlobalScrapingPipeline:
         # Scrape
         for link in links:
             try:
-                pipeline.scrape_apartment(link)
+                result = pipeline.scrape_apartment(link)
+                if result == False:
+                    return
                 self.log_service.success(
                     source = pipeline.apartment_scraper.source_identifier(),
                     webpage = link
@@ -41,6 +43,4 @@ class GlobalScrapingPipeline:
             if submit_overriding_future is not None:
                 futures.append(submit_overriding_future)
             # Wait for all futures to complete
-            concurrent.futures.wait(futures)
-            
-        self.log_service.save()
+            concurrent.futures.wait(futures) 
