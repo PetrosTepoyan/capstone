@@ -2,12 +2,11 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
-from logging import Logger
 import logging
 
 class BarsApartmentScraper(ApartmentScraper):
     
-    def __init__(self, webpage: str, logger: Logger):
+    def __init__(self, webpage: str):
         
         response = requests.get(webpage)
 
@@ -15,7 +14,6 @@ class BarsApartmentScraper(ApartmentScraper):
             print("Failed", response.status_code)
         self.webpage = webpage
         self.soup = BeautifulSoup(response.text, 'html.parser')
-        self.logger = logger
         
         self.id = self.webpage.split("/")[-1]
         self.price = None
@@ -95,8 +93,7 @@ class BarsApartmentScraper(ApartmentScraper):
             quick_data_tag = self.soup.find('strong', text=f'{label}').parent
             quick_data_text = ''.join(quick_data_tag.stripped_strings).replace(f'{label}', '').strip()
         except:
-            if self.logger:
-                logging.error(f"code: 012 | {label}")
+            logging.error(f"code: 012 | {label}")
             return None
         return type_(quick_data_text)
         

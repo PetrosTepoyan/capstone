@@ -154,11 +154,7 @@ class BnakaranApartmentScraper:
         prices = self.soup.find('ul', class_='property-prices')
         sale_price = prices.find('li').find('span').text.strip()
         is_in_drams = "Դ" in sale_price 
-        try:
-            self.price = int(re.sub(r'\D', '', sale_price))
+        self.price = int(re.sub(r'\D', '', sale_price))
             
-            if is_in_drams:
-                self.price = self.price / 400
-        except:
-            logging.error(f"code: 012 | price {sale_price}")
-            self.price = None
+        if is_in_drams:
+            self.price = self.price / 400

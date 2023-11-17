@@ -4,24 +4,23 @@ from bs4 import BeautifulSoup
 from ConcreteScrapers.Bnakaran.BnakaranApartmentScraper import BnakaranApartmentScraper
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
-from logging import Logger
+import logging
 
 class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader, logger: Logger):
+    def __init__(self, base_url, storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.logger = logger
 
         self.__set_soup(base_url)
-        super().__init__(BnakaranApartmentScraper, logger)
+        super().__init__(BnakaranApartmentScraper)
 
     def __set_soup(self, url):
         response = requests.get(url)
         if response.status_code != 200 or not response.text.strip():
-            self.logger.error(f"Failed to fetch the webpage. Status code: {response.status_code}")
+            logging.error(f"Failed to fetch the webpage. Status code: {response.status_code}")
             return
 
         self.soup = BeautifulSoup(response.text, 'html.parser')

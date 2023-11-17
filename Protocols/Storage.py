@@ -24,10 +24,6 @@ class Storage(ABC):
             data: The data to be stored.
         """
         pass
-    
-    @abstractmethod
-    async def save_image(self, image, image_name):
-        pass
 
     @abstractmethod
     def path(self):

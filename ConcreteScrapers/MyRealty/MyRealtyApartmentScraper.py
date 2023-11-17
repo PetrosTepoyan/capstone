@@ -3,11 +3,10 @@ import logging
 import requests
 from bs4 import BeautifulSoup
 from Protocols import ApartmentScraper
-from logging import Logger
 
 class MyRealtyApartmentScraper(ApartmentScraper):
     
-    def __init__(self, webpage: str, logger: Logger):
+    def __init__(self, webpage: str):
         
         # Send a GET request to the website
         response = requests.get(webpage)
@@ -18,7 +17,6 @@ class MyRealtyApartmentScraper(ApartmentScraper):
 
         # Parse the HTML content of the page with BeautifulSoup
         self.soup = BeautifulSoup(response.text, 'html.parser')
-        self.logger = logger
         
         self.id = None
         self.price = None
@@ -48,20 +46,14 @@ class MyRealtyApartmentScraper(ApartmentScraper):
             logging.error("code: 012 | ID")
         
         if success:
-            try:
-                self.__scrape_price()
-            except:
-                logging.error("code: 012 | Price")
+            self.__scrape_price()
             
             try:
                 self.__scrape_facilities()
             except:
                 logging.error("code: 012 | Facilities")
                 
-            try:
-                self.__scrape_location()
-            except:
-                logging.error("code: 012 | locaiton")
+            self.__scrape_location()
                 
             try:
                 self.__scrape_misc()

@@ -1,6 +1,6 @@
 import concurrent.futures
 from Protocols import ApartmentScrapingPipeline
-from logging import Logger
+import logging
 from Services import ScrapingLogService
 
 class GlobalScrapingPipeline:
@@ -15,22 +15,24 @@ class GlobalScrapingPipeline:
         
         # Scrape
         for link in links:
+            print("Scraping", link)
             try:
                 pipeline.scrape_apartment(link)
                 self.log_service.success(
-                    source = pipeline.apartment_scraper.source_identifier,
+                    source = pipeline.apartment_scraper.source_identifier(),
                     webpage = link
                 )
             except Exception as e:
                 self.log_service.error(
-                    source = pipeline.apartment_scraper.source_identifier,
+                    source = pipeline.apartment_scraper.source_identifier(),
                     webpage = link,
                     error = str(e)
                 )
             
-        # Navigate to next apartment
-        pipeline.navigate_to_next_page()
-    
+        if len(links) != 0:
+            # Navigate to next page
+            pipeline.navigate_to_next_page()
+            self.run_pipeline(pipeline)
     
     def run(self):
         with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -38,3 +40,5 @@ class GlobalScrapingPipeline:
             
             # Wait for all futures to complete
             concurrent.futures.wait(futures)
+            
+        self.log_service.save()

@@ -2,7 +2,7 @@ import os
 import csv
 from Protocols.Storage import Storage
 import threading
-from logging import Logger
+import logging
 
 class CSVStorage(Storage):
     fieldnames = [
@@ -22,13 +22,11 @@ class CSVStorage(Storage):
     # Flush each 5 datapoints
     flush_batch_count: int = 5
 
-    def __init__(self, file_path, images_path, logger: Logger):
+    def __init__(self, file_path):
         self.file_path = file_path
-        self.images_path = images_path
         self.file_handle = None
         self.threadLock = threading.Lock()
         self.current_count = 0
-        self.logger = logger
 
     def initialize(self):
         # Check if the directory exists, and if not, create it
@@ -58,16 +56,6 @@ class CSVStorage(Storage):
         # Close the file when done
         if self.file_handle is not None:
             self.file_handle.close()
-
-    def save_image(self, image, image_name):
-        dir_path = os.path.dirname(self.images_path + image_name)
-        if not os.path.exists(dir_path):
-            os.makedirs(dir_path)
-
-        with open(self.images_path + image_name, 'wb') as f:
-            f.write(image)
-            
-        self.logger.info(f"Saved image {image_name}")
 
     def append(self, data_dict):
         # Append data in the CSV file

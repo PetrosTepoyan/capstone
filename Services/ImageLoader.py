@@ -1,11 +1,11 @@
 import aiohttp
 import asyncio
-from logging import Logger
+import logging
+from ConcreteStorages import ImageStorage
 
 class ImageLoader:
-    def __init__(self, storage, logger: Logger):
+    def __init__(self, storage: ImageStorage):
         self.storage = storage
-        self.logger = logger
             
     async def download_image(self, session, url, source, apartment_id, index):
         try:
@@ -17,9 +17,15 @@ class ImageLoader:
                 image_path = f"{source}/{apartment_id}/{index}.{extension}"
                 bytes = await response.read()
                 self.storage.save_image(bytes, image_path)
-        except:
-            if self.logger:
-                self.logger.error(f"Can't download image {apartment_id} {index}")
+        except Exception as e:
+            self.storage.image_error_log(
+                source = source, 
+                url = url,
+                apartment_id = apartment_id,
+                index = index,
+                error = e
+            )
+            logging.error(f"Can't download image {apartment_id} {index}")
             
 
     async def __download_images(self, links, source, apartment_id):

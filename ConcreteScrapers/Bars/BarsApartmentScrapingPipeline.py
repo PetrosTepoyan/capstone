@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
-from logging import Logger
 import logging
 from time import sleep
 
@@ -15,15 +14,14 @@ from selenium.webdriver.support import expected_conditions as EC
 # https://bars.am/en/properties/standard/apartment
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader, logger: Logger):
+    def __init__(self, base_url, storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.logger = logger
 
         self.__set_soup(base_url)
-        super().__init__(BarsApartmentScraper, logger)
+        super().__init__(BarsApartmentScraper)
         
         # Instantiate a WebDriver (e.g., Chrome)
         driver = webdriver.Chrome()
@@ -83,7 +81,7 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
     def scrape_apartment(self, apartment_url):
         # Create an instance of ApartmentScraper with the provided URL
-        apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url, self.logger)
+        apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url)
 
         # Call the scrape method of the ApartmentScraper
         apartment_scraper.scrape()
