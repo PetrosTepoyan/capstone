@@ -11,6 +11,7 @@ class ApartmentScrapingPipeline(ABC):
             apartment_scraper (ApartmentScraper): An type of ApartmentScraper to be used for scraping.
         """
         self.apartment_scraper = apartment_scraper
+        self.page_count = 0
 
     @abstractmethod
     def get_apartment_links(self, page_url: str):
@@ -46,7 +47,7 @@ class ApartmentScrapingPipeline(ABC):
         Abstract method for navigating to the next page of apartment listings.
         Subclasses must implement this method.
         """
-        pass
+        self.page_count += 1
 
     
     def scrape_links(self, links):

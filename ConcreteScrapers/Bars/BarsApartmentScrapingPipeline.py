@@ -53,6 +53,9 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
         return v
 
     def navigate_to_next_page(self):
+        self.navigate_to_next_page_(retry_count = 0)
+        
+    def navigate_to_next_page_(self, retry_count: int):
         # Wait for the element to be clickable and then click it
         try:
             
@@ -75,7 +78,9 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
            
         links = self.get_apartment_links() 
         if links[0] == self.first_ap_link_on_this_page:
-            logging.error("did not navigate to next page")
+            logging.error("Did not navigate to next page, retrying...")
+            sleep(2)
+            self.navigate_to_next_page_(retry_count + 1)
         else:
             self.first_ap_link_on_this_page = links[0]
 

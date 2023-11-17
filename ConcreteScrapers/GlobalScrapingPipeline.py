@@ -15,7 +15,6 @@ class GlobalScrapingPipeline:
         
         # Scrape
         for link in links:
-            print("Scraping", link)
             try:
                 pipeline.scrape_apartment(link)
                 self.log_service.success(

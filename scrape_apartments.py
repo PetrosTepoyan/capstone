@@ -19,30 +19,34 @@ from ConcreteStorages import CSVStorage, ImageStorage
 # Services
 from Services import ImageLoader, ScrapingLogService
 
+scraping_folder = "scraping_results/"
+
 # Defining storages
 image_storage = ImageStorage(
-    images_path = "../images",
-    image_error_log_path = "image_error_log.csv"
+    images_path = scraping_folder + "images/",
+    image_error_log_path = scraping_folder + "image_error_log.csv"
 )
 
 bnakaran_storage = CSVStorage(
-    file_path = "../data/bnakaran_apartments.csv"
+    file_path = scraping_folder + "data/bnakaran_apartments.csv"
 )
 bnakaran_storage.initialize()
 
 bars_storage = CSVStorage(
-    file_path = "../data/bars_apartments.csv"
+    file_path = scraping_folder + "data/bars_apartments.csv"
 )
 bars_storage.initialize()
 
 myrealty_storage = CSVStorage(
-    file_path = "../data/myrealty_apartments.csv"
+    file_path = scraping_folder + "data/myrealty_apartments.csv"
 )
 myrealty_storage.initialize()
 
 # Services
 image_loader = ImageLoader(image_storage)
-log_service = ScrapingLogService(path = "scraping_log.csv")
+log_service = ScrapingLogService(
+    path = scraping_folder + "scraping_log.csv"
+)
 
 # Defining pipelines
 myrealty_scraper_pipeline = MyRealtyScrapingPipeline(
@@ -59,18 +63,18 @@ bnakaran_scraper_pipeline = BnakaranScrapingPipeline(
 )
 print("Initialized Bnakaran")
 
-# bars_scraper_pipeline = BarsApartmentScrapingPipeline(
-#     "https://bars.am/en/properties/standard/apartment", 
-#     bars_storage,
-#     image_loader
-# )
-# print("Initialized Bars")
+bars_scraper_pipeline = BarsApartmentScrapingPipeline(
+    "https://bars.am/en/properties/standard/apartment", 
+    bars_storage,
+    image_loader
+)
+print("Initialized Bars")
 
 print("Starting...")
 global_scraping_pipeline = GlobalScrapingPipeline(
     pipelines = [
         bnakaran_scraper_pipeline, 
-        # bars_scraper_pipeline,
+        bars_scraper_pipeline,
         myrealty_scraper_pipeline
     ],
     log_service = log_service

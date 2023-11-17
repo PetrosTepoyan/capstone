@@ -22,6 +22,7 @@ class ImageStorage:
             f.write(image)
             
     def log_error(self, source, url, apartment_id, index, error):
+        print(error)
         new_row = pd.DataFrame({
             "source" : [source],
             "url" : [url],
