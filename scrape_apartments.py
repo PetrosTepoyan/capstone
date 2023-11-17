@@ -19,6 +19,8 @@ from ConcreteStorages import CSVStorage, ImageStorage
 # Services
 from Services import ImageLoader, ScrapingLogService
 
+# Misc
+from bnakaran_sitemap_apartments import bnakaran_sitemap_apartments
 scraping_folder = "scraping_results/"
 
 # Defining storages
@@ -80,5 +82,8 @@ global_scraping_pipeline = GlobalScrapingPipeline(
     log_service = log_service
 )
 
+bnakaran_sitemap = bnakaran_sitemap_apartments()
 
-global_scraping_pipeline.run()
+global_scraping_pipeline.run(
+    submit_overriding_future = (bnakaran_scraper_pipeline.scrape_links, bnakaran_sitemap)
+)

@@ -33,10 +33,13 @@ class GlobalScrapingPipeline:
             pipeline.navigate_to_next_page()
             self.run_pipeline(pipeline)
     
-    def run(self):
+    def run(self, submit_overriding_future = None):
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            futures = [executor.submit(self.run_pipeline, pipeline) for pipeline in self.pipelines]
-            
+            futures = [
+                executor.submit(self.run_pipeline, pipeline) for pipeline in self.pipelines
+            ]
+            if submit_overriding_future is not None:
+                futures.append(submit_overriding_future)
             # Wait for all futures to complete
             concurrent.futures.wait(futures)
             
