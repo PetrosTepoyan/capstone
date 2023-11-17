@@ -1,7 +1,3 @@
-import logging
-
-logging.basicConfig(filename = 'scraping.log', level = logging.INFO)
-
 from ConcreteScrapers.GlobalScrapingPipeline import GlobalScrapingPipeline
 
 # Bnakaran
@@ -20,8 +16,13 @@ from ConcreteStorages import CSVStorage, ImageStorage
 from Services import ImageLoader, ScrapingLogService
 
 # Misc
+import os
+import logging
 from bnakaran_sitemap_apartments import bnakaran_sitemap_apartments
+
 scraping_folder = "scraping_results/"
+# os.mkdir("scraping_results/")
+logging.basicConfig(filename = scraping_folder + 'scraping.log', level = logging.INFO)
 
 # Defining storages
 image_storage = ImageStorage(
