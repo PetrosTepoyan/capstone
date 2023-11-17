@@ -38,11 +38,12 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
         self.storage.append(apartment_data)
 
         images_links = apartment_scraper.images_links()
-        self.image_loader.download_images(
-            links=images_links,
-            source=BnakaranApartmentScraper.source_identifier(),
-            apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
-        )
+        if self.image_loader:
+            self.image_loader.download_images(
+                links=images_links,
+                source=BnakaranApartmentScraper.source_identifier(),
+                apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
+            )
 
     def get_apartment_links(self):
         # Find all <a> tags with hrefs that end in -d followed by some numbers
