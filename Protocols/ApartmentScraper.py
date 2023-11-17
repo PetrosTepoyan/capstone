@@ -19,7 +19,7 @@ class ApartmentScraper(ABC):
     
     @staticmethod
     @abstractmethod
-    def source_identifier():
+    def source_identifier() -> str:
         pass
 
     @abstractmethod
