@@ -1,4 +1,5 @@
 import ast
+import pandas as pd
 from fuzzywuzzy import fuzz
 
 class AddressToCoordinateConverter:

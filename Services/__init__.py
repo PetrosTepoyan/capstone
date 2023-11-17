@@ -1,4 +1,4 @@
-from .GeoFeaturesExtractor import GeoFeaturesExtractor
 from .ImageLoader import ImageLoader
 from .GeoService import GeoService
 from .AddressToCoordinateConverter import AddressToCoordinateConverter
+from .MapFeatureAggregator import MapFeatureAggregator

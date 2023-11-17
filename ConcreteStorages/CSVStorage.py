@@ -16,7 +16,8 @@ class CSVStorage(Storage):
         'bedrooms', 'added_in_date', "view_count",
         'additional_features', 'latitude', 
         'visit_count', 'utilities', 'room_details', 
-        'details', 'longitude']
+        'details', 'longitude', 'flooring', 'entrance_door', 'construction_type', 
+        'renovation', 'windows', 'heating', 'parking', 'cooling']
 
     # Flush each 5 datapoints
     flush_batch_count: int = 5

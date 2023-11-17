@@ -22,7 +22,7 @@ class MapFeatureAggregator:
         for coordinate in locations:
             amenities_df = self.geo_service.get_amenities_from_point(coordinate)
             dict_to_add = amenities_df["amenity"].value_counts().to_dict()
-            aggregated_amentities_count = add_row_from_dict_with_zeros(
+            aggregated_amentities_count = self.add_row_from_dict_with_zeros(
                 aggregated_amentities_count,
                 dict_to_add
             )

@@ -33,8 +33,9 @@ class BnakaranApartmentScraper:
         self.__scrape_added_in_date()
         self.__scrape_visit_count()
         self.__scrape_price()
-        
+    
     def values(self):
+        
         apartment_data = {
             "source" : BnakaranApartmentScraper.source_identifier(),
             "id" : self.id,
@@ -45,7 +46,17 @@ class BnakaranApartmentScraper:
             "rooms": self.rooms,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "details": self.details,
+            # "details": self.details,
+            "construction_type":self.details.get("Construction type", None),
+            "building_type":self.details.get('Building type', None),
+            "renovation":self.details.get('Renovation', None),
+            "flooring": self.details.get('Flooring', None),
+            "entrance_door":self.details.get('Entrance door', None),
+            "windows" : self.details.get("Windows", None),
+            "heating" : self.details.get('Heating', None),
+            "cooling" : self.details.get("Cooling", None),
+            "parking" : self.details.get('Parking', None),
+            
             "room_details": self.room_details,
             "additional_features": self.additional_features,
             "added_in_date": self.added_in_date,
