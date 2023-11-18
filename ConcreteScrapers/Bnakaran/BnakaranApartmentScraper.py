@@ -19,6 +19,9 @@ class BnakaranApartmentScraper:
         self.soup = BeautifulSoup(response.content, 'html.parser')
         self.id = webpage.split("-")[-1]
     
+    def get_id(webpage: str) -> str:
+        return webpage.split("-")[-1]
+    
     @staticmethod
     def source_identifier():
         return "bnakaran"

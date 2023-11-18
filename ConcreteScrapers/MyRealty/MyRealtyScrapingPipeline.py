@@ -5,6 +5,7 @@ from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 from Protocols import Storage
 import logging
+import pandas as pd
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
@@ -16,6 +17,9 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         
         self.__set_soup(base_url)
         super().__init__(MyRealtyApartmentScraper)
+        
+        cached_data = pd.read_csv(storage.path())
+        self.cached_ids = set(cached_data["id"].to_list())
 
     def __set_soup(self, url: str):
         # Send a GET request to the website
@@ -34,6 +38,14 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
         logging.info("MyRealty | Navigating to next page")
 
     def scrape_apartment(self, apartment_url):
+        
+        id = self.apartment_scraper.get_id(apartment_url)
+        if id in self.cached_ids:
+            logging.info(f"MyRealty | Skipping {id}")
+            return
+        else:
+            logging.info(f"MyRealty | Scraping {id}")
+        
         # Create an instance of ApartmentScraper with the provided URL
         apartment_scraper: MyRealtyApartmentScraper = self.apartment_scraper(apartment_url)
         

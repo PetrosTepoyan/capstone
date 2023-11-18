@@ -1,10 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
+from ConcreteStorages.CSVStorage import CSVStorage
 from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 import logging
 from time import sleep
+
+import pandas as pd
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,7 +17,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # https://bars.am/en/properties/standard/apartment
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader):
+    def __init__(self, base_url, storage: CSVStorage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
@@ -22,6 +25,9 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
         self.__set_soup(base_url)
         super().__init__(BarsApartmentScraper)
+        
+        cached_data = pd.read_csv(storage.path())
+        self.cached_ids = set(cached_data["id"].to_list())
         
         # Instantiate a WebDriver (e.g., Chrome)
         driver = webdriver.Chrome()
@@ -69,6 +75,11 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
             self.first_ap_link_on_this_page = links[0]
 
     def scrape_apartment(self, apartment_url):
+        
+        id = self.apartment_scraper.get_id(apartment_url)
+        if id in self.cached_ids:
+            logging.info(f"Bars | Skipping {id}")
+            return
         
         # Create an instance of ApartmentScraper with the provided URL
         apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url)

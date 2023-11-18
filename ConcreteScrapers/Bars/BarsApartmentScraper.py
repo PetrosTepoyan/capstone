@@ -29,6 +29,8 @@ class BarsApartmentScraper(ApartmentScraper):
         self.building_type = None
         self.condition = None
 
+    def get_id(webpage: str) -> str:
+        return webpage.split("/")[-1]
         
     @staticmethod
     def source_identifier():

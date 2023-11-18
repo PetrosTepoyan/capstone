@@ -34,6 +34,9 @@ class MyRealtyApartmentScraper(ApartmentScraper):
         self.view_count = None
         
         
+    def get_id(webpage: str) -> str:
+        return webpage.split("/")[-1]
+        
     @staticmethod
     def source_identifier():
         return "myrealty"

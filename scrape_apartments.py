@@ -53,63 +53,54 @@ log_service = ScrapingLogService(
     path = scraping_folder + "scraping_log.csv"
 )
 
-# Getting cache if exists
-try:
-    scraped_links_df = pd.read_csv(scraping_folder + "scraping_log.csv")
-    scraped_links = set(scraped_links_df[scraped_links_df["success"] == True]["webpage"].to_list())
-except:
-    scraped_links = set()
     
 # Defining pipelines
 myrealty_scraper_pipeline = MyRealtyScrapingPipeline(
     "https://myrealty.am/en/apartments-for-sale/7784", 
     myrealty_storage,
-    image_loader = image_loader,
-    cached_links = scraped_links
+    image_loader = image_loader
 )
 print("Initialized MyRealty")
 
 bnakaran_scraper_pipeline = BnakaranScrapingPipeline(
     "https://www.bnakaran.com/en/listing?ctype=apartment&deal=sale&country=am&sort=relevance", 
     bnakaran_storage,
-    image_loader,
-    cached_links = scraped_links
+    image_loader
 )
 print("Initialized Bnakaran")
 
-# bars_scraper_pipeline = BarsApartmentScrapingPipeline(
-#     "https://bars.am/en/properties/standard/apartment", 
-#     bars_storage,
-#     image_loader,
-#     cached_links = scraped_links
-# )
-# print("Initialized Bars")
+bars_scraper_pipeline = BarsApartmentScrapingPipeline(
+    "https://bars.am/en/properties/standard/apartment", 
+    bars_storage,
+    image_loader
+)
+print("Initialized Bars")
 
 print("Starting...")
 global_scraping_pipeline = GlobalScrapingPipeline(
     pipelines = [
-        bnakaran_scraper_pipeline
-        # bars_scraper_pipeline,
-        # myrealty_scraper_pipeline
+        bnakaran_scraper_pipeline,
+        bars_scraper_pipeline,
+        myrealty_scraper_pipeline
     ],
     log_service = log_service
 )
 
 bnakaran_sitemap = bnakaran_sitemap_apartments()
 
-# global_scraping_pipeline.run()
+global_scraping_pipeline.run()
 
-for link in bnakaran_sitemap:
-    try:
-        result = bnakaran_scraper_pipeline.scrape_apartment(link)
-        if result != False:   
-            log_service.success(
-                source = bnakaran_scraper_pipeline.apartment_scraper.source_identifier(),
-                webpage = link
-            )
-    except Exception as e:
-        log_service.error(
-            source = bnakaran_scraper_pipeline.apartment_scraper.source_identifier(),
-            webpage = link,
-            error = str(e)
-        )
+# for link in bnakaran_sitemap:
+#     try:
+#         result = bnakaran_scraper_pipeline.scrape_apartment(link)
+#         if result != False:   
+#             log_service.success(
+#                 source = bnakaran_scraper_pipeline.apartment_scraper.source_identifier(),
+#                 webpage = link
+#             )
+#     except Exception as e:
+#         log_service.error(
+#             source = bnakaran_scraper_pipeline.apartment_scraper.source_identifier(),
+#             webpage = link,
+#             error = str(e)
+#         )

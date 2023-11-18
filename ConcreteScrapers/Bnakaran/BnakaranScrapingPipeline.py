@@ -5,6 +5,7 @@ from ConcreteScrapers.Bnakaran.BnakaranApartmentScraper import BnakaranApartment
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 import logging
+import pandas as pd
 
 class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
@@ -16,6 +17,9 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
         self.__set_soup(base_url)
         super().__init__(BnakaranApartmentScraper)
+        
+        cached_data = pd.read_csv(storage.path())
+        self.cached_ids = set(cached_data["id"].to_list())
 
     def __set_soup(self, url):
         response = requests.get(url)
@@ -30,6 +34,14 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
         self.__set_soup(f"{self.base_url}?page={self.page}")
 
     def scrape_apartment(self, apartment_url):
+        
+        id = self.apartment_scraper.get_id(apartment_url)
+        if id in self.cached_ids:
+            logging.info(f"Bnakaran | Skipping {id}")
+            return False
+        else:
+            logging.info(f"Bnakaran | scraping {id}")
+        
         apartment_scraper = self.apartment_scraper(apartment_url)
         apartment_scraper.scrape()
         apartment_data = apartment_scraper.values()
@@ -43,7 +55,6 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
                 source=BnakaranApartmentScraper.source_identifier(),
                 apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
             )
-        logging.info(f"Bnakaran | finished scraping {apartment_url}")
         return True
 
     def get_apartment_links(self):

@@ -1,0 +1,580 @@
+,source,webpage,success,error
+0,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+1,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+2,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+3,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+4,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+5,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+6,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+7,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Hr.Kochar+St/Arabkir/Yerevan/142435,True,
+8,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+9,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+10,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Saryan+St/Center/Yerevan/142428,True,
+11,bars,https://bars.am/en/properties/standard/apartment/6-NM3-7,True,
+12,bars,https://bars.am/en/properties/standard/apartment/4-3-1433,True,
+13,bars,https://bars.am/en/properties/standard/apartment/4-3-1434,True,
+14,bars,https://bars.am/en/properties/standard/apartment/4-3-1431,True,
+15,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+16,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Abovyan+St/Center/Yerevan/142425,True,
+17,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+18,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+19,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+20,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+21,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Buzand+St/Center/Yerevan/142418,True,
+22,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+23,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+24,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/A.+Khachatrian+St/Arabkir/Yerevan/142416,True,
+25,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+26,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+27,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+28,myrealty,https://myrealty.am/en/1-bedroom/apartment-for-sale/Hasratyan+St/Qanaqer-Zeytun/Yerevan/142413,True,
+29,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+30,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Mikoyan+St/Davtashen/Yerevan/142412,True,
+31,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+32,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+33,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+34,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+35,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale-in-new-construction/Armenak+Armenakyan+St/Norq+Marash/Yerevan/142411,True,
+36,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/A.+Khachatrian+St/Arabkir/Yerevan/142410,True,
+37,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+38,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+39,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+40,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+41,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+42,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+43,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Tigran+Mets+Ave/Center/Yerevan/142407,True,
+44,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Charents+St/Center/Yerevan/142406,True,
+45,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+46,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+47,bars,https://bars.am/en/properties/standard/apartment/1-N-432,True,
+48,bars,https://bars.am/en/properties/standard/apartment/1-2-991,True,
+49,bars,https://bars.am/en/properties/standard/apartment/4-2-201,True,
+50,bars,https://bars.am/en/properties/standard/apartment/1-B-97,True,
+51,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+52,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Khaghagh+Don+St/Erebuni/Yerevan/142405,True,
+53,bars,https://bars.am/en/properties/exclusive/apartment/24073,False,invalid literal for int() with base 10: 'Price Upon Request'
+54,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+55,bars,https://bars.am/en/properties/exclusive/apartment/66580,False,invalid literal for int() with base 10: 'Price Upon Request'
+56,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+57,bars,https://bars.am/en/properties/exclusive/apartment/11396,False,invalid literal for int() with base 10: 'Price Upon Request'
+58,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+59,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Gusan+Sheram+St/Malatia-Sebastia/Yerevan/142404,True,
+60,bars,https://bars.am/en/properties/exclusive/apartment/4-3-1271,False,invalid literal for int() with base 10: 'Price Upon Request'
+61,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+62,bars,https://bars.am/en/properties/exclusive/apartment/87227,False,invalid literal for int() with base 10: 'Price Upon Request'
+63,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+64,bars,https://bars.am/en/properties/exclusive/apartment/63277,False,invalid literal for int() with base 10: 'Price Upon Request'
+65,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+66,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/A.+Tigranyan+St/Qanaqer-Zeytun/Yerevan/142401,True,
+67,bars,https://bars.am/en/properties/exclusive/apartment/64545,False,invalid literal for int() with base 10: 'Price Upon Request'
+68,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+69,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+70,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+71,bars,https://bars.am/en/properties/exclusive/apartment/1-Ayg,False,invalid literal for int() with base 10: 'Price Upon Request'
+72,bars,https://bars.am/en/properties/exclusive/apartment/70008,False,invalid literal for int() with base 10: 'Price Upon Request'
+73,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+74,bars,https://bars.am/en/properties/exclusive/apartment/70009,False,invalid literal for int() with base 10: 'Price Upon Request'
+75,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+76,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+77,bars,https://bars.am/en/properties/exclusive/apartment/55529,False,invalid literal for int() with base 10: 'Price Upon Request'
+78,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Artashisyan+St/Shengavit/Yerevan/142399,True,
+79,bars,https://bars.am/en/properties/exclusive/apartment/18240,False,invalid literal for int() with base 10: 'Price Upon Request'
+80,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+81,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+82,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+83,bars,https://bars.am/en/properties/exclusive/apartment/51917,False,invalid literal for int() with base 10: 'Price Upon Request'
+84,bars,https://bars.am/en/properties/exclusive/apartment/65888,False,invalid literal for int() with base 10: 'Price Upon Request'
+85,bars,https://bars.am/en/properties/standard/apartment/4-3-1432,True,
+86,bars,https://bars.am/en/properties/standard/apartment/1-B-128,True,
+87,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+88,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Tigran+Mets+Ave/Center/Yerevan/142398,True,
+89,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+90,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+91,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Antarayin+St/Center/Yerevan/142397,True,
+92,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+93,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+94,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/M.Khorenatsi+St/Center/Yerevan/142396,True,
+95,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+96,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+97,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+98,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+99,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+100,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+101,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+102,myrealty,https://myrealty.am/en/5-bedroom/apartment-for-sale/Ayas+St/Center/Yerevan/142395,True,
+103,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+104,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+105,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+106,myrealty,https://myrealty.am/en/6-bedroom/apartment-for-sale/Mashtots+Ave/Center/Yerevan/142394,True,
+107,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+108,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+109,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+110,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+111,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+112,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Baghramyan+av%28Arabkir%29/Arabkir/Yerevan/142389,True,
+113,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+114,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+115,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+116,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Kievyan+St/Arabkir/Yerevan/142387,True,
+117,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+118,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+119,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Buzand+St/Center/Yerevan/142384,True,
+120,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+121,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+122,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+123,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+124,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+125,myrealty,https://myrealty.am/en/6-bedroom/apartment-for-sale/Myasnikyan+Ave/Center/Yerevan/142383,True,
+126,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+127,myrealty,https://myrealty.am/en/6-bedroom/apartment-for-sale/Myasnikyan+Ave/Center/Yerevan/142382,True,
+128,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+129,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+130,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Bashinjaxyan+St/Achapnyak/Yerevan/142381,True,
+131,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+132,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+133,myrealty,https://myrealty.am/en/6-bedroom/apartment-for-sale/Myasnikyan+Ave/Center/Yerevan/142380,True,
+134,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+135,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+136,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/A.+Khachatrian+St/Arabkir/Yerevan/142378,True,
+137,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+138,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+139,bars,https://bars.am/en/properties/standard/apartment/1-2-990,True,
+140,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Antarayin+St/Center/Yerevan/142377,True,
+141,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+142,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Antarayin%2C+G.Emin+St%2C/Center/Yerevan/142376,True,
+143,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+144,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+145,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/G.+Hovsepyan+St/Norq+Marash/Yerevan/142375,True,
+146,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Moldovakan+St/Nor+Norq/Yerevan/142373,True,
+147,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+148,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+149,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+150,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+151,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+152,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+153,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+154,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+155,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+156,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+157,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+158,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+159,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Sevak+St/Qanaqer-Zeytun/Yerevan/142371,True,
+160,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+161,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale-in-new-construction/Sebastia+str/Malatia-Sebastia/Yerevan/142368,True,
+162,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+163,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Sebastia+str/Malatia-Sebastia/Yerevan/142363,True,
+164,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+165,bars,https://bars.am/en/properties/standard/apartment/4-3-1181,True,
+166,bars,https://bars.am/en/properties/standard/apartment/1-3-1912,True,
+167,bars,https://bars.am/en/properties/standard/apartment/1-3-2133,True,
+168,bars,https://bars.am/en/properties/standard/apartment/6-NM3-6,True,
+169,bars,https://bars.am/en/properties/standard/apartment/1-3-2132,True,
+170,bars,https://bars.am/en/properties/standard/apartment/1-N-430,True,
+171,bars,https://bars.am/en/properties/standard/apartment/6-ACH3-126,True,
+172,bars,https://bars.am/en/properties/standard/apartment/4-3-1429,True,
+173,bars,https://bars.am/en/properties/standard/apartment/4-3-1427,True,
+174,bars,https://bars.am/en/properties/standard/apartment/4-2-203,True,
+175,bars,https://bars.am/en/properties/standard/apartment/6-NM2-5,True,
+176,bars,https://bars.am/en/properties/standard/apartment/6-D3-208,True,
+177,bars,https://bars.am/en/properties/standard/apartment/2-2-281,True,
+178,bars,https://bars.am/en/properties/standard/apartment/6-D3-207,True,
+179,bars,https://bars.am/en/properties/standard/apartment/4-3-111,True,
+180,bars,https://bars.am/en/properties/standard/apartment/4-3-93,True,
+181,bars,https://bars.am/en/properties/standard/apartment/4-3-23,True,
+182,bars,https://bars.am/en/properties/standard/apartment/4-2-151,True,
+183,bars,https://bars.am/en/properties/standard/apartment/4-1-27,True,
+184,bars,https://bars.am/en/properties/standard/apartment/4-3-1426,True,
+185,bars,https://bars.am/en/properties/standard/apartment/4-3-1428,True,
+186,bars,https://bars.am/en/properties/standard/apartment/1-N-429,True,
+187,bars,https://bars.am/en/properties/standard/apartment/1-N-428,True,
+188,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Sebastia+str/Malatia-Sebastia/Yerevan/142362,True,
+189,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+190,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+191,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+192,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Heratsi+St/Center/Yerevan/142359,True,
+193,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Sayat-Nova+Ave/Center/Yerevan/142358,True,
+194,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+195,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Saryan+St/Center/Yerevan/142357,True,
+196,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,'BnakaranApartmentScraper' object has no attribute 'soup'
+197,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale-in-new-construction/G.+Hovsepyan+St/Norq+Marash/Yerevan/142356,True,
+198,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,'NoneType' object has no attribute 'find_all'
+199,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Buzand+St/Center/Yerevan/142355,True,
+200,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Tigran+Petrosyan+St/Davtashen/Yerevan/142353,True,
+201,bnakaran,https://www.bnakaran.com/en/house-for-rent-in-malatia-sebastia-yerevan-d114631,False,list index out of range
+202,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Mikoyan+St/Davtashen/Yerevan/142349,True,
+203,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale-in-new-construction/Aram+St/Center/Yerevan/142348,True,
+204,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Arshakunyats+Ave/Center/Yerevan/142347,True,
+205,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Nikol+Duman+St/Arabkir/Yerevan/142343,True,
+206,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Ghazar+Parpetsi+St/Center/Yerevan/142339,True,
+207,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Komitas+Ave/Arabkir/Yerevan/142338,True,
+208,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Arxutyan+St/Arabkir/Yerevan/142337,True,
+209,bnakaran,https://www.bnakaran.com/en/apartment-for-rent-in-arabkir-yerevan-d105857,True,
+210,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Saryan+St/Center/Yerevan/142320,True,
+211,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Charents+St/Center/Yerevan/142307,True,
+212,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+213,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-arabkir-yerevan-d115157,False,list index out of range
+214,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Charents+St/Center/Yerevan/142306,True,
+215,bnakaran,https://www.bnakaran.com/en/townhouse-for-sale-in-davtashen-yerevan-d112343,False,invalid literal for int() with base 10: '-'
+216,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-avan-yerevan-d113973,False,list index out of range
+217,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Mashtots+Ave/Center/Yerevan/142296,True,
+218,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-artashavan-aragatsotn-d117752,False,list index out of range
+219,bnakaran,https://www.bnakaran.com/en/universal-premises-for-rent-in-downtown-yerevan-d117529,False,invalid literal for int() with base 10: 'semi-basement'
+220,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-rent-in-arabkir-yerevan-d104217,False,invalid literal for int() with base 10: ''
+221,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-davtashen-yerevan-d117803,False,invalid literal for int() with base 10: '-'
+222,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-center-yerevan-d117344,False,invalid literal for int() with base 10: ''
+223,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-arabkir-yerevan-d117815,False,invalid literal for int() with base 10: '-'
+224,bnakaran,https://www.bnakaran.com/en/townhouse-for-sale-in-ajapnyak-yerevan-d115999,False,list index out of range
+225,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-erebouni-yerevan-d115138,False,list index out of range
+226,bnakaran,https://www.bnakaran.com/en/house-for-rent-in-tsaxkadzor-kotayk-d108251,False,list index out of range
+227,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Ghazar+Parpetsi+St/Center/Yerevan/142292,True,
+228,bnakaran,https://www.bnakaran.com/en/universal-premises-for-sale-in-davtashen-yerevan-d117670,False,invalid literal for int() with base 10: ''
+229,bnakaran,https://www.bnakaran.com/en/universal-premises-for-rent-in-arabkir-yerevan-d114493,False,'BnakaranApartmentScraper' object has no attribute 'rooms'
+230,bars,https://bars.am/en/properties/standard/apartment/4-3-1396,True,
+231,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+232,bars,https://bars.am/en/properties/standard/apartment/1-3-2131,True,
+233,bars,https://bars.am/en/properties/standard/apartment/1-3-1838,True,
+234,bars,https://bars.am/en/properties/standard/apartment/4-2-205,True,
+235,bars,https://bars.am/en/properties/standard/apartment/4-3-1424,True,
+236,bars,https://bars.am/en/properties/standard/apartment/4-3-1423,True,
+237,bars,https://bars.am/en/properties/standard/apartment/4-3-1421,True,
+238,bars,https://bars.am/en/properties/standard/apartment/4-3-1420,True,
+239,bars,https://bars.am/en/properties/standard/apartment/4-2-157,True,
+240,bars,https://bars.am/en/properties/standard/apartment/4-2-204,True,
+241,bars,https://bars.am/en/properties/standard/apartment/6-Sh2-50,True,
+242,bars,https://bars.am/en/properties/standard/apartment/1-DH-10,True,
+243,bars,https://bars.am/en/properties/standard/apartment/1-DH-11,True,
+244,bars,https://bars.am/en/properties/standard/apartment/1-DH-12,True,
+245,bars,https://bars.am/en/properties/standard/apartment/1-DH-21,True,
+246,bars,https://bars.am/en/properties/standard/apartment/1-DH-20,True,
+247,bars,https://bars.am/en/properties/standard/apartment/1-DH-25,True,
+248,bars,https://bars.am/en/properties/standard/apartment/1-DH-8,True,
+249,bars,https://bars.am/en/properties/standard/apartment/1-DH-27,True,
+250,bars,https://bars.am/en/properties/standard/apartment/1-DH-15,True,
+251,bars,https://bars.am/en/properties/standard/apartment/1-DH-22,True,
+252,bars,https://bars.am/en/properties/standard/apartment/1-N-43,True,
+253,bars,https://bars.am/en/properties/standard/apartment/4-3-1382,True,
+254,bars,https://bars.am/en/properties/standard/apartment/4-3-1419,True,
+255,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+256,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/A.+Khachatrian+St/Arabkir/Yerevan/142291,True,
+257,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+258,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Saryan+St/Center/Yerevan/142290,True,
+259,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+260,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+261,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+262,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Leo+St/Center/Yerevan/142288,True,
+263,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+264,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+265,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Raffi+St/Malatia-Sebastia/Yerevan/142279,True,
+266,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+267,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Rostom+St/Center/Yerevan/142274,True,
+268,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+269,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+270,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Mikoyan+St/Davtashen/Yerevan/142272,True,
+271,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+272,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Vardanants+St/Center/Yerevan/142267,True,
+273,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+274,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+275,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Davit+Anhaxt+St/Qanaqer-Zeytun/Yerevan/142262,True,
+276,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+277,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Adonts+St/Arabkir/Yerevan/142260,True,
+278,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Mikoyan+St/Davtashen/Yerevan/142259,True,
+279,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+280,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Leningradyan+St/Achapnyak/Yerevan/142258,True,
+281,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+282,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+283,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+284,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+285,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+286,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Tsitsernakaberd+Highway/Center/Yerevan/142238,True,
+287,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+288,myrealty,https://myrealty.am/en/1-bedroom/apartment-for-sale/N.+Tigranyan+St/Arabkir/Yerevan/142209,True,
+289,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+290,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+291,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+292,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+293,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+294,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Davtashen+4+St/Davtashen/Yerevan/142204,True,
+295,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+296,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+297,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+298,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+299,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+300,bars,https://bars.am/en/properties/standard/apartment/1-3-2627,True,
+301,bars,https://bars.am/en/properties/standard/apartment/4-3-1418,True,
+302,bars,https://bars.am/en/properties/standard/apartment/1-3-2003,True,
+303,bars,https://bars.am/en/properties/standard/apartment/6-Ach3-124,True,
+304,bars,https://bars.am/en/properties/standard/apartment/1-3-2097,True,
+305,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Buzand+St/Center/Yerevan/142198,True,
+306,bars,https://bars.am/en/properties/standard/apartment/1-A-122,True,
+307,bars,https://bars.am/en/properties/standard/apartment/4-3-1416,True,
+308,bars,https://bars.am/en/properties/standard/apartment/1-N-415,True,
+309,bars,https://bars.am/en/properties/standard/apartment/1-3-2084,True,
+310,bars,https://bars.am/en/properties/standard/apartment/4-3-1415,True,
+311,bars,https://bars.am/en/properties/standard/apartment/1-3-2114,True,
+312,bars,https://bars.am/en/properties/standard/apartment/53896,True,
+313,bars,https://bars.am/en/properties/standard/apartment/1-1-441,True,
+314,bars,https://bars.am/en/properties/standard/apartment/3-S-62,True,
+315,bars,https://bars.am/en/properties/standard/apartment/1-3-2125,True,
+316,bars,https://bars.am/en/properties/standard/apartment/4-3-1413,True,
+317,bars,https://bars.am/en/properties/standard/apartment/4-2-202,True,
+318,bars,https://bars.am/en/properties/standard/apartment/5-2-325,True,
+319,bars,https://bars.am/en/properties/standard/apartment/1-A-123,True,
+320,bars,https://bars.am/en/properties/standard/apartment/4-3-1414,True,
+321,bars,https://bars.am/en/properties/standard/apartment/1-3-2124,True,
+322,bars,https://bars.am/en/properties/standard/apartment/4-3-1411,True,
+323,bars,https://bars.am/en/properties/standard/apartment/2-1-48,True,
+324,bars,https://bars.am/en/properties/standard/apartment/4-3-1162,True,
+325,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+326,myrealty,https://myrealty.am/en/1-bedroom/apartment-for-sale/Abovyan+St/Center/Yerevan/142189,True,
+327,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+328,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+329,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Saryan+St/Center/Yerevan/142163,True,
+330,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+331,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+332,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Tigran+Petrosyan+St/Davtashen/Yerevan/142160,True,
+333,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+334,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+335,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+336,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+337,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/A.Manukyan+St/Center/Yerevan/142152,True,
+338,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+339,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+340,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+341,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+342,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Tumanyan+St/Center/Yerevan/142137,True,
+343,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+344,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+345,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,'BnakaranApartmentScraper' object has no attribute 'soup'
+346,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Mashtots+Ave/Center/Yerevan/142134,True,
+347,bnakaran,https://www.bnakaran.com/en/house-for-rent-in-malatia-sebastia-yerevan-d114631,False,list index out of range
+348,bars,https://bars.am/en/properties/standard/apartment/1-N-426,True,
+349,bars,https://bars.am/en/properties/standard/apartment/5-3-1405,False,invalid literal for int() with base 10: 'Price Upon Request'
+350,bars,https://bars.am/en/properties/standard/apartment/6-D3-206,True,
+351,bars,https://bars.am/en/properties/standard/apartment/6-Sh2-48,True,
+352,bars,https://bars.am/en/properties/standard/apartment/4-3-1407,True,
+353,bars,https://bars.am/en/properties/standard/apartment/4-3-1406,True,
+354,bars,https://bars.am/en/properties/standard/apartment/4-3-1408,True,
+355,bars,https://bars.am/en/properties/standard/apartment/4-3-1409,True,
+356,bars,https://bars.am/en/properties/standard/apartment/4-3-1410,True,
+357,bars,https://bars.am/en/properties/standard/apartment/1-1-417,True,
+358,bars,https://bars.am/en/properties/standard/apartment/1-3-1293,True,
+359,bars,https://bars.am/en/properties/standard/apartment/4-2-195,True,
+360,bars,https://bars.am/en/properties/standard/apartment/1-N-409,True,
+361,bars,https://bars.am/en/properties/standard/apartment/4-3-1344,True,
+362,bars,https://bars.am/en/properties/standard/apartment/1-2-912,True,
+363,bars,https://bars.am/en/properties/standard/apartment/1-3-2120,True,
+364,bars,https://bars.am/en/properties/standard/apartment/6-Ach2-121,True,
+365,bars,https://bars.am/en/properties/standard/apartment/6-Z4-261,False,invalid literal for int() with base 10: 'Price Upon Request'
+366,bars,https://bars.am/en/properties/standard/apartment/4-3-1399,True,
+367,bars,https://bars.am/en/properties/standard/apartment/1-3-2119,True,
+368,bars,https://bars.am/en/properties/standard/apartment/1-2-985,True,
+369,bars,https://bars.am/en/properties/standard/apartment/4-3-1400,True,
+370,bars,https://bars.am/en/properties/standard/apartment/1-3-1762,True,
+371,bars,https://bars.am/en/properties/exclusive/apartment/1-N-382,False,invalid literal for int() with base 10: 'Price Upon Request'
+372,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Mashtots+Ave/Center/Yerevan/142133,True,
+373,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Komitas+Ave/Arabkir/Yerevan/142132,True,
+374,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Komitas+Ave/Arabkir/Yerevan/142129,True,
+375,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Hr.Kochar+St/Arabkir/Yerevan/142125,True,
+376,myrealty,https://myrealty.am/en/1-bedroom/apartment-for-sale-in-new-construction/Argishti+St/Center/Yerevan/142124,True,
+377,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Abovyan+St/Center/Yerevan/142117,True,
+378,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Gyulbenkyan+St/Arabkir/Yerevan/142112,True,
+379,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Orbeli+Yeghbayrner+++St/Arabkir/Yerevan/142110,True,
+380,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Aygedzor+St/Arabkir/Yerevan/142109,True,
+381,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Buzand+St/Center/Yerevan/142108,True,
+382,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Komitas+Ave/Arabkir/Yerevan/142090,True,
+383,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Davtashen+4+district/Davtashen/Yerevan/142077,True,
+384,bnakaran,https://www.bnakaran.com/en/apartment-for-rent-in-arabkir-yerevan-d105857,True,
+385,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Pushkin+St/Center/Yerevan/142076,True,
+386,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+387,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Nalbandyan+St/Center/Yerevan/142050,True,
+388,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-arabkir-yerevan-d115157,False,list index out of range
+389,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-avan-yerevan-d113973,False,list index out of range
+390,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Mazmanyan+St/Achapnyak/Yerevan/142037,True,
+391,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-artashavan-aragatsotn-d117752,False,list index out of range
+392,bnakaran,https://www.bnakaran.com/en/universal-premises-for-rent-in-downtown-yerevan-d117529,False,invalid literal for int() with base 10: 'semi-basement'
+393,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/M.Khorenatsi+St/Center/Yerevan/142036,True,
+394,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-rent-in-arabkir-yerevan-d104217,False,invalid literal for int() with base 10: ''
+395,bars,https://bars.am/en/properties/standard/apartment/1-N-413,False,invalid literal for int() with base 10: 'Price Upon Request'
+396,bars,https://bars.am/en/properties/standard/apartment/1-B-75,True,
+397,bars,https://bars.am/en/properties/standard/apartment/1-3-2117,True,
+398,bars,https://bars.am/en/properties/standard/apartment/4-2-200,True,
+399,bars,https://bars.am/en/properties/standard/apartment/1-3-1730,True,
+400,bars,https://bars.am/en/properties/standard/apartment/6-О-117,True,
+401,bars,https://bars.am/en/properties/standard/apartment/1-B-118,True,
+402,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-davtashen-yerevan-d117803,False,invalid literal for int() with base 10: '-'
+403,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-arabkir-yerevan-d117815,False,invalid literal for int() with base 10: '-'
+404,bars,https://bars.am/en/properties/exclusive/apartment/4-3-1269,False,invalid literal for int() with base 10: 'Price Upon Request'
+405,bars,https://bars.am/en/properties/standard/apartment/6-Z3-260,True,
+406,bars,https://bars.am/en/properties/standard/apartment/1-3-2116,True,
+407,bars,https://bars.am/en/properties/standard/apartment/4-3-1398,True,
+408,bars,https://bars.am/en/properties/standard/apartment/1-3-2115,True,
+409,bars,https://bars.am/en/properties/standard/apartment/4-3-1397,True,
+410,bars,https://bars.am/en/properties/standard/apartment/1-3-2112,True,
+411,bars,https://bars.am/en/properties/standard/apartment/1-3-2113,True,
+412,bars,https://bars.am/en/properties/standard/apartment/1-3-2111,True,
+413,bars,https://bars.am/en/properties/standard/apartment/4-3-1395,True,
+414,bars,https://bars.am/en/properties/standard/apartment/1-2-988,True,
+415,bars,https://bars.am/en/properties/standard/apartment/4-3-13944,True,
+416,bars,https://bars.am/en/properties/standard/apartment/1-S-70,True,
+417,bars,https://bars.am/en/properties/standard/apartment/1-S-62,True,
+418,bars,https://bars.am/en/properties/standard/apartment/1-3-1531,True,
+419,bars,https://bars.am/en/properties/standard/apartment/1-3-205,True,
+420,bars,https://bars.am/en/properties/standard/apartment/4-3-1285,True,
+421,bnakaran,https://www.bnakaran.com/en/universal-premises-for-sale-in-shengavit-yerevan-d117537,False,'BnakaranApartmentScraper' object has no attribute 'rooms'
+422,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Buzand+St/Center/Yerevan/142015,True,
+423,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-nor-nork-yerevan-d117453,False,list index out of range
+424,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Sundukyan+St/Arabkir/Yerevan/142004,True,
+425,bnakaran,https://www.bnakaran.com/en/house-for-sale-in-erebouni-yerevan-d115138,False,list index out of range
+426,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/N.+Shengavit+11+St/Shengavit/Yerevan/141967,True,
+427,bnakaran,https://www.bnakaran.com/en/house-for-rent-in-tsaxkadzor-kotayk-d108251,False,'NoneType' object has no attribute 'find_all'
+428,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Baghramyan+av%28Arabkir%29/Arabkir/Yerevan/141960,True,
+429,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-arabkir-yerevan-d117787,True,
+430,bnakaran,https://www.bnakaran.com/en/universal-premises-for-sale-in-davtashen-yerevan-d117670,False,invalid literal for int() with base 10: ''
+431,bnakaran,https://www.bnakaran.com/en/townhouse-for-sale-in-avan-yerevan-d116705,False,invalid literal for int() with base 10: '-'
+432,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale-in-new-construction/Malkhasiants+St/Arabkir/Yerevan/141959,True,
+433,bnakaran,https://www.bnakaran.com/en/universal-premises-for-rent-in-arabkir-yerevan-d114493,False,'BnakaranApartmentScraper' object has no attribute 'rooms'
+434,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+435,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+436,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Sasna+Tsrer+St/Davtashen/Yerevan/141958,True,
+437,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+438,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+439,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+440,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Sasna+Tsrer+St/Davtashen/Yerevan/141949,True,
+441,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+442,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+443,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/+Z.+Kanaqertsi/Qanaqer-Zeytun/Yerevan/141948,True,
+444,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+445,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+446,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+447,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Gyulbenkyan+St/Arabkir/Yerevan/141931,True,
+448,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+449,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+450,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Droi+St/Qanaqer-Zeytun/Yerevan/141918,True,
+451,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Buzand+St/Center/Yerevan/141917,True,
+452,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+453,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+454,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+455,myrealty,https://myrealty.am/en/1-bedroom/apartment-for-sale/Azatutyan+Ave/Arabkir/Yerevan/141914,True,
+456,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+457,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+458,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+459,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+460,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+461,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Sayat-Nova+Ave/Center/Yerevan/141888,True,
+462,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+463,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+464,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+465,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+466,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+467,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Arabkir+21+St/Arabkir/Yerevan/141883,True,
+468,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+469,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+470,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+471,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+472,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+473,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Davit+Anhaxt+St/Qanaqer-Zeytun/Yerevan/141882,True,
+474,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+475,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+476,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+477,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Khaghagh+Don+St/Erebuni/Yerevan/141880,True,
+478,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+479,bars,https://bars.am/en/properties/standard/apartment/4-3-1367,True,
+480,bars,https://bars.am/en/properties/standard/apartment/1-2-736,True,
+481,bars,https://bars.am/en/properties/standard/apartment/4-3-1385,True,
+482,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Norashen+district/Achapnyak/Yerevan/141871,True,
+483,bars,https://bars.am/en/properties/standard/apartment/1-N-311,True,
+484,bars,https://bars.am/en/properties/standard/apartment/1-3-1515,True,
+485,bars,https://bars.am/en/properties/standard/apartment/1-3-2109,True,
+486,bars,https://bars.am/en/properties/standard/apartment/1-3-859,True,
+487,bars,https://bars.am/en/properties/standard/apartment/1-3-2070,True,
+488,bars,https://bars.am/en/properties/standard/apartment/1-3-1613,True,
+489,bars,https://bars.am/en/properties/standard/apartment/1-3-323,True,
+490,bars,https://bars.am/en/properties/standard/apartment/1-3-346,True,
+491,bars,https://bars.am/en/properties/standard/apartment/1-3-883,True,
+492,bars,https://bars.am/en/properties/standard/apartment/1-3-985,True,
+493,bars,https://bars.am/en/properties/standard/apartment/1-S-72,True,
+494,bars,https://bars.am/en/properties/standard/apartment/1-3-2060,True,
+495,bars,https://bars.am/en/properties/standard/apartment/4-3-1332,True,
+496,bars,https://bars.am/en/properties/standard/apartment/1-2-971,True,
+497,bars,https://bars.am/en/properties/standard/apartment/1-S-73,True,
+498,bars,https://bars.am/en/properties/standard/apartment/1-S-71,True,
+499,bars,https://bars.am/en/properties/standard/apartment/6-NM-11,True,
+500,bars,https://bars.am/en/properties/standard/apartment/1-N-162,True,
+501,bars,https://bars.am/en/properties/standard/apartment/1-2-986,True,
+502,bars,https://bars.am/en/properties/standard/apartment/1-3-1981,True,
+503,bars,https://bars.am/en/properties/standard/apartment/4-3-1393,True,
+504,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+505,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+506,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Rubinyants+St/Qanaqer-Zeytun/Yerevan/141867,True,
+507,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+508,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+509,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+510,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/Tigran+Petrosyan+St/Davtashen/Yerevan/141866,True,
+511,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+512,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+513,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/N.+Safaryan+St/Avan/Yerevan/141862,True,
+514,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+515,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/M.+Melikyan+St/Qanaqer-Zeytun/Yerevan/141856,True,
+516,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+517,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+518,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+519,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+520,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+521,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+522,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+523,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+524,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Kievyan+St/Arabkir/Yerevan/141851,True,
+525,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+526,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+527,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/A.+Khachatrian+St/Arabkir/Yerevan/141848,True,
+528,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+529,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+530,myrealty,https://myrealty.am/en/1-bedroom/apartment-for-sale/V.Papazyan+St/Arabkir/Yerevan/141844,True,
+531,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+532,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+533,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Z.Andranik+St/Malatia-Sebastia/Yerevan/141834,True,
+534,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+535,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale-in-new-construction/Argishti+St/Center/Yerevan/141833,True,
+536,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+537,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+538,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Aygestan+9+St/Center/Yerevan/141829,True,
+539,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+540,bars,https://bars.am/en/properties/standard/apartment/1-3-2108,True,
+541,bars,https://bars.am/en/properties/standard/apartment/1-N-278,True,
+542,bars,https://bars.am/en/properties/standard/apartment/1-3-2107,True,
+543,bars,https://bars.am/en/properties/standard/apartment/1-3-2018,True,
+544,bars,https://bars.am/en/properties/standard/apartment/1-3-2028,True,
+545,bars,https://bars.am/en/properties/standard/apartment/1-2-982,True,
+546,bars,https://bars.am/en/properties/standard/apartment/2-1-44,True,
+547,bars,https://bars.am/en/properties/standard/apartment/6-Mal-48,True,
+548,bars,https://bars.am/en/properties/standard/apartment/6-Av3-154,True,
+549,bars,https://bars.am/en/properties/standard/apartment/1-3-2106,False,invalid literal for int() with base 10: 'Price Upon Request'
+550,bars,https://bars.am/en/properties/standard/apartment/1-3-2095,True,
+551,bars,https://bars.am/en/properties/standard/apartment/6-Ach-119,True,
+552,bars,https://bars.am/en/properties/standard/apartment/6-D4-101,True,
+553,bars,https://bars.am/en/properties/standard/apartment/4-2-198,True,
+554,bars,https://bars.am/en/properties/standard/apartment/1-3-2104,True,
+555,myrealty,https://myrealty.am/en/2-bedroom/apartment-for-sale/Aygestan+9+St/Center/Yerevan/141826,True,
+556,bars,https://bars.am/en/properties/standard/apartment/4-3-1265,True,
+557,bars,https://bars.am/en/properties/standard/apartment/1-3-1665,True,
+558,bars,https://bars.am/en/properties/standard/apartment/1-3-2102,True,
+559,bars,https://bars.am/en/properties/standard/apartment/4-2-197,True,
+560,bars,https://bars.am/en/properties/standard/apartment/1-A-118,True,
+561,bars,https://bars.am/en/properties/standard/apartment/2-3-156,True,
+562,bars,https://bars.am/en/properties/standard/apartment/4-3-1392,True,
+563,bars,https://bars.am/en/properties/standard/apartment/4-3-1391,True,
+564,bars,https://bars.am/en/properties/standard/apartment/4-3-1217,True,
+565,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+566,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+567,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+568,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale-in-new-construction/Sayat-Nova+Ave/Center/Yerevan/141823,True,
+569,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+570,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+571,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale-in-new-construction/Hanrapetutyan+St/Center/Yerevan/141821,True,
+572,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+573,myrealty,https://myrealty.am/en/3-bedroom/apartment-for-sale/Sayat-Nova+Ave/Center/Yerevan/141812,True,
+574,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
+575,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d91811,False,invalid literal for int() with base 10: ''
+576,bnakaran,https://www.bnakaran.com/en/apartment-for-sale-in-arabkir-yerevan-d88473,False,invalid literal for int() with base 10: ''
+577,myrealty,https://myrealty.am/en/4-bedroom/apartment-for-sale/E.+Qochar+St/Center/Yerevan/141810,True,
+578,bnakaran,https://www.bnakaran.com/en/apartment-in-new-building-for-sale-in-downtown-yerevan-d116449,False,invalid literal for int() with base 10: ''
