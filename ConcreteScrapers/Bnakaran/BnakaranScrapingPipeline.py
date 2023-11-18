@@ -5,17 +5,14 @@ from ConcreteScrapers.Bnakaran.BnakaranApartmentScraper import BnakaranApartment
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 import logging
-import threading
 
 class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader, cached_links = set()):
+    def __init__(self, base_url, storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.cached_links = cached_links
-        self.lock = threading.Lock()
 
         self.__set_soup(base_url)
         super().__init__(BnakaranApartmentScraper)
@@ -33,13 +30,6 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
         self.__set_soup(f"{self.base_url}?page={self.page}")
 
     def scrape_apartment(self, apartment_url):
-        with self.lock:
-            if apartment_url not in self.cached_links:
-                self.cached_links.add(apartment_url)
-            else:
-                logging.info(f"Bnakaran skipping {apartment_url}")
-                return False
-        
         apartment_scraper = self.apartment_scraper(apartment_url)
         apartment_scraper.scrape()
         apartment_data = apartment_scraper.values()

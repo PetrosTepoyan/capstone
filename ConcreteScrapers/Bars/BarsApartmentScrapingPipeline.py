@@ -4,7 +4,6 @@ from ConcreteScrapers.Bars.BarsApartmentScraper import BarsApartmentScraper
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 import logging
-import threading
 from time import sleep
 
 from selenium import webdriver
@@ -15,13 +14,11 @@ from selenium.webdriver.support import expected_conditions as EC
 # https://bars.am/en/properties/standard/apartment
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader, cached_links: set = set()):
+    def __init__(self, base_url, storage, image_loader: ImageLoader):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.cached_links = cached_links
-        self.lock = threading.Lock()
 
         self.__set_soup(base_url)
         super().__init__(BarsApartmentScraper)
@@ -72,12 +69,6 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
             self.first_ap_link_on_this_page = links[0]
 
     def scrape_apartment(self, apartment_url):
-        with self.lock:
-            if apartment_url not in self.cached_links:
-                self.cached_links.add(apartment_url)
-            else:
-                logging.info(f"Bars | skipping {apartment_url}")
-                return
         
         # Create an instance of ApartmentScraper with the provided URL
         apartment_scraper: BarsApartmentScraper = self.apartment_scraper(apartment_url)
