@@ -9,12 +9,12 @@ import threading
 
 class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader):
+    def __init__(self, base_url, storage, image_loader: ImageLoader, cached_links = set()):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.cached_links = set()
+        self.cached_links = cached_links
         self.lock = threading.Lock()
 
         self.__set_soup(base_url)
@@ -37,7 +37,7 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
             if apartment_url not in self.cached_links:
                 self.cached_links.add(apartment_url)
             else:
-                logging.info(f"Bnakaran Skipping {apartment_url}")
+                logging.info(f"Bnakaran skipping {apartment_url}")
                 return False
         
         apartment_scraper = self.apartment_scraper(apartment_url)
@@ -53,6 +53,7 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
                 source=BnakaranApartmentScraper.source_identifier(),
                 apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
             )
+        logging.info(f"Bnakaran | finished scraping {apartment_url}")
         return True
 
     def get_apartment_links(self):

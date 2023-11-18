@@ -42,4 +42,4 @@ class ScrapingLogService:
             self.save()
         
     def save(self):
-        self.log_df.to_csv(self.path)
+        self.log_df.to_csv(self.path, mode='a', header=False, index=False)

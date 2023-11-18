@@ -49,6 +49,7 @@ class ApartmentScrapingPipeline(ABC):
         """
         self.page_count += 1
 
+
     
     def scrape_links(self, links):
         for link in links:

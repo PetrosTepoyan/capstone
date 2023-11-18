@@ -15,12 +15,12 @@ from selenium.webdriver.support import expected_conditions as EC
 # https://bars.am/en/properties/standard/apartment
 class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url, storage, image_loader: ImageLoader):
+    def __init__(self, base_url, storage, image_loader: ImageLoader, cached_links: set = set()):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.cached_links = set()
+        self.cached_links = cached_links
         self.lock = threading.Lock()
 
         self.__set_soup(base_url)
@@ -35,25 +35,6 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
         
         links = self.get_apartment_links()
         self.first_ap_link_on_this_page = links[0]
-
-    def __set_soup(self, url):
-        # Send a GET request to the website
-        response = requests.get(url)
-
-        # Check if the page is empty or not found, and break the loop if so
-        if response.status_code != 200 or not response.text.strip():
-            print("Failed", response.status_code)
-
-        # Parse the HTML content of the page with BeautifulSoup
-        self.soup = BeautifulSoup(response.text, 'html.parser')
-        
-    def finish(self):
-        self.driver.quit()
-
-    def __get_current_page_index(self):
-        v = int(self.soup.find(class_="active hidden-xs").get_text())
-        print(v)
-        return v
 
     def navigate_to_next_page(self):
         self.navigate_to_next_page_(retry_count = 0)
@@ -81,9 +62,12 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
            
         links = self.get_apartment_links() 
         if links[0] == self.first_ap_link_on_this_page:
-            logging.error("Did not navigate to next page, retrying...")
-            sleep(2)
-            self.navigate_to_next_page_(retry_count + 1)
+            if retry_count < 3:
+                logging.error("Bars | Did not navigate to next page, retrying...")
+                sleep(2)
+                self.navigate_to_next_page_(retry_count + 1)
+            else:
+                logging.error("Bars | Reached end")
         else:
             self.first_ap_link_on_this_page = links[0]
 
@@ -92,7 +76,7 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
             if apartment_url not in self.cached_links:
                 self.cached_links.add(apartment_url)
             else:
-                logging.info(f"Bars Skipping {apartment_url}")
+                logging.info(f"Bars | skipping {apartment_url}")
                 return
         
         # Create an instance of ApartmentScraper with the provided URL
@@ -128,3 +112,17 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
             links.append(link)
 
         return links
+    
+    def __set_soup(self, url):
+        # Send a GET request to the website
+        response = requests.get(url)
+
+        # Check if the page is empty or not found, and break the loop if so
+        if response.status_code != 200 or not response.text.strip():
+            print("Failed", response.status_code)
+
+        # Parse the HTML content of the page with BeautifulSoup
+        self.soup = BeautifulSoup(response.text, 'html.parser')
+        
+    def finish(self):
+        self.driver.quit()

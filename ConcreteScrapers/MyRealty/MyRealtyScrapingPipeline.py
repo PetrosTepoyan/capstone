@@ -9,12 +9,12 @@ import threading
 
 class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
-    def __init__(self, base_url: str, storage: Storage, image_loader: ImageLoader):
+    def __init__(self, base_url: str, storage: Storage, image_loader: ImageLoader, cached_links: set = set()):
         self.base_url = base_url
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-        self.cached_links = set()
+        self.cached_links = cached_links
         self.lock = threading.Lock()
         
         self.__set_soup(base_url)
@@ -34,7 +34,7 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
     def navigate_to_next_page(self):
         self.page += 1
         self.__set_soup(f"{self.base_url}?page={self.page}")
-        logging.info("Navigating to next page")
+        logging.info("MyRealty | Navigating to next page")
 
     def scrape_apartment(self, apartment_url):
         with self.lock:
