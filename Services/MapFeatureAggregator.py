@@ -1,4 +1,5 @@
 import pandas as pd
+from utils.ProgressBar import ProgressBar
 from Services import GeoService
 
 class MapFeatureAggregator:
@@ -9,9 +10,11 @@ class MapFeatureAggregator:
     def significant_distances(self, data, location_col: str):
         all_distances = []
         locations = data[location_col]
+        progress = ProgressBar(len(locations))
         for coordinate in locations:
             distances = self.geo_service.distance_to_significant(coordinate)
             all_distances.append(distances)
+            progress.flush()
             
         df = pd.DataFrame(all_distances) 
         return df
@@ -19,6 +22,7 @@ class MapFeatureAggregator:
     def amenities_count(self, data, location_col: str):
         aggregated_amentities_count = pd.DataFrame()
         locations = data[location_col]
+        progress = ProgressBar(len(locations))
         for coordinate in locations:
             amenities_df = self.geo_service.get_amenities_from_point(coordinate)
             dict_to_add = amenities_df["amenity"].value_counts().to_dict()
@@ -26,6 +30,7 @@ class MapFeatureAggregator:
                 aggregated_amentities_count,
                 dict_to_add
             )
+            progress.flush()
         return aggregated_amentities_count
     
     def add_row_from_dict_with_zeros(self, df, data_dict):
