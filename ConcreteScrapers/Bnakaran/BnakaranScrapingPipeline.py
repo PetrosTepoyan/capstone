@@ -17,9 +17,6 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
         self.__set_soup(base_url)
         super().__init__(BnakaranApartmentScraper)
-        
-        cached_data = pd.read_csv(storage.path())
-        self.cached_ids = set(cached_data["id"].to_list())
 
     def __set_soup(self, url):
         response = requests.get(url)

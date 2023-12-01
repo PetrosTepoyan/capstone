@@ -19,7 +19,7 @@ class GlobalScrapingPipeline:
             
             self.log_service.start(
                 source = source,
-                link = link
+                webpage = link
             )
             
             try:
@@ -49,4 +49,13 @@ class GlobalScrapingPipeline:
                 executor.submit(self.run_pipeline, pipeline) for pipeline in self.pipelines
             ]
             # Wait for all futures to complete
+            print("Submitted futures", futures)
             concurrent.futures.wait(futures) 
+            
+            # Check for errors in each future
+            for future in futures:
+                error = future.exception()
+                if error is not None:
+                    # Handle or log the error here
+                    print(f"Error in future: {error}")
+                    logging.error(error)
