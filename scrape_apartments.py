@@ -2,7 +2,7 @@ from ConcreteScrapers.GlobalScrapingPipeline import GlobalScrapingPipeline
 
 # Bnakaran
 from ConcreteScrapers.Bnakaran.BnakaranScrapingPipeline import BnakaranScrapingPipeline
-
+from ConcreteScrapers.Bnakaran.BnakaranSitemapScrapingPipeline import BnakaranSitemapScrapingPipeline
 # Bars
 from ConcreteScrapers.Bars.BarsApartmentScrapingPipeline import BarsApartmentScrapingPipeline
 
@@ -19,7 +19,6 @@ from Services import ImageLoader, ScrapingLogService
 import os
 import logging
 import pandas as pd
-from bnakaran_sitemap_apartments import bnakaran_sitemap_apartments
 
 scraping_folder = "scraping_results/"
 if not os.path.exists(scraping_folder):
@@ -53,10 +52,9 @@ log_service = ScrapingLogService(
     path = scraping_folder + "scraping_log.csv"
 )
 
-    
 # Defining pipelines
 myrealty_scraper_pipeline = MyRealtyScrapingPipeline(
-    "https://myrealty.am/en/apartments-for-sale/7784", 
+    "https://myrealty.am/en/apartments-for-sale/7784",
     myrealty_storage,
     image_loader = image_loader
 )
@@ -69,6 +67,13 @@ bnakaran_scraper_pipeline = BnakaranScrapingPipeline(
 )
 print("Initialized Bnakaran")
 
+bnakaran_sitemap_scraper_pipeline = BnakaranSitemapScrapingPipeline(
+    "https://www.bnakaran.com/en/sitemap.xml", 
+    bnakaran_storage,
+    image_loader
+)
+print("Initialized Bnakaran with sitemap")
+
 bars_scraper_pipeline = BarsApartmentScrapingPipeline(
     "https://bars.am/en/properties/standard/apartment", 
     bars_storage,
@@ -80,27 +85,11 @@ print("Starting...")
 global_scraping_pipeline = GlobalScrapingPipeline(
     pipelines = [
         bnakaran_scraper_pipeline,
+        bnakaran_sitemap_scraper_pipeline,
         bars_scraper_pipeline,
         myrealty_scraper_pipeline
     ],
     log_service = log_service
 )
 
-bnakaran_sitemap = bnakaran_sitemap_apartments()
-
 global_scraping_pipeline.run()
-
-# for link in bnakaran_sitemap:
-#     try:
-#         result = bnakaran_scraper_pipeline.scrape_apartment(link)
-#         if result != False:   
-#             log_service.success(
-#                 source = bnakaran_scraper_pipeline.apartment_scraper.source_identifier(),
-#                 webpage = link
-#             )
-#     except Exception as e:
-#         log_service.error(
-#             source = bnakaran_scraper_pipeline.apartment_scraper.source_identifier(),
-#             webpage = link,
-#             error = str(e)
-#         )

@@ -12,19 +12,25 @@ class GlobalScrapingPipeline:
     def run_pipeline(self, pipeline: ApartmentScrapingPipeline):
         # Get apartments for the current page
         links = pipeline.get_apartment_links()
-        print("Scraping", len(links), "links")
+        
         # Scrape
         for link in links:
+            source = pipeline.apartment_scraper.source_identifier()
+            
+            self.log_service.start(
+                source = source,
+                link = link
+            )
+            
             try:
-                result = pipeline.scrape_apartment(link)
-                if result != False:   
-                    self.log_service.success(
-                        source = pipeline.apartment_scraper.source_identifier(),
-                        webpage = link
-                    )
+                pipeline.scrape_apartment(link)
+                self.log_service.success(
+                    source = source,
+                    webpage = link
+                )
             except Exception as e:
                 self.log_service.error(
-                    source = pipeline.apartment_scraper.source_identifier(),
+                    source = source,
                     webpage = link,
                     error = str(e)
                 )
@@ -35,7 +41,6 @@ class GlobalScrapingPipeline:
             self.run_pipeline(pipeline)
             logging.info(pipeline.apartment_scraper.source_identifier() + "| Navigated to next page")
         else:
-            print(pipeline.apartment_scraper.source_identifier() + "No more links")
             logging.critical(pipeline.apartment_scraper.source_identifier() + " | no more links")
     
     def run(self):

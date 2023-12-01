@@ -7,6 +7,7 @@ import logging
 class CSVStorage(Storage):
     fieldnames = [
         "source", 
+        "webpage",
         "id",
         "price", 
         "facilities", "location", "area", 

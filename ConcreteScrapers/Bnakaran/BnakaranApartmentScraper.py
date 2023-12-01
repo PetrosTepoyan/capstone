@@ -41,6 +41,7 @@ class BnakaranApartmentScraper:
         
         apartment_data = {
             "source" : BnakaranApartmentScraper.source_identifier(),
+            "webpage" : self.webpage,
             "id" : self.id,
             "price" : self.price,
             "area": self.area,

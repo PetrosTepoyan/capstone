@@ -84,6 +84,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
     def values(self):
         return {
             "source" : MyRealtyApartmentScraper.source_identifier(),
+            "webpage" : self.webpage,
             "id": self.id,
             "price" : self.price,
             "facilities" : self.facilities,

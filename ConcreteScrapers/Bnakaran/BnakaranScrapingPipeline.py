@@ -36,11 +36,6 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
     def scrape_apartment(self, apartment_url):
         
         id = self.apartment_scraper.get_id(apartment_url)
-        if id in self.cached_ids:
-            logging.info(f"Bnakaran | Skipping {id}")
-            return False
-        else:
-            logging.info(f"Bnakaran | scraping {id}")
         
         apartment_scraper = self.apartment_scraper(apartment_url)
         apartment_scraper.scrape()
@@ -55,7 +50,7 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
                 source=BnakaranApartmentScraper.source_identifier(),
                 apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
             )
-        return True
+        return
 
     def get_apartment_links(self):
         # Find all <a> tags with hrefs that end in -d followed by some numbers

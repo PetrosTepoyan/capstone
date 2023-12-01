@@ -66,6 +66,7 @@ class BarsApartmentScraper(ApartmentScraper):
     def values(self):
         return {
             "source" : BarsApartmentScraper.source_identifier(),
+            "webpage" : self.webpage,
             "id": self.id,
             "price" : self.price,
             "facilities" : self.facilities,
