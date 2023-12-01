@@ -13,21 +13,36 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
         self.page = 1
         self.storage = storage
         self.image_loader = image_loader
-
+        self.potential_bad_api = False
+        
         self.__set_soup(base_url)
         super().__init__(BnakaranApartmentScraper)
 
     def __set_soup(self, url):
         response = requests.get(url)
         if response.status_code != 200 or not response.text.strip():
-            logging.error(f"Failed to fetch the webpage. Status code: {response.status_code}, {url}")
-            return
+            error = f"Bnakaran | Failed to fetch the webpage. Status code: {response.status_code}, {url}"
+            logging.critical(error)
+            raise Exception(error)
 
         self.soup = BeautifulSoup(response.text, 'html.parser')
 
-    def navigate_to_next_page(self):
-        self.page += 1
-        self.__set_soup(f"{self.base_url}?page={self.page}")
+    def navigate_to_next_page(self, max_retries=3):
+        retry_count = 0
+        while retry_count < max_retries:
+            previous_links = self.get_apartment_links()
+            self.page += 1
+            self.__set_soup(f"{self.base_url}?page={self.page}")
+            current_links = self.get_apartment_links()
+
+            if previous_links != current_links:
+                return  # Successfully navigated to next page
+
+            retry_count += 1
+
+        logging.error(f"Bnakaran | Failed to navigate after {max_retries} retries.")
+        raise Exception("Bnakaran | Maximum retries exceeded for page navigation")
+        
 
     def scrape_apartment(self, apartment_url):
         

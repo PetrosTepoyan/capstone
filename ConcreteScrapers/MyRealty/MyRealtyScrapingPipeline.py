@@ -24,7 +24,9 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
 
         # Check if the page is empty or not found, and break the loop if so
         if response.status_code != 200 or not response.text.strip():
-            print("Failed", response.status_code)
+            error = f"MyRealty | Failed to fetch the webpage. Status code: {response.status_code}, {url}"
+            logging.critical(error)
+            raise Exception(error)
 
         # Parse the HTML content of the page with BeautifulSoup
         self.soup = BeautifulSoup(response.text, 'html.parser')
@@ -32,7 +34,6 @@ class MyRealtyScrapingPipeline(ApartmentScrapingPipeline):
     def navigate_to_next_page(self):
         self.page += 1
         self.__set_soup(f"{self.base_url}?page={self.page}")
-        logging.info("MyRealty | Navigating to next page")
 
     def scrape_apartment(self, apartment_url):
         

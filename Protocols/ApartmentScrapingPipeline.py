@@ -12,6 +12,7 @@ class ApartmentScrapingPipeline(ABC):
         """
         self.apartment_scraper = apartment_scraper
         self.page_count = 0
+        self.repeat_count = 0
 
     @abstractmethod
     def get_apartment_links(self, page_url: str):

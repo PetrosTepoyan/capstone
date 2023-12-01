@@ -2,8 +2,9 @@ import re
 import requests
 import logging
 from bs4 import BeautifulSoup
+from Protocols import ApartmentScraper
 
-class BnakaranApartmentScraper:
+class BnakaranApartmentScraper(ApartmentScraper):
     
     def __init__(self, webpage: str):
         # Send a GET request to the website
@@ -11,8 +12,9 @@ class BnakaranApartmentScraper:
         
         # Check if the page is empty or not found, and break the loop if so
         if response.status_code != 200 or not response.text.strip():
-            logging.error("Failed to fetch the webpage. Status code:", response.status_code, webpage)
-            return
+            error = f"Failed to fetch the webpage. Status code: {response.status_code}, {webpage}"
+            logging.error(error)
+            raise Exception(error)
         
         # Parse the HTML content of the page with BeautifulSoup
         self.webpage = webpage
