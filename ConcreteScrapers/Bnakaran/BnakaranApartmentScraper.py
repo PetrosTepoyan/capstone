@@ -11,7 +11,7 @@ class BnakaranApartmentScraper:
         
         # Check if the page is empty or not found, and break the loop if so
         if response.status_code != 200 or not response.text.strip():
-            print("Failed to fetch the webpage. Status code:", response.status_code)
+            logging.error("Failed to fetch the webpage. Status code:", response.status_code, webpage)
             return
         
         # Parse the HTML content of the page with BeautifulSoup
@@ -103,7 +103,7 @@ class BnakaranApartmentScraper:
             self.latitude = yandex_map_div.get('data-y')
             self.longitude = yandex_map_div.get('data-x')
         else:
-            print("Yandex map element not found on the page.")
+            logging.error("Yandex map element not found on the page.")
     
     def __scrape_details(self):
         self.details = {}
@@ -133,7 +133,7 @@ class BnakaranApartmentScraper:
                     key, value = parts[0].strip(), parts[1].strip()
                     self.room_details[key] = value
         else:
-            print("The expected room details section was not found")
+            logging.error("The expected room details section was not found")
     
     def __scrape_additional_features(self):
         features_list = self.soup.find('ul', class_='property-features checkboxes margin-top-0')
@@ -141,7 +141,7 @@ class BnakaranApartmentScraper:
             feature_items = features_list.find_all('li', recursive=False)
             self.additional_features = [feature.get_text(strip=True) for feature in feature_items]
         else:
-            print("Additional features information is not available.")
+            logging.error("Additional features information is not available.")
             
     def __scrape_added_in_date(self):
         stats = self.soup.find('ul', class_='property-stats')

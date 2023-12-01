@@ -66,7 +66,7 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
         return links
     
-    def __set_soup(self, url):
+    def __set_soup(self, url, retry_count: int = 0):
         # Send a GET request to the website
         body = {
             'offset': str(self.page),
@@ -92,8 +92,15 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
         response = requests.post(url, data = body)
 
         # Check if the page is empty or not found, and break the loop if so
-        if response.status_code != 200 or not response.text.strip():
-            print("Failed", response.status_code, body, url)
+        if response.status_code != 200:
+            logging.error("Failed", response.status_code, body, url)
+            if retry_count < 3:
+                sleep(retry_count + 1)
+                self.__set_soup(url, retry_count + 1)
+                return
+            else:
+                raise Exception("Bars | failed to navigate after retries")
+            
 
         # Parse the HTML content of the page with BeautifulSoup
         self.soup = BeautifulSoup(response.text, 'html.parser')

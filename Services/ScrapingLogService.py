@@ -51,7 +51,7 @@ class ScrapingLogService:
 
     def __increment_and_save(self):
         self.flash_interval += 1
-        if self.flash_interval > 10:
+        if self.flash_interval > 0:
             self.flash_interval = 0
             self.save()
         

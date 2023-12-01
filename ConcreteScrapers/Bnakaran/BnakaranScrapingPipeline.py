@@ -5,7 +5,6 @@ from ConcreteScrapers.Bnakaran.BnakaranApartmentScraper import BnakaranApartment
 from Protocols import ApartmentScrapingPipeline
 from Services import ImageLoader
 import logging
-import pandas as pd
 
 class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
 
@@ -21,7 +20,7 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
     def __set_soup(self, url):
         response = requests.get(url)
         if response.status_code != 200 or not response.text.strip():
-            logging.error(f"Failed to fetch the webpage. Status code: {response.status_code}")
+            logging.error(f"Failed to fetch the webpage. Status code: {response.status_code}, {url}")
             return
 
         self.soup = BeautifulSoup(response.text, 'html.parser')
@@ -45,7 +44,7 @@ class BnakaranScrapingPipeline(ApartmentScrapingPipeline):
             self.image_loader.download_images(
                 links=images_links,
                 source=BnakaranApartmentScraper.source_identifier(),
-                apartment_id=apartment_data.get('id', 'unknown')  # Assuming you have an 'id' field in your details
+                apartment_id = id
             )
         return
 

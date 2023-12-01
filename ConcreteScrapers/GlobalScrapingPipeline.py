@@ -37,11 +37,14 @@ class GlobalScrapingPipeline:
         
         if len(links) != 0:
             # Navigate to next page
-            pipeline.navigate_to_next_page()
+            try:
+                pipeline.navigate_to_next_page()
+            except:
+                logging.critical(source + " | failed to navigate")    
             self.run_pipeline(pipeline)
-            logging.info(pipeline.apartment_scraper.source_identifier() + "| Navigated to next page")
+            logging.info(source + "| Navigated to next page")
         else:
-            logging.critical(pipeline.apartment_scraper.source_identifier() + " | no more links")
+            logging.critical(source + " | no more links")
     
     def run(self):
         with concurrent.futures.ThreadPoolExecutor() as executor:

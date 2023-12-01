@@ -8,6 +8,7 @@ class MyRealtyApartmentScraper(ApartmentScraper):
     
     def __init__(self, webpage: str):
         
+        self.webpage = webpage
         # Send a GET request to the website
         response = requests.get(webpage)
 
