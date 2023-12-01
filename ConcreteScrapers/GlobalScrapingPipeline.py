@@ -17,6 +17,10 @@ class GlobalScrapingPipeline:
         for link in links:
             source = pipeline.apartment_scraper.source_identifier()
             
+            if self.log_service.did_scrape(webpage):
+                self.log_service.skipped(source, webpage)
+                return
+            
             self.log_service.start(
                 source = source,
                 webpage = link

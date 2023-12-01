@@ -5,34 +5,41 @@ class ScrapingLogService:
     
     def __init__(self, path):
         self.path = path
-        self.log_df = pd.DataFrame(columns=[
-            "source",
-            "webpage",
-            "success",
-            "error",
-            "skipped"
-        ])
+        try:
+            self.log_df = pd.read_csv(path, index_col=0)
+        except:
+            self.log_df = pd.DataFrame(columns=[
+                "source",
+                "webpage",
+                "success",
+                "error",
+                "skipped"
+            ])
         self.flash_interval = 0
         self.lock = threading.Lock()
         
+    def did_scrape(self, webpage):
+        with self.lock:
+            # Check if the webpage exists in the log and if it was successfully scraped
+            predicate = self.log_df['webpage'] == webpage
+            same_webpage = self.log_df[predicate]
+            if not same_webpage.empty:
+                return self.log_df.loc[predicate, 'success'].iloc[0] == True
+            else:
+                return False
+        
     def start(self, source, webpage):
         
-        if self.log_df[self.log_df['webpage'] == webpage].empty:
-            new_row = pd.DataFrame({
-                "source": [source],
-                "webpage": [webpage],
-                "success": [None],
-                "error": [None],
-                "skipped": [None]
-            })
-            
-            with self.lock:
-                self.log_df = pd.concat([self.log_df, new_row], ignore_index=True)
-        else:
-            self.skipped(
-                source = source,
-                webpage = webpage
-            )
+        new_row = pd.DataFrame({
+            "source": [source],
+            "webpage": [webpage],
+            "success": [None],
+            "error": [None],
+            "skipped": [None]
+        })
+        
+        with self.lock:
+            self.log_df = pd.concat([self.log_df, new_row], ignore_index=True)
         
     def success(self, source, webpage):
         with self.lock:
@@ -45,9 +52,16 @@ class ScrapingLogService:
             self.__increment_and_save()
 
     def skipped(self, source, webpage):
+        new_row = pd.DataFrame({
+            "source": [source],
+            "webpage": [webpage],
+            "success": [None],
+            "error": [None],
+            "skipped": [True]
+        })
+        
         with self.lock:
-            self.log_df.loc[(self.log_df['webpage'] == webpage), 'skipped'] = True
-            self.__increment_and_save()
+            self.log_df = pd.concat([self.log_df, new_row], ignore_index=True)
 
     def __increment_and_save(self):
         self.flash_interval += 1

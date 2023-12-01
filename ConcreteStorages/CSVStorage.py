@@ -21,7 +21,7 @@ class CSVStorage(Storage):
         'renovation', 'windows', 'heating', 'parking', 'cooling']
 
     # Flush each 5 datapoints
-    flush_batch_count: int = 5
+    flush_batch_count: int = 1
 
     def __init__(self, file_path):
         self.file_path = file_path
