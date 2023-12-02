@@ -1,4 +1,5 @@
 venv
+images
 Watermark-Removal-Pytorch
 watermark-removal
 bedroom_premodel.ckpt
