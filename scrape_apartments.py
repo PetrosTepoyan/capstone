@@ -85,7 +85,7 @@ print("Starting...")
 global_scraping_pipeline = GlobalScrapingPipeline(
     pipelines = [
         bnakaran_scraper_pipeline,
-        bnakaran_sitemap_scraper_pipeline,
+        # bnakaran_sitemap_scraper_pipeline,
         bars_scraper_pipeline,
         myrealty_scraper_pipeline
     ],

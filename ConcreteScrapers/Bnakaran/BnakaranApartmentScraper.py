@@ -12,7 +12,7 @@ class BnakaranApartmentScraper(ApartmentScraper):
         
         # Check if the page is empty or not found, and break the loop if so
         if response.status_code != 200 or not response.text.strip():
-            logging.error("Failed to fetch the webpage. Status code:", response.status_code, webpage)
+            logging.error("Failed to fetch the webpage. Status code: {response.status_code}, {webpage}")
             return
         
         # Parse the HTML content of the page with BeautifulSoup

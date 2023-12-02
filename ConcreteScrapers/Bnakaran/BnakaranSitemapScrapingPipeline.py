@@ -12,6 +12,7 @@ class BnakaranSitemapScrapingPipeline(ApartmentScrapingPipeline):
 
     def __init__(self, sitemap_url, storage, image_loader: ImageLoader):
         self.base_url = sitemap_url
+        self.page = 1
         self.finished_with_sitemap = False
         self.storage = storage
         self.image_loader = image_loader
