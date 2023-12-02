@@ -24,7 +24,7 @@ class ScrapingLogService:
             predicate = self.log_df['webpage'] == webpage
             same_webpage = self.log_df[predicate]
             if not same_webpage.empty:
-                return self.log_df.loc[predicate, 'success'].iloc[0] == True
+                return True
             else:
                 return False
         

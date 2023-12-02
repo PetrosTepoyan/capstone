@@ -2,8 +2,9 @@ import re
 import requests
 import logging
 from bs4 import BeautifulSoup
+from Protocols import ApartmentScraper
 
-class BnakaranApartmentScraper:
+class BnakaranApartmentScraper(ApartmentScraper):
     
     def __init__(self, webpage: str):
         # Send a GET request to the website

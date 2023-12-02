@@ -2,6 +2,7 @@ import concurrent.futures
 from Protocols import ApartmentScrapingPipeline
 import logging
 from Services import ScrapingLogService
+import traceback
 
 class GlobalScrapingPipeline:
     
@@ -17,9 +18,8 @@ class GlobalScrapingPipeline:
         for link in links:
             source = pipeline.apartment_scraper.source_identifier()
             
-            if self.log_service.did_scrape(webpage):
-                self.log_service.skipped(source, webpage)
-                return
+            if self.log_service.did_scrape(link):
+                continue
             
             self.log_service.start(
                 source = source,
@@ -45,6 +45,7 @@ class GlobalScrapingPipeline:
                 pipeline.navigate_to_next_page()
             except:
                 logging.critical(source + " | failed to navigate")    
+                traceback.print_exc()
             self.run_pipeline(pipeline)
             logging.info(source + "| Navigated to next page")
         else:
@@ -66,3 +67,4 @@ class GlobalScrapingPipeline:
                     # Handle or log the error here
                     print(f"Error in future: {error}")
                     logging.error(error)
+                    traceback.print_exc()
