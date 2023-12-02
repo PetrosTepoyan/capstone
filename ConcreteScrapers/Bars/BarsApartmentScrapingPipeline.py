@@ -93,13 +93,15 @@ class BarsApartmentScrapingPipeline(ApartmentScrapingPipeline):
 
         # Check if the page is empty or not found, and break the loop if so
         if response.status_code != 200:
-            logging.error("Failed", response.status_code, body, url)
+            error = f"Bars | Failed to fetch the webpage. Status code: {response.status_code}, {url}"
+        
             if retry_count < 3:
                 sleep(retry_count + 1)
                 self.__set_soup(url, retry_count + 1)
                 return
             else:
-                raise Exception("Bars | failed to navigate after retries")
+                logging.critical(error)
+                raise Exception(error)
             
 
         # Parse the HTML content of the page with BeautifulSoup

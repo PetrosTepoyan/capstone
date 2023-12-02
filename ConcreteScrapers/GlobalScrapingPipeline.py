@@ -19,39 +19,33 @@ class GlobalScrapingPipeline:
         tupled_list = tuple(links)
         list_hash = hash(tupled_list)
         
-        if list_hash in self.scraped_hashes:
-            logging.warning(source + " | ALREADY SCRAPED THIS LIST")
+        skipped_links_count = 0
+        for link in links:
             
-        else:
-            self.scraped_hashes.add(list_hash)
-            # Scrape
-            skipped_links_count = 0
-            for link in links:
-                
-                if self.log_service.did_scrape(link):
-                    skipped_links_count += 1
-                    continue
-                
-                self.log_service.start(
+            if self.log_service.did_scrape(link):
+                skipped_links_count += 1
+                continue
+            
+            self.log_service.start(
+                source = source,
+                webpage = link
+            )
+            
+            try:
+                pipeline.scrape_apartment(link)
+                self.log_service.success(
                     source = source,
                     webpage = link
                 )
-                
-                try:
-                    pipeline.scrape_apartment(link)
-                    self.log_service.success(
-                        source = source,
-                        webpage = link
-                    )
-                except Exception as e:
-                    self.log_service.error(
-                        source = source,
-                        webpage = link,
-                        error = str(e)
-                    )
-            
-            if skipped_links_count != 0:
-                logging.info(source + f" | Skipped {len(links)}/{skipped_links_count} links from this page")
+            except Exception as e:
+                self.log_service.error(
+                    source = source,
+                    webpage = link,
+                    error = str(e)
+                )
+        
+        if skipped_links_count != 0:
+            logging.info(source + f" | Skipped {len(links)}/{skipped_links_count} links from this page")
         
         if len(links) != 0:
             # Navigate to next page
@@ -59,7 +53,7 @@ class GlobalScrapingPipeline:
                 pipeline.navigate_to_next_page()
             except:
                 logging.critical(source + " | failed to navigate")
-                traceback.print_exc()
+                return
                 
             logging.info(source + f"| Navigated to page {pipeline.page}")
             self.run_pipeline(pipeline)

@@ -6,3 +6,5 @@ Tasks:
 
 1. Figure out significant places in Yerevan. Pereferably 20. We will do grid search with them. 
 Can also put it in presentation. 
+
+The scraping is not consistent when reproducing - apartments get added and removed from the websites.
