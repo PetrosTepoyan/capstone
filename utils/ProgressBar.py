@@ -6,7 +6,10 @@ class ProgressBar:
         self.total_count = total_count
         self.current_count = 0
         
-    def flush(self):
+    def flush(self, info = None):
         clear_output(wait=True)
         self.current_count += 1
-        print(f"Progress: {self.current_count}/{self.total_count}")
+        if info:
+            print(f"Progress: {self.current_count}/{self.total_count} | {info}")
+        else:
+            print(f"Progress: {self.current_count}/{self.total_count}")

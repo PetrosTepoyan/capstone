@@ -4,6 +4,7 @@ Watermark-Removal-Pytorch
 watermark-removal
 bedroom_premodel.ckpt
 cache
+models
 
 
 .DS_Store
