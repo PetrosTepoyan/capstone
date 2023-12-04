@@ -19,7 +19,7 @@ args = parser.parse_args()
 device_to_search = args.device
 data_dir = args.data
 images_dir = args.images
-model = args.model
+model_version = args.model
 
 print("Data directory", data_dir)
 print("Images directory", images_dir)
@@ -64,18 +64,18 @@ dataset = ApartmentsDatasetPyTorch(
 )
 print("Tabular Size", len(dataset.df))
 
-if model == "v1":
+if model_version == "v1":
     model = PricePredictionModel(
         dataset.tabular_data_size(), 
         params
     )
-elif model == "v2":
+elif model_version == "v2":
     model = PricePredictionModelV2(
         dataset.tabular_data_size(), 
         params
     )
 else:
-    print("Supplie model. v1, v2")
+    print("Supplie model version. v1, v2")
 model = model.to(device)
 print("Model ready")
 
@@ -156,4 +156,16 @@ for epoch in range(num_epochs):
     # Print epoch's summary
     print(f'Epoch {epoch+1}, Training Loss: {train_losses[-1]}, Validation Loss: {val_losses[-1]}, L1: {l1_mean_loss}')
 
-torch.save(model, "models/model.pth")
+existing_model_count = len(os.listdir())
+this_model_name = f"model_{model_version}.{existing_model_count}"
+# Saving the model
+torch.save(model, f"models/model_{model_version}/{this_model_name}.pth")
+
+plt.title("Model V4 evaluation")
+plt.plot(train_losses, label = 'Training')
+plt.plot(val_losses, label = 'Validation')
+plt.ylabel("MSE")
+plt.xlabel("Epoch")
+plt.xticks(range(1, num_epochs))
+plt.legend()
+plt.savefig(f'models/model_{model_version}/{this_model_name}_training.png')
