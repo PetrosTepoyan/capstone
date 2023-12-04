@@ -6,18 +6,20 @@ from torch import optim
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader, random_split
 from tqdm import tqdm
-from DeepLearning import PricePredictionModel, ApartmentsDatasetPyTorch, DataSubsetter
+from DeepLearning import PricePredictionModel, ApartmentsDatasetPyTorch, DataSubsetter, PricePredictionModelV2
 import argparse
 
 parser = argparse.ArgumentParser(description="Training arguments")
 parser.add_argument('-device', metavar='device', type=str, help='device to search | mps:0')
 parser.add_argument('-data', metavar='data', type=str, help='data name')
 parser.add_argument('-images', metavar='images', type=str, help='images name')
+parser.add_argument('-model', metavar='model', type=str, help='model version')
 
 args = parser.parse_args()
 device_to_search = args.device
 data_dir = args.data
 images_dir = args.images
+model = args.model
 
 print("Data directory", data_dir)
 print("Images directory", images_dir)
@@ -51,7 +53,6 @@ subsetter = DataSubsetter(
 )
 
 dataframe = subsetter.without(
-    groups = "L_",
     cols = ["coordinates"]
 )
 
@@ -63,10 +64,18 @@ dataset = ApartmentsDatasetPyTorch(
 )
 print("Tabular Size", len(dataset.df))
 
-model = PricePredictionModel(
-    dataset.tabular_data_size(), 
-    params
-)
+if model == "v1":
+    model = PricePredictionModel(
+        dataset.tabular_data_size(), 
+        params
+    )
+elif model == "v2":
+    model = PricePredictionModelV2(
+        dataset.tabular_data_size(), 
+        params
+    )
+else:
+    print("Supplie model. v1, v2")
 model = model.to(device)
 print("Model ready")
 

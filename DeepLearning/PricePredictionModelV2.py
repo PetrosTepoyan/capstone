@@ -60,7 +60,7 @@ class RegressionModel(nn.Module):
 
 class PricePredictionModelV2(nn.Module):
     def __init__(self, tabular_data_size, params):
-        super(PricePredictionModel, self).__init__()
+        super(PricePredictionModelV2, self).__init__()
         # Inception
         inception_model_output_size = params["inception_model_output_size"]
         self.modified_inception = ModifiedInception(inception_model_output_size)

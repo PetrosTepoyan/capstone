@@ -77,4 +77,3 @@ class ApartmentsDatasetPyTorch(Dataset):
             return None
         price_tensor = torch.tensor(price, dtype=torch.float32, device=self.device)  # Create tensor directly on the device
         return price_tensor
-
