@@ -7,7 +7,8 @@ from torch import optim
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader, random_split
 from tqdm import tqdm
-from DeepLearning import PricePredictionModel, ApartmentsDatasetPyTorch, DataSubsetter, PricePredictionModelV2
+# from DeepLearning import PricePredictionModel, ApartmentsDatasetPyTorch, DataSubsetter, 
+from DeepLearning import *
 import argparse
 import matplotlib.pyplot as plt
 
@@ -16,28 +17,33 @@ parser.add_argument('-device', metavar='device', type=str, help='device to searc
 parser.add_argument('-data', metavar='data', type=str, help='data name')
 parser.add_argument('-images', metavar='images', type=str, help='images name')
 parser.add_argument('-model', metavar='model', type=str, help='model version')
+parser.add_argument('-continue_training', metavar='continue_training', type=str, help='model version')
 
 args = parser.parse_args()
 device_to_search = args.device
 data_dir = args.data
 images_dir = args.images
 model_version = args.model
+continue_training_model = args.continue_training
 
 print("Data directory", data_dir)
 print("Images directory", images_dir)
 print("Device", device_to_search)
 
+if continue_training_model:
+    print("Continuing", continue_training_model)
+
 params = {
     "data_dir" : f"processed_data/{data_dir}.csv",
     "images_dir" : f'processed_data/{images_dir}',
     "img_input_size" : 256,
-    "batch_size" : 32, # because we have a lot of columns
-    "shuffle" : False,
+    "batch_size" : 32,
+    "shuffle" : True,
     
     "inception_model_output_size" : 1024,
     "tabular_ffnn_output_size" : 256,
     "learning_rate" : 0.5e-3,
-    "weight_decay" : 1e-4
+    "weight_decay" : 1e-3
 }
 
 device = torch.device(device_to_search)
@@ -54,9 +60,11 @@ subsetter = DataSubsetter(
     data_dir = params["data_dir"]
 )
 
+cols_to_remove = ["coordinates", 'latitude', 'longitude']
 dataframe = subsetter.without(
-    cols = ["coordinates"]
+    cols = cols_to_remove
 )
+print("Removing columns", cols_to_remove)
 
 dataset = ApartmentsDatasetPyTorch(
     device = device,
@@ -76,10 +84,26 @@ elif model_version == "v2":
         dataset.tabular_data_size(), 
         params
     )
+elif model_version == "v3":
+    model = PricePredictionModelV3(
+        dataset.tabular_data_size(), 
+        params
+    )
+elif model_version == "v4":
+    model = PricePredictionModelV4(
+        dataset.tabular_data_size(), 
+        params
+    )
 else:
-    print("Supplie model version. v1, v2")
+    print("Supplie model version. v1, v2, v3, v4")
+    
+if continue_training_model:
+    model.load_state_dict(torch.load(continue_training_model))
+
 model = model.to(device)
 print("Model ready")
+
+print("Total length of the dataset", len(dataset))
 
 # Assuming 'dataset' is your full dataset
 train_size = int(0.7 * len(dataset))
@@ -156,7 +180,7 @@ for epoch in range(num_epochs):
     val_losses.append(val_loss / len(val_loader))  # Average loss for this epoch
     l1_mean_loss = sum(l1_losses) / len(l1_losses)
     # Print epoch's summary
-    print(f'Epoch {epoch+1}, Training Loss: {train_losses[-1]}, Validation Loss: {val_losses[-1]}, L1: {l1_mean_loss}')
+    print(f'Epoch {epoch+1}, Training Loss: {int(train_losses[-1])}, Validation Loss: {int(val_losses[-1])}, L1: {int(l1_mean_loss)}')
 
 
 model_version_directory = f"models/model_{model_version}"
@@ -164,11 +188,11 @@ model_version_directory = f"models/model_{model_version}"
 if not os.path.exists(model_version_directory):
     os.makedirs(model_version_directory)
     
-existing_model_count = len(os.listdir(model_version_directory)) / 2
+existing_model_count = int(len(os.listdir(model_version_directory)) / 2)
 this_model_name = f"model_{model_version}_{existing_model_count}"
 
 # Saving the model
-torch.save(model, f"{model_version_directory}/{this_model_name}.pth")
+torch.save(model.state_dict(), f"{model_version_directory}/{this_model_name}.pth")
 
 plt.title("Model V4 evaluation")
 plt.plot(train_losses, label = 'Training')
