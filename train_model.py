@@ -36,7 +36,7 @@ params = {
     "weight_decay" : 1e-4
 }
 
-device = torch.device("mps:0")
+device = torch.device(device_to_search)
 if not device:
     raise Exception("Device not found")
 

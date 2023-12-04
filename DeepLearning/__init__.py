@@ -1,3 +1,4 @@
 from .ApartmentsDatasetPyTorch import ApartmentsDatasetPyTorch
 from .DataSubsetter import DataSubsetter
 from .PricePredictionModel import PricePredictionModel
+from .PricePredictionModelV2 import PricePredictionModelV2
