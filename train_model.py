@@ -94,6 +94,10 @@ test_loader = DataLoader(
     shuffle=False
 )
 
+print("Train size", len(train_loader))
+print("Val size", len(val_loader))
+print("Test size", len(test_loader))
+
 # Initialize lists to track losses
 train_losses = []
 val_losses = []
