@@ -1,4 +1,4 @@
-,source,id,price,area,rooms,floor,storeys,bathroom_count,new_building,F_Furniture,F_Security,F_Air Conditioner,F_Balcony,F_Heating System,F_Internet,F_Elevator,latitude,longitude,building_type_Monolit,building_type_Other,building_type_Panel,building_type_Stone,condition_Good Condition,condition_Needs Renovation/Repair,condition_New/Excellent Condition,condition_Other
+source,id,price,area,rooms,floor,storeys,bathroom_count,new_building,F_Furniture,F_Security,F_Air Conditioner,F_Balcony,F_Heating System,F_Internet,F_Elevator,latitude,longitude,building_type_Monolit,building_type_Other,building_type_Panel,building_type_Stone,condition_Good Condition,condition_Needs Renovation/Repair,condition_New/Excellent Condition,condition_Other
 0,bars,4-3-1430,2148.7603305785124,60.5,2.0,3.0,13.0,1.0,1,0,0,0,0,0,0,0,44.50384769146143,40.19855807840442,0,1,0,0,0,1,0,0
 1,bars,4-3-1430.1,2237.2528616024974,96.1,3.0,4.0,13.0,2.0,1,0,0,0,0,0,0,0,44.50384769146143,40.19855807840442,0,1,0,0,0,1,0,0
 2,bars,1-N-432,3580.5626598465474,156.4,4.0,9.0,17.0,2.0,0,1,1,0,1,1,0,1,44.583870697678144,40.21673211791397,0,1,0,0,1,0,0,0

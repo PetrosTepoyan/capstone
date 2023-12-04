@@ -6,7 +6,8 @@ from torchvision import transforms
 import torch
 
 class ApartmentsDatasetPyTorch(Dataset):
-    def __init__(self, data_dir, images_dir, transform=None):
+    def __init__(self, device, data_dir, images_dir, transform=None,
+                 drop_columns = ["coordinates"]):
         """
         Args:
             root_dir (string): Directory with all the images.
@@ -19,7 +20,9 @@ class ApartmentsDatasetPyTorch(Dataset):
         self.transform = transform
         self.image_paths = []
         self.df = pd.read_csv(data_dir)
+        self.df = self.df.drop(columns=drop_columns)
         self.df.id = self.df.id.astype(str)
+        self.device = device
         
         for subdir, dirs, files in os.walk(images_dir):
             for file in files:
@@ -31,7 +34,7 @@ class ApartmentsDatasetPyTorch(Dataset):
         self.error_log = {}
         
     def tabular_data_size(self):
-        return len(self.df.columns) - 4 # id, source, price, coordinates
+        return len(self.df.columns) - 3 # id, source, price
         
     def __len__(self):
         return len(self.image_paths)
@@ -52,21 +55,24 @@ class ApartmentsDatasetPyTorch(Dataset):
             
         except Exception as e:
             self.error_log[idx] = f"Error loading image: {e}"
+            print("IMAGE NOT FOUND")
             return (None, None, None, False)
 
         price = self.__get_price_from_image_path(image_path)
         if price is None:
             self.error_log[idx] = "Price not found"
-            return (None, None, None, False)
+            print("PRICE NOT FOUND", source, ap_native_id)
+            return ("PRICE_NOT_FOUND", None, None, False)
 
-        # Assuming 'data' represents some other data you want to return
+        image = image.to(self.device)
+
+        # Optimize data operations
         data = self.df[(self.df["source"] == source) & (self.df["id"] == ap_native_id)]
-        data = data.drop(columns = ["id", "source", "price", "coordinates"]).to_numpy()
-        data = torch.from_numpy(data)
-        data = data.to(torch.float32)
-        return (image, data, price, is_valid)
+        data = data.drop(columns=["id", "source", "price"]).values
+        data_tensor = torch.as_tensor(data, dtype=torch.float32, device=self.device)  # Create tensor directly on the device
 
-    
+        return (image, data_tensor, price, is_valid)
+
     def __get_price_from_image_path(self, image_path):
         components = image_path.split("/")
         source = components[-3]
@@ -75,7 +81,7 @@ class ApartmentsDatasetPyTorch(Dataset):
         try:
             price = int(filtered_rows["price"])
         except:
-            # print(source, ap_native_id)
             return None
-        price = torch.tensor(price)
-        return price
+        price_tensor = torch.tensor(price, dtype=torch.float32, device=self.device)  # Create tensor directly on the device
+        return price_tensor
+
