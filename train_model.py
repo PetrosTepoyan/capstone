@@ -3,12 +3,10 @@ import torch
 import torch.nn as nn
 import timm
 from torch import optim
-from utils.ProgressBar import ProgressBar
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader, random_split
-from MachineLearning.ApartmentsDatasetPyTorch import ApartmentsDatasetPyTorch
 from tqdm import tqdm
-from DeepLearning.PricePredictionModel import PricePredictionModel
+from DeepLearning import PricePredictionModel, ApartmentsDatasetPyTorch, DataSubsetter
 import argparse
 
 parser = argparse.ArgumentParser(description="Training arguments")
@@ -48,13 +46,23 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])  # Normalize images
 ])
 
+subsetter = DataSubsetter(
+    data_dir = params["data_dir"]
+)
+
+dataframe = subsetter.without(
+    groups = "L_",
+    cols = ["coordinates"]
+)
+
 dataset = ApartmentsDatasetPyTorch(
     device = device,
-    data_dir = params["data_dir"],
+    dataframe = dataframe,
     images_dir = params["images_dir"], 
     transform = transform
 )
 print("Tabular Size", len(dataset.df))
+
 model = PricePredictionModel(
     dataset.tabular_data_size(), 
     params

@@ -20,7 +20,7 @@ class ModifiedInception(nn.Module):
         return self.inception(x)
 
 class TabularFFNN(nn.Module):
-    def __init__(self, input_size, output_size, dropout_prob=0.3):
+    def __init__(self, input_size, output_size, dropout_prob=0.4):
         super(TabularFFNN, self).__init__()
         self.ffnn = nn.Sequential(
             nn.Linear(input_size, 256),
@@ -74,7 +74,6 @@ class RegressionModel(nn.Module):
 
     def forward(self, x):
         x = self.regression(x)
-            
         return x
 
 class PricePredictionModel(nn.Module):

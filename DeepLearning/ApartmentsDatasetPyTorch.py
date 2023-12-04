@@ -6,8 +6,7 @@ from torchvision import transforms
 import torch
 
 class ApartmentsDatasetPyTorch(Dataset):
-    def __init__(self, device, data_dir, images_dir, transform=None,
-                 drop_columns = ["coordinates"]):
+    def __init__(self, device, dataframe, images_dir, transform=None):
         """
         Args:
             root_dir (string): Directory with all the images.
@@ -15,13 +14,10 @@ class ApartmentsDatasetPyTorch(Dataset):
                 on a sample.
         """
         
-        self.data_dir = data_dir
         self.images_dir = images_dir
         self.transform = transform
         self.image_paths = []
-        self.df = pd.read_csv(data_dir)
-        self.df = self.df.drop(columns=drop_columns)
-        self.df.id = self.df.id.astype(str)
+        self.df = dataframe
         self.device = device
         
         for subdir, dirs, files in os.walk(images_dir):
