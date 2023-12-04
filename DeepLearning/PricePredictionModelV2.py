@@ -58,7 +58,7 @@ class RegressionModel(nn.Module):
         x = self.regression(x)
         return x
 
-class PricePredictionModel2(nn.Module):
+class PricePredictionModelV2(nn.Module):
     def __init__(self, tabular_data_size, params):
         super(PricePredictionModel, self).__init__()
         # Inception
