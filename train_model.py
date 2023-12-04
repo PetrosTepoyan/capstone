@@ -2,12 +2,14 @@ import pandas as pd
 import torch
 import torch.nn as nn
 import timm
+import os
 from torch import optim
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader, random_split
 from tqdm import tqdm
 from DeepLearning import PricePredictionModel, ApartmentsDatasetPyTorch, DataSubsetter, PricePredictionModelV2
 import argparse
+import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser(description="Training arguments")
 parser.add_argument('-device', metavar='device', type=str, help='device to search | mps:0')
@@ -156,10 +158,17 @@ for epoch in range(num_epochs):
     # Print epoch's summary
     print(f'Epoch {epoch+1}, Training Loss: {train_losses[-1]}, Validation Loss: {val_losses[-1]}, L1: {l1_mean_loss}')
 
-existing_model_count = len(os.listdir())
-this_model_name = f"model_{model_version}.{existing_model_count}"
+
+model_version_directory = f"models/model_{model_version}"
+
+if not os.path.exists(model_version_directory):
+    os.makedirs(model_version_directory)
+    
+existing_model_count = len(os.listdir(model_version_directory)) / 2
+this_model_name = f"model_{model_version}_{existing_model_count}"
+
 # Saving the model
-torch.save(model, f"models/model_{model_version}/{this_model_name}.pth")
+torch.save(model, f"{model_version_directory}/{this_model_name}.pth")
 
 plt.title("Model V4 evaluation")
 plt.plot(train_losses, label = 'Training')
@@ -168,4 +177,4 @@ plt.ylabel("MSE")
 plt.xlabel("Epoch")
 plt.xticks(range(1, num_epochs))
 plt.legend()
-plt.savefig(f'models/model_{model_version}/{this_model_name}_training.png')
+plt.savefig(f'{model_version_directory}/{this_model_name}_training.png')
