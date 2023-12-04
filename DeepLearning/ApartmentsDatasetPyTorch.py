@@ -72,7 +72,7 @@ class ApartmentsDatasetPyTorch(Dataset):
         ap_native_id = components[-2]
         filtered_rows = self.df[(self.df["source"] == source) & (self.df["id"] == ap_native_id)]
         try:
-            price = int(filtered_rows["price"])
+            price = int(filtered_rows["price"].iloc[0])
         except:
             return None
         price_tensor = torch.tensor(price, dtype=torch.float32, device=self.device)  # Create tensor directly on the device
