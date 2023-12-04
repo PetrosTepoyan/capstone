@@ -51,18 +51,15 @@ class ApartmentsDatasetPyTorch(Dataset):
             image = Image.open(image_path)
             if self.transform:
                 image = self.transform(image)
-            is_valid = True
             
         except Exception as e:
             self.error_log[idx] = f"Error loading image: {e}"
-            print("IMAGE NOT FOUND")
-            return (None, None, None, False)
+            raise Exception("IMAGE NOT FOUND")
 
         price = self.__get_price_from_image_path(image_path)
         if price is None:
             self.error_log[idx] = "Price not found"
-            print("PRICE NOT FOUND", source, ap_native_id)
-            return ("PRICE_NOT_FOUND", None, None, False)
+            raise Exception("PRICE NOT FOUND", source, ap_native_id)
 
         image = image.to(self.device)
 
@@ -71,7 +68,7 @@ class ApartmentsDatasetPyTorch(Dataset):
         data = data.drop(columns=["id", "source", "price"]).values
         data_tensor = torch.as_tensor(data, dtype=torch.float32, device=self.device)  # Create tensor directly on the device
 
-        return (image, data_tensor, price, is_valid)
+        return (image, data_tensor, price)
 
     def __get_price_from_image_path(self, image_path):
         components = image_path.split("/")
