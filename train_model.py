@@ -37,12 +37,12 @@ params = {
     "data_dir" : f"processed_data/{data_dir}.csv",
     "images_dir" : f'processed_data/{images_dir}',
     "img_input_size" : 256,
-    "batch_size" : 32,
+    "batch_size" : 64,
     "shuffle" : True,
     
-    "inception_model_output_size" : 1024,
-    "tabular_ffnn_output_size" : 256,
-    "learning_rate" : 0.5e-3,
+    "inception_model_output_size" : 128,
+    "tabular_ffnn_output_size" : 128,
+    "learning_rate" : 0.5e-4,
     "weight_decay" : 1e-3
 }
 
@@ -109,8 +109,13 @@ elif model_version == "v7":
         dataset.tabular_data_size(), 
         params
     )
+elif model_version == "v8":
+    model = PricePredictionModelV8(
+        dataset.tabular_data_size(), 
+        params
+    )
 else:
-    print("Supplie model version. v1, v2, v3, v4, v5, v6, v7")
+    print("Supplie model version. v1, v2, v3, v4, v5, v6, v7, v8")
     
 if continue_training_model:
     model.load_state_dict(torch.load(continue_training_model))
@@ -125,7 +130,6 @@ train_size = int(0.7 * len(dataset))
 val_size = int(0.15 * len(dataset))
 test_size = len(dataset) - train_size - val_size
 num_epochs = 1000
-epochs_suc = 0 
 train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
 num_GPU = 1
 
@@ -161,6 +165,7 @@ print()
 # Initialize lists to track losses
 train_losses = []
 val_losses = []
+epochs_suc = [] # to have a reference to it
 
 optimizer = optim.Adam(
     model.parameters(), 
@@ -206,7 +211,7 @@ def train():
         val_losses.append(val_loss / len(val_loader))  # Average loss for this epoch
         l1_mean_loss = sum(l1_losses) / len(l1_losses)
         # Print epoch's summary
-        epochs_suc += 1
+        epochs_suc.append(epoch)
         print(f'Epoch {epoch+1}, Training Loss: {int(train_losses[-1])}, Validation Loss: {int(val_losses[-1])}, L1: {int(l1_mean_loss)}')
 
 def save_results():
@@ -221,12 +226,13 @@ def save_results():
     # Saving the model
     torch.save(model.state_dict(), f"{model_version_directory}/{this_model_name}.pth")
 
-    plt.title("Model V4 evaluation")
+    plt.title("Model evaluation")
     plt.plot(train_losses, label = 'Training')
     plt.plot(val_losses, label = 'Validation')
     plt.ylabel("MSE")
     plt.xlabel("Epoch")
-    plt.xticks(range(1, epochs_suc))
+    plt.yscale('log')
+    plt.xticks(range(1, epochs_suc[-1], int(epochs_suc[-1] / 10)))
     plt.legend()
     plt.savefig(f'{model_version_directory}/{this_model_name}_training.png')
 
