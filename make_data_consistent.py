@@ -68,8 +68,8 @@ def delete_datapoint_with_no_images(data_dir, images):
 
     return dataset
 
-data_dir = '../processed_data/data.csv'
-images = '../processed_data/images/'
+data_dir = 'processed_data/data.csv'
+images = 'processed_data/images/'
 
 delete_images_not_in_data(
     data_dir,
