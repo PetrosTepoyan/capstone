@@ -104,8 +104,13 @@ elif model_version == "v6":
         dataset.tabular_data_size(), 
         params
     )
+elif model_version == "v7":
+    model = PricePredictionModelV7(
+        dataset.tabular_data_size(), 
+        params
+    )
 else:
-    print("Supplie model version. v1, v2, v3, v4, v5, v6")
+    print("Supplie model version. v1, v2, v3, v4, v5, v6, v7")
     
 if continue_training_model:
     model.load_state_dict(torch.load(continue_training_model))
@@ -143,6 +148,15 @@ test_loader = DataLoader(
 print("Train size", len(train_loader))
 print("Val size", len(val_loader))
 print("Test size", len(test_loader))
+print()
+
+# Count weights and neurons
+total_weights = sum(p.numel() for p in model.parameters() if p.requires_grad)
+total_neurons = sum(layer.out_features for layer in model.modules() if isinstance(layer, nn.Linear))
+
+print(f"Total Weights: {total_weights}")
+print(f"Total Neurons: {total_neurons}")
+print()
 
 # Initialize lists to track losses
 train_losses = []
@@ -218,7 +232,8 @@ def save_results():
 
 try:
     train()
-except:
+except Exception as e:
+    print(e)
     save_results()
     print("Script interrupted. Cleaning up...")
 
