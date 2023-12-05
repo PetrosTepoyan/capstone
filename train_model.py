@@ -94,8 +94,18 @@ elif model_version == "v4":
         dataset.tabular_data_size(), 
         params
     )
+elif model_version == "v5":
+    model = PricePredictionModelV5(
+        dataset.tabular_data_size(), 
+        params
+    )
+elif model_version == "v6":
+    model = PricePredictionModelV6(
+        dataset.tabular_data_size(), 
+        params
+    )
 else:
-    print("Supplie model version. v1, v2, v3, v4")
+    print("Supplie model version. v1, v2, v3, v4, v5, v6")
     
 if continue_training_model:
     model.load_state_dict(torch.load(continue_training_model))
@@ -109,7 +119,8 @@ print("Total length of the dataset", len(dataset))
 train_size = int(0.7 * len(dataset))
 val_size = int(0.15 * len(dataset))
 test_size = len(dataset) - train_size - val_size
-num_epochs = 20
+num_epochs = 1000
+epochs_suc = 0 
 train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
 num_GPU = 1
 
@@ -147,58 +158,67 @@ criterion_abs = torch.nn.L1Loss()
 
 print("Starting training...")
 # Training loop with progress bar
-for epoch in range(num_epochs):
-    # Training
-    model.train()  # Set the model to training mode
-    running_loss = 0.0
-    l1_losses = []
-    for data in tqdm(train_loader, desc=f'Epoch {epoch+1}/{num_epochs} - Training'):
-        images, datas, prices = data
-        optimizer.zero_grad()
-        outputs = model(images, datas)
-        prices_viewed = prices.view(-1, 1).float()
-        loss = criterion(outputs, prices_viewed)
-        loss.backward()
-        optimizer.step()
-
-        running_loss += loss.item()
-
-    train_losses.append(running_loss / len(train_loader))  # Average loss for this epoch
-
-    # Validation
-    model.eval()  # Set the model to evaluation mode
-    val_loss = 0.0
-    with torch.no_grad():  # Disable gradient calculation
-        for data in tqdm(val_loader, desc=f'Epoch {epoch+1}/{num_epochs} - Validation'):
+def train():
+    for epoch in range(num_epochs):
+        # Training
+        model.train()  # Set the model to training mode
+        running_loss = 0.0
+        l1_losses = []
+        for data in tqdm(train_loader, desc=f'Epoch {epoch+1}/{num_epochs} - Training'):
             images, datas, prices = data
-            outputs = model(images, datas)  # Forward pass
+            optimizer.zero_grad()
+            outputs = model(images, datas)
             prices_viewed = prices.view(-1, 1).float()
-            loss = criterion(outputs, prices_viewed)  # Compute loss
-            val_loss += loss.item()  # Accumulate the loss
-            l1_losses.append(criterion_abs(outputs, prices_viewed))
+            loss = criterion(outputs, prices_viewed)
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+
+        train_losses.append(running_loss / len(train_loader))  # Average loss for this epoch
+
+        # Validation
+        model.eval()  # Set the model to evaluation mode
+        val_loss = 0.0
+        with torch.no_grad():  # Disable gradient calculation
+            for data in tqdm(val_loader, desc=f'Epoch {epoch+1}/{num_epochs} - Validation'):
+                images, datas, prices = data
+                outputs = model(images, datas)  # Forward pass
+                prices_viewed = prices.view(-1, 1).float()
+                loss = criterion(outputs, prices_viewed)  # Compute loss
+                val_loss += loss.item()  # Accumulate the loss
+                l1_losses.append(criterion_abs(outputs, prices_viewed))
+            
+        val_losses.append(val_loss / len(val_loader))  # Average loss for this epoch
+        l1_mean_loss = sum(l1_losses) / len(l1_losses)
+        # Print epoch's summary
+        epochs_suc += 1
+        print(f'Epoch {epoch+1}, Training Loss: {int(train_losses[-1])}, Validation Loss: {int(val_losses[-1])}, L1: {int(l1_mean_loss)}')
+
+def save_results():
+    model_version_directory = f"models/model_{model_version}"
+
+    if not os.path.exists(model_version_directory):
+        os.makedirs(model_version_directory)
         
-    val_losses.append(val_loss / len(val_loader))  # Average loss for this epoch
-    l1_mean_loss = sum(l1_losses) / len(l1_losses)
-    # Print epoch's summary
-    print(f'Epoch {epoch+1}, Training Loss: {int(train_losses[-1])}, Validation Loss: {int(val_losses[-1])}, L1: {int(l1_mean_loss)}')
+    existing_model_count = int(len(os.listdir(model_version_directory)) / 2)
+    this_model_name = f"model_{model_version}_{existing_model_count}"
 
+    # Saving the model
+    torch.save(model.state_dict(), f"{model_version_directory}/{this_model_name}.pth")
 
-model_version_directory = f"models/model_{model_version}"
+    plt.title("Model V4 evaluation")
+    plt.plot(train_losses, label = 'Training')
+    plt.plot(val_losses, label = 'Validation')
+    plt.ylabel("MSE")
+    plt.xlabel("Epoch")
+    plt.xticks(range(1, epochs_suc))
+    plt.legend()
+    plt.savefig(f'{model_version_directory}/{this_model_name}_training.png')
 
-if not os.path.exists(model_version_directory):
-    os.makedirs(model_version_directory)
-    
-existing_model_count = int(len(os.listdir(model_version_directory)) / 2)
-this_model_name = f"model_{model_version}_{existing_model_count}"
+try:
+    train()
+except:
+    save_results()
+    print("Script interrupted. Cleaning up...")
 
-# Saving the model
-torch.save(model.state_dict(), f"{model_version_directory}/{this_model_name}.pth")
-
-plt.title("Model V4 evaluation")
-plt.plot(train_losses, label = 'Training')
-plt.plot(val_losses, label = 'Validation')
-plt.ylabel("MSE")
-plt.xlabel("Epoch")
-plt.xticks(range(1, num_epochs))
-plt.legend()
-plt.savefig(f'{model_version_directory}/{this_model_name}_training.png')
