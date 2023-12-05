@@ -5,21 +5,47 @@ from Services import GeoService
 class MapFeatureAggregator:
     
     def __init__(self, geo_service: GeoService):
+        """
+        Initialize the MapFeatureAggregator with a GeoService instance.
+
+        Args:
+        geo_service (GeoService): An instance of GeoService for geographical operations.
+        """
         self.geo_service = geo_service
     
     def significant_distances(self, data, location_col: str):
+        """
+        Calculate distances from each location in the data to significant geographical features.
+
+        Args:
+        data (pd.DataFrame): The dataframe containing location data.
+        location_col (str): The column name in the dataframe that contains location coordinates.
+
+        Returns:
+        pd.DataFrame: A dataframe with distances to significant geographical features.
+        """
         all_distances = []
         locations = data[location_col]
         progress = ProgressBar(len(locations))
         for coordinate in locations:
             distances = self.geo_service.distance_to_significant(coordinate)
             all_distances.append(distances)
-            progress.flush()
+            # progress.flush()
             
         df = pd.DataFrame(all_distances) 
         return df
     
     def amenities_count(self, data, location_col: str):
+        """
+        Count the number of different amenities for each location in the data.
+
+        Args:
+        data (pd.DataFrame): The dataframe containing location data.
+        location_col (str): The column name in the dataframe that contains location coordinates.
+
+        Returns:
+        pd.DataFrame: A dataframe with counts of different amenities for each location.
+        """
         aggregated_amentities_count = pd.DataFrame()
         locations = data[location_col]
         progress = ProgressBar(len(locations))
@@ -30,7 +56,7 @@ class MapFeatureAggregator:
                 aggregated_amentities_count,
                 dict_to_add
             )
-            progress.flush()
+            # progress.flush()
         return aggregated_amentities_count
     
     def add_row_from_dict_with_zeros(self, df, data_dict):

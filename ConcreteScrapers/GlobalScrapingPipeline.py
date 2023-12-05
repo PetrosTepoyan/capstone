@@ -5,13 +5,27 @@ from Services import ScrapingLogService
 import traceback
 
 class GlobalScrapingPipeline:
+    """
+    Manages and executes multiple apartment scraping pipelines concurrently.
+    """
     
     def __init__(self, pipelines: list[ApartmentScrapingPipeline], log_service: ScrapingLogService):
+        """
+        Initializes the GlobalScrapingPipeline with a list of scraping pipelines and a log service.
+
+        :param pipelines: List of ApartmentScrapingPipeline instances to manage.
+        :param log_service: Instance of ScrapingLogService for logging.
+        """
         self.pipelines: list[ApartmentScrapingPipeline] = pipelines
         self.log_service: ScrapingLogService = log_service
         self.scraped_hashes = set()
     
     def run_pipeline(self, pipeline: ApartmentScrapingPipeline):
+        """
+        Runs a single scraping pipeline, iterating through apartment links and managing logging.
+
+        :param pipeline: An ApartmentScrapingPipeline instance to run.
+        """
         source = pipeline.apartment_scraper.source_identifier()
         
         # Get apartments for the current page
@@ -62,12 +76,14 @@ class GlobalScrapingPipeline:
             logging.critical(source + " | no more links")
     
     def run(self):
+        """
+        Executes all scraping pipelines concurrently.
+        """
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = [
                 executor.submit(self.run_pipeline, pipeline) for pipeline in self.pipelines
             ]
             # Wait for all futures to complete
-            print("Submitted futures", futures)
             concurrent.futures.wait(futures) 
             
             # Check for errors in each future
