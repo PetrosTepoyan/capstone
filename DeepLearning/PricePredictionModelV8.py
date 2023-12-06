@@ -8,14 +8,14 @@ class ModifiedInception(nn.Module):
     def __init__(self, output_size):
         super(ModifiedInception, self).__init__()
         # Load and modify the Inception model
-        self.inception = timm.create_model('inception_v4', pretrained=True)
-        n_features = self.inception.last_linear.in_features
-        self.inception.last_linear = nn.Linear(n_features, output_size) 
+        self.inception = timm.create_model('inception_v3', pretrained=True)
+        n_features = self.inception.fc.in_features
+        self.inception.fc = nn.Linear(n_features, output_size) 
 
         # Freeze all layers of Inception model except last linear layer
         for param in self.inception.parameters():
             param.requires_grad = False
-        for param in self.inception.last_linear.parameters():
+        for param in self.inception.fc.parameters():
             param.requires_grad = True
 
     def forward(self, x):
@@ -23,36 +23,28 @@ class ModifiedInception(nn.Module):
 
 base_neuron_count = 32
 
-class ResidualBlock(nn.Module):
-    def __init__(self, n_features):
-        super(ResidualBlock, self).__init__()
-        self.fc = nn.Linear(n_features, n_features)
-        self.activation = nn.ELU()
-
-    def forward(self, x):
-        return self.activation(self.fc(x) + x)
-
 class TabularFFNN(nn.Module):
-    def __init__(self, input_size, output_size):
+    def __init__(self, 
+                 input_size,
+                 hidden_layer_size = 64,
+                 hidden_layer_count = 7,
+                 output_size = 1):
+        
         super(TabularFFNN, self).__init__()
-        self.ffnn = nn.Sequential(
-            nn.Linear(input_size, base_neuron_count),
-            nn.ELU(),
-            nn.LayerNorm(base_neuron_count),
-            nn.Linear(base_neuron_count, base_neuron_count * 2),
-            nn.ELU(),
-            nn.Dropout(0.2),
-            nn.Linear(base_neuron_count * 2, base_neuron_count // 2),
-            nn.ELU(),
-            nn.LayerNorm(base_neuron_count // 2),
-            nn.Linear(base_neuron_count // 2, base_neuron_count // 2),
-            ResidualBlock(base_neuron_count // 2),
-            nn.Dropout(0.4),
-            nn.Linear(base_neuron_count // 2, output_size)
-        )
+        
+        layers = [nn.Linear(input_size, hidden_layer_size), nn.ReLU()]
+        
+        for _ in range(hidden_layer_count - 1):
+            layers.append(nn.Linear(hidden_layer_size, hidden_layer_size))
+            layers.append(nn.ReLU())
+        
+        layers.append(nn.Linear(hidden_layer_size, output_size))
+        
+        self.ffnn = nn.Sequential(*layers)
 
     def forward(self, x):
         x = x.float()
+        # print(x)
         x = x.view(x.size(0), -1)
         x = self.ffnn(x)
         return x

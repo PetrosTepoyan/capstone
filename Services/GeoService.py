@@ -80,9 +80,14 @@ class GeoService:
         if coord is None:
             return None
         try:
-            return {key : int(self.distance(value, coord)) for key, value in self.significant_places.items() }
+            result = {}
+            for key, value in self.significant_places.items():
+                result[key] = int(self.distance(value, coord))
+
         except Exception as e:
-            print("RECEIVED NIL", coord, e, type(coord))
+            print("RECEIVED NIL", coord, value, e, type(coord), type(value))
+            
+        return result
     
     def distance(self, coord1, coord2):
         """

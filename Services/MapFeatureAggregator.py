@@ -14,7 +14,7 @@ class MapFeatureAggregator:
         for coordinate in locations:
             distances = self.geo_service.distance_to_significant(coordinate)
             all_distances.append(distances)
-            progress.flush()
+            # progress.flush()
             
         df = pd.DataFrame(all_distances) 
         return df
@@ -30,7 +30,7 @@ class MapFeatureAggregator:
                 aggregated_amentities_count,
                 dict_to_add
             )
-            progress.flush()
+            # progress.flush()
         return aggregated_amentities_count
     
     def add_row_from_dict_with_zeros(self, df, data_dict):

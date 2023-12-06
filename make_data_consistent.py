@@ -68,14 +68,23 @@ def delete_datapoint_with_no_images(data_dir, images):
 
     return dataset
 
-data_dir = 'processed_data/data.csv'
-images = 'processed_data/images/'
+
+import argparse
+import matplotlib.pyplot as plt
+
+parser = argparse.ArgumentParser(description="Matching arguments")
+parser.add_argument('-data_dir', metavar='data_dir', type=str, help='Data directory')
+parser.add_argument('-images_dir', metavar='data', type=str, help='Images directory')
+
+args = parser.parse_args()
+data_dir = args.data_dir
+images_dir = args.images_dir
 
 delete_images_not_in_data(
     data_dir,
-    images
+    images_dir
 )
 dataset = delete_datapoint_with_no_images(
     data_dir,
-    images
+    images_dir
 )

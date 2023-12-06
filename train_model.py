@@ -34,16 +34,16 @@ if continue_training_model:
     print("Continuing", continue_training_model)
 
 params = {
-    "data_dir" : f"processed_data/{data_dir}.csv",
-    "images_dir" : f'processed_data/{images_dir}',
+    "data_dir" : data_dir,
+    "images_dir" : images_dir,
     "img_input_size" : 256,
     "batch_size" : 64,
     "shuffle" : True,
     
     "inception_model_output_size" : 128,
     "tabular_ffnn_output_size" : 128,
-    "learning_rate" : 0.5e-4,
-    "weight_decay" : 1e-3
+    "learning_rate" : 0.5e-3,
+    "weight_decay" : 1e-4
 }
 
 device = torch.device(device_to_search)
@@ -126,8 +126,8 @@ print("Model ready")
 print("Total length of the dataset", len(dataset))
 
 # Assuming 'dataset' is your full dataset
-train_size = int(0.7 * len(dataset))
-val_size = int(0.15 * len(dataset))
+train_size = int(0.8 * len(dataset))
+val_size = int(0.1 * len(dataset))
 test_size = len(dataset) - train_size - val_size
 num_epochs = 1000
 train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
