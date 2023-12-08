@@ -8,3 +8,4 @@ from .PricePredictionModelV5 import PricePredictionModelV5
 from .PricePredictionModelV6 import PricePredictionModelV6
 from .PricePredictionModelV7 import PricePredictionModelV7
 from .PricePredictionModelV8 import PricePredictionModelV8
+from .PricePredictionModelV9 import PricePredictionModelV9
