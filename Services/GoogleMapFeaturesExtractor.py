@@ -2,7 +2,7 @@ import time
 import math
 import requests
 from urllib.parse import quote
-from VirtualModels.Amenity import Amenity
+from VirtualModels.Amenity import Amenity # Not accessible anymore
 
 # WILL NOT BE USED
 class GeoFeaturesExtractor:

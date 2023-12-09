@@ -6,14 +6,36 @@ from shapely.geometry import Point, Polygon
 class GeoService:
     
     def __init__(self, significant_places: dict[str : (int, int)], radius: int = 300):
+        """
+        Initialize the GeoService with significant places and a search radius.
+
+        Args:
+        significant_places (dict[str, (int, int)]): A dictionary mapping place names to their coordinates.
+        radius (int, optional): The radius in meters for searching amenities. Default is 300 meters.
+        """
         self.significant_places = significant_places
         self.radius = radius
         
     def initialize_osmnx_cache(self, cache_folder="ox_cache"):
+        """
+        Initialize the OSMnx cache for storing and reusing downloaded data.
+
+        Args:
+        cache_folder (str, optional): The folder name for the OSMnx cache. Default is "ox_cache".
+        """
         # Set up OSMnx to use a local cache folder
         ox.config(use_cache=True, cache_folder=cache_folder)
     
     def get_amenities_from_address(self, address: str):
+        """
+        Retrieve amenities from an address within a specified radius.
+
+        Args:
+        address (str): The address to search amenities around.
+
+        Returns:
+        DataFrame or None: A DataFrame containing amenities details or None if an error occurs.
+        """
         try:
             features = ox.features_from_address(
                 address,
@@ -32,6 +54,15 @@ class GeoService:
             return None
     
     def get_amenities_from_point(self, coords: (int, int)):
+        """
+        Retrieve amenities from a specific point within a specified radius.
+
+        Args:
+        coords ((int, int)): The coordinates (latitude, longitude) of the point.
+
+        Returns:
+        DataFrame: A DataFrame containing amenities details.
+        """
         try:
             features = ox.features_from_point(
                 coords,
@@ -50,6 +81,15 @@ class GeoService:
             return empty_df
         
     def __convert_coords(self, geom):
+        """
+        Convert a geometry object's coordinates into a more usable format (latitude, longitude).
+
+        Args:
+        geom (shapely.geometry): The geometry object to convert.
+
+        Returns:
+        Tuple or None: A tuple of coordinates (latitude, longitude) or None if conversion is not possible.
+        """
         if isinstance(geom, Point):
             coords = geom.coords.xy
             return (coords[1][0], coords[0][0])
@@ -59,6 +99,15 @@ class GeoService:
         return None
     
     def get_coord_from_address(self, address):
+        """
+        Get the average coordinate from amenities near an address.
+
+        Args:
+        address (str): The address to search amenities around.
+
+        Returns:
+        Tuple: A tuple of average coordinates (latitude, longitude) or (None, None) if no amenities are found.
+        """
         # We are going to see the nearby amentities, 
         # and get the mean distance to the amentities
         amenities = self.get_amenities_from_address(address)
@@ -77,6 +126,15 @@ class GeoService:
         return (c0mean, c1mean)
     
     def distance_to_significant(self, coord):
+        """
+        Calculate distances from a coordinate to all significant places.
+
+        Args:
+        coord (Tuple): The coordinates (latitude, longitude) to calculate distances from.
+
+        Returns:
+        dict or None: A dictionary of distances to significant places or None if an error occurs.
+        """
         if coord is None:
             return None
         try:
