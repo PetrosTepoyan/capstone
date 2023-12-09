@@ -26,6 +26,13 @@ images_dir = args.images
 model_version = args.model
 continue_training_model = args.continue_training
 
+if data_dir is None:
+    print("Provide data directory: -data")
+    exit()
+    
+if images_dir is None:
+    print("Provide images directory: -images")
+
 print("Data directory", data_dir)
 print("Images directory", images_dir)
 print("Device", device_to_search)
@@ -46,6 +53,9 @@ params = {
     "weight_decay" : 1e-4
 }
 
+if device_to_search is None:
+    device_to_search = "cpu"
+    
 device = torch.device(device_to_search)
 if not device:
     raise Exception("Device not found")
@@ -115,7 +125,8 @@ elif model_version == "v8":
         params
     )
 else:
-    print("Supplie model version. v1, v2, v3, v4, v5, v6, v7, v8")
+    print("Supply model version. v1, v2, v3, v4, v5, v6, v7, v8")
+    exit()
     
 if continue_training_model:
     model.load_state_dict(torch.load(continue_training_model))

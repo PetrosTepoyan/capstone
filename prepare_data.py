@@ -17,6 +17,10 @@ parser.add_argument('-data_dir', type=str, help='Directory where the CSV files w
 args = parser.parse_args()
 data_dir = args.data_dir
 
+if data_dir is None:
+    print('Provide data directory')
+    exit()
+
 with open("config.json", 'r') as file:
     config = json.load(file)
     building_type_mapping = config["building_type_mapping"]
